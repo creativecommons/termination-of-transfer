@@ -1,5 +1,6 @@
 # termination-of-transfer
-Termination of Transfer tool
+Termination of Transfer tool.
+
 This project involves the reinvigoration of CC's beta Termination of Transfer Tool, first published in 2006. CC, in collaboration with Authors Alliance and CC United States, is assessing the feasibility and utility of finishing this tool and possibly transferring long-term stewardship to Authors Alliance.
 
 References:
