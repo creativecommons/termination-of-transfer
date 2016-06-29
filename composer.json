@@ -1,0 +1,14 @@
+{
+    "name": "creativecommons/termination-of-transfer",
+    "require": {
+        "mpdf/mpdf": "^6.0",
+        "smarty/smarty": "^3.1"
+    },
+    "license": "GNU AGPL v3+",
+    "authors": [
+        {
+            "name": "Rob Myers",
+            "email": "rob@robmyers.org"
+        }
+    ]
+}
