@@ -60,6 +60,15 @@ Rendering.common = function (config) {
   }
   question.find('.question-label').html(config.question);
   question.css("display", "none");
+  // If we're entering this value for the first time (not via the back button)
+  // and this isn't an optional value
+  // don't let the user continue until they enter a value here.
+  if((Values[config.variable] === undefined)
+     && (! config.optional)) {
+    Navigation.disableNext();
+  } else {
+    Navigation.enableNext();
+  }
   return question;
 };
 
@@ -71,19 +80,22 @@ Rendering.radio = function (config) {
   var question = Rendering.common(config);
   var form_group = question.find('.form-group');
   var name = 'input-' + config.variable;
+  // If we are returning to this via the back button, get the previous value
+  var existing_value = Values[config.variable];
   var radio_button_values = config.values || ['yes', 'no'];
   radio_button_values.forEach(function (value) {
-    var radio_button = $('<label class="radio-inline"><input type="radio" name=' + name + '" value="' + value  +'">' + value +'</label>');
-    form_group.append(radio_button);
+    var radio_button = '<label class="radio-inline"><input type="radio" name=' + name + '" value="' + value  +'"';
+    if (value == existing_value) {
+      radio_button += ' checked="checked"';
+    }
+    radio_button += '>' + value +'</label>';
+    form_group.append($(radio_button));
   });
-  // If we're entering this value for the first time (not via the back button)
-  // and this isn't an optional value
-  // don't let the user continue until they enter a value here.
-  if((Values[config.variable] === undefined)
-     && (! config.optional)) {
-    Navigation.disableNext();
-    form_group.find(':input[type="radio"]').click(Navigation.enableNext);
-  }
+  // When the user makes a choice, go straight to the next question
+  form_group.find(':input[type="radio"]').click(function () {
+    Navigation.enableNext();
+    $('#button-question-next').click();
+  });
   return question;
 };
 
@@ -116,8 +128,8 @@ Rendering.text = function (config) {
   if (Values[config.variable]) {
     form_group.find('text-question').val(Values[config.variable]);
   }
+  var existing_value = Values[config.variable];
   if (! config.optional) {
-    Navigation.disableNext();
     // Ensure next isn't enabled until enough characters are entered
     var min_length = config.min_length || 4;
     var text_field_element = question.find('.text-question');
@@ -125,6 +137,10 @@ Rendering.text = function (config) {
                                                     min_length);
     text_field_element.on('keyup', validator);
     text_field_element.on('change', validator);
+  }
+  // If we are returning to the field and the value has already been set, use it
+  if (existing_value !== undefined) {
+    text_field.val(Values[config.variable]);
   }
   return question;
 };

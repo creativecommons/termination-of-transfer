@@ -279,7 +279,7 @@ Questions.getAnswer = function () {
   case 'radio':
     answer = $(':input[type="radio"]:checked').val();
     break;
-  case 'date':
+  case 'year':
     answer = parseInt($('.text-question').val());
     break;
   case 'text':
@@ -443,5 +443,12 @@ Questions.start = function () {
   Navigation.showNextPrevious();
   $('#button-question-next').click(Questions.nextQuestion);
   $('#button-question-back').click(Questions.previousQuestion);
+  // When the user presses "return" in a text area, move to next question
+  $('#question-rendering-area').on('submit', function () {
+    if ($('#button-question-next').is(':enabled')) {
+      $('#button-question-next').click();
+    }
+    return false;
+  });
   Questions.transitionQuestion(Questions.first_question);
 };
