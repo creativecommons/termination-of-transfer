@@ -41,6 +41,10 @@ if (!isset($data['report_timestamp'])) {
     exit('Report timestamp not provided.');
 }
 
+if (!isset($data['conclusion'])) {
+    exit('Conclusion not provided.');
+}
+
 if (!isset($data['flags'])) {
     exit('Flags not provided.');
 }
@@ -50,7 +54,7 @@ if (!isset($data['details'])) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Flag expansion
+// Flag and conclusion expansion
 ////////////////////////////////////////////////////////////////////////////////
 
 $results_json = file_get_contents(__DIR__ . '/js/results.json');
@@ -64,6 +68,13 @@ $flags = array_map(function ($spec) {
 },
     $data['flags']);
 
+$conclusion_path = explode('.', $data['conclusion']);
+$conclusion_section = $results_strings['Conclusion'][$conclusion_path[0]];
+$conclusion_title = $conclusion_section['title'];
+$conclusion_details = $conclusion_section[$conclusion_path[1]];
+$conclusion_subtitle = $conclusion_details['title'];
+$conclusion_description = $conclusion_details['description'];
+
 ////////////////////////////////////////////////////////////////////////////////
 // Fill out the template with the details from the provided data
 ////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +86,9 @@ $smarty->setCompileDir(__DIR__ . '/../templates_c');
 $smarty->assign('date', date('jS F Y', $now_timestamp));
 $smarty->assign('flags', $flags);
 $smarty->assign('details', $data['details']);
+$smarty->assign('conclusion_title', $conclusion_title);
+$smarty->assign('conclusion_subtitle', $conclusion_subtitle);
+$smarty->assign('conclusion_description', $conclusion_description);
 $html = $smarty->fetch(__DIR__ . '/../template/result.tpl');
 
 ////////////////////////////////////////////////////////////////////////////////

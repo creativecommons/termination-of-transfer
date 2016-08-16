@@ -32,10 +32,11 @@ Rules.simpleYesNoRule = function (variable_id, yesValue, noValue) {
 };
 
 Rules.jumpToSectionThree = 's3q3a';
+Rules.jumpToFinish = 'finish';
 
 Rules.conclusion = function (conclusion) {
   Values.conclusion = conclusion;
-  return Rules.jumpToSectionThree;
+  return Rules.jumpToFinish;
 };
 
 Rules.conclusionPDF = function (conclusion) {
@@ -53,8 +54,9 @@ Rules.addFlag = function(flag) {
 ////////////////////////////////////////////////////////////////////////////////
 
 Rules.section304Analysis = function () {
-  var result = 's1q1f'
+  var result = 's1q1f';
   if (Values.k_year < 1978) {
+    result = 's2q2a';
     if ((Values.pub_year == undefined)
         && (Values.reg_year == undefined)) {
       result = Rules.conclusion('B.vii');
@@ -86,8 +88,6 @@ Rules.section304Analysis = function () {
         }
       }
     }
-  } else {
-    result = 's1q1f';
   }
   return result;
 };
@@ -178,9 +178,18 @@ Rules.s1q1bi2 = function () {
 
 // Has the work been registered with the United State Copyright Office?
 
-Rules.s1q1c = Rules.simpleYesNoRule('work_registered',
-                                    's1q1ci',
-                                    's1q1d');
+Rules.s1q1c = function () {
+  var result = undefined;
+  if (Values.work_registered == 'yes') {
+    result = 's1q1ci';
+  } else if (Values.work_registered == 'no') {
+    result = 's1q1d';
+  } else /* don't know */ {
+    // If someone doesn't know, continue without asking for registration number
+    result = 's1q1d';
+  }
+  return result;
+};
 
 // When was the work registered with the United States Copyright Office?
 
@@ -204,7 +213,7 @@ Rules.s1q1f = Rules.section203Analysis;
 Rules.s2q2a = function () {
   var result = undefined;
   if (Values.last_will == 'yes') {
-    result = Rules.conclusion(B.iv);
+    result = Rules.conclusion('B.iv');
   } else {
     result = 's2q2b';
   }
@@ -326,7 +335,7 @@ Rules.s2q2eii = function () {
 
 Rules.s3q3a = function () {
   var result = undefined;
-  if (Values.work_registered) {
+  if (Values.work_registered == 'yes') {
     result = 's3q3b';
   } else {
     result = 's3q3c';

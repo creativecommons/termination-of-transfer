@@ -24,7 +24,7 @@ include_once __DIR__ . '/../include/header.php';
        <h2>Returning Author's Rights: The CC Termination of Transfer Tool [BETA]</h2>
 
        <div class="alert alert-danger" role="alert"
-            id="no-javascript-alert"><strong>We're sorry!</strong> You'll need JavaScript enabled to use this tool.</div>
+            id="no-javascript-alert"><strong>We're sorry!</strong> You&apos;ll need JavaScript enabled to use this tool.</div>
        <script>
          // Hide this quickly if JS is supported
          document.getElementById('no-javascript-alert').className += ' hidden';
@@ -64,11 +64,8 @@ include_once __DIR__ . '/../include/header.php';
       <div class="hidden" id="question-progress-buttons">
         <button class="btn btn-default" id="button-question-back">Back</button>
         <button class="btn btn-default" id="button-question-next">Next</button>
-      </div>
-
-      <div class="restart-button hidden">
         <a href="questionnaire.php"
-           class="btn btn-default"
+           class="btn btn-default hidden"
            id="button-restart">Restart</a>
       </div>
 

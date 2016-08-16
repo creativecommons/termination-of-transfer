@@ -59,7 +59,14 @@ Questions.s1q1b = {
 Questions.s1q1bi = {
   variable: 'pub_year',
   question: 'When was the work first published?',
-  input: 'year'
+  input: 'year',
+  validate: function () {
+    return Validation.validDate()
+      || ((parseInt($('.text-question').val()) < Values.creation_year)
+          ? 'The publication date cannot be earlier than the creation date.'
+          : false);
+  }
+
 };
 
 // Works from 1989 and earlier usually display a copyright notice...
@@ -76,15 +83,17 @@ Questions.s1q1bi2 = {
 Questions.s1q1c = {
   question: 'Has the work been registered with the United State Copyright Office?',
   variable: 'work_registered',
-  input: 'radio'
+  input: 'radio',
+  values: ['yes', 'no', "don't know"]
 };
 
 // When was the work registered with the United States Copyright Office?
 
 Questions.s1q1ci = {
-  question: 'When was the work registered with the United States Copyright Office?',
+  question: 'When was the work registered with the United States Copyright Office? (Leave blank if unknown)',
   variable: 'reg_year',
-  input: 'year'
+  input: 'year',
+  min_length: 0
 };
 
 // What is the date of the agreement or transfer? ...
@@ -94,7 +103,7 @@ Questions.s1q1d = {
   variable: 'k_year',
   input: 'year',
   validate: function () {
-    return Validation.basicValidDate()
+    return Validation.validDate()
       || ((parseInt($('.text-question').val()) < Values.creation_year)
           ? 'If the agreement predates the work’s creation, please enter the creation year.'
           : false);
@@ -214,6 +223,7 @@ Questions.s3q3a = {
   section: 3,
   question: 'Title of Work [optional]',
   variable: 'work_title',
+  placeholder: 'Work Title',
   optional: true
 };
 
@@ -222,7 +232,8 @@ Questions.s3q3a = {
 Questions.s3q3b = {
   question: 'Copyright Registration Number',
   variable: 'work_copyright_reg_num',
-  min_length: 1
+  placeholder: 'TX0000124166',
+  optional: true
 };
 
 // Tell us about the Agreement or Transfer...
@@ -239,6 +250,7 @@ Questions.s3q3c = {
 Questions.s3q3d = {
   question: 'Description of the Agreement or Transfer [optional]',
   variable: 'work_agreement_desc',
+  placeholder: 'About the agreement',
   optional: true
 };
 
@@ -247,6 +259,7 @@ Questions.s3q3d = {
 Questions.s3q3e = {
   question: 'Please list all authors or artists of the work',
   variable: 'work_authors',
+  placeholder: 'A. N. Other',
   min_length: 1
 };
 
@@ -255,9 +268,9 @@ Questions.s3q3e = {
 ////////////////////////////////////////////////////////////////////////////////
 
 Questions.validateAnswer = function () {
-  var result = true;
+  var result = false;
   var question = Questions[Questions.current_question];
-  if (question.validation) {
+  if (question.validate) {
     result = question.validate();
   } else if (question.type == 'year') {
     result = Validation.validDate();
@@ -292,9 +305,9 @@ Questions.getAnswer = function () {
 };
 
 Questions.processAnswer = function () {
-  var warnings = Questions.validateAnswer();
   var result = false;
-  if (warnings === true) {
+  var warnings = Questions.validateAnswer();
+  if (warnings === false) {
     var question = Questions[Questions.current_question];
     var answer = Questions.getAnswer();
     Values[question.variable] = answer;
@@ -400,16 +413,21 @@ Questions.nextQuestion = function () {
   // If the answer was OK, move on
   if (Questions.processAnswer()) {
     var id = Questions.nextQuestionID();
+    Questions.progress_stack.push(id);
     if (id == 'finish') {
       Questions.finish();
     } else {
-      Questions.progress_stack.push(id);
       Questions.transitionQuestion(id);
     }
   }
 };
 
 Questions.previousQuestion = function () {
+  // If we are going back from *after* the last question, re-enable UI
+  if (Questions.progress_stack[Questions.progress_stack.length - 1]
+      == 'finish') {
+    Navigation.unfinishQuestions();
+  }
   // Don't pop past the very first item
   if (Questions.progress_stack.length > 1) {
     // Clear current answer
@@ -429,7 +447,6 @@ Questions.finish = function () {
   var obj = Questions.getResultDetails(Values.conclusion);
   Values.termination_type = obj.title;
   Notifications.setResultAreaMessage(obj, 'panel-success');
-  Notifications.displayResultArea();
   Navigation.finishQuestions();
   if (Values.conclusion_generate_pdf) {
     PDF.request();

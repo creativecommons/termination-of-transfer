@@ -22,6 +22,12 @@
 
 var Validation = {};
 
+// Naughty. If we're going to monkeypatch we should have a file for these
+
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 Validation.allowOnlyNumbers = function (element) {
   // http://stackoverflow.com/a/995193
   element.keydown(function (e) {
@@ -42,18 +48,21 @@ Validation.allowOnlyNumbers = function (element) {
   });
 };
 
+// false here means no errors, a string means errors
+
 Validation.validDate = function () {
-  var date = $('.text-question').val();
+  var text_field = $('.text-question');
+  var date = text_field.val();
   var result = false;
   var errors = [];
   if (! date.match(/[0-9]{4}/)) {
     errors.push("date must be four digits");
   }
-  if (! (parseInt(date) < new Date().getFullYear())) {
+  if (parseInt(date) > Values.current_year) {
     errors.push("date must be in the past");
   }
   if (errors.length != 0) {
-    result = errors.join().capitalizFirstLetter() + '.';
+    result = errors.join().capitalizeFirstLetter() + '.';
   }
   return result;
 };

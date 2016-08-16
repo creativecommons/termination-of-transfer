@@ -32,3 +32,19 @@ Values.reset = function () {
     flags: []
   };
 };
+
+var varsToTitles = {
+  work_title: 'Title of Work',
+  work_copyright_reg_num: 'Registration Number',
+  creation_year: 'Created',
+  pub_year: 'Published',
+  reg_year: 'Copyrighted',
+  termination_type: 'Termination Type',
+  //'': 'Notice Window',
+  //'': 'Termination Window',
+  work_agreement_type: 'Agreement or Transfer Type',
+  work_agreement_desc: 'Agreement or Transfer Description',
+  work_authors: 'Author',
+  //'': 'Grantor',
+  k_year: 'Grant Date',
+};

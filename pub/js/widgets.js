@@ -147,6 +147,13 @@ Navigation.showAnswersTable = function () {
 
 Navigation.finishQuestions = function () {
   Navigation.hideQuestions();
-  $("#question-progress-buttons").addClass('hidden');
-  $("#restart-button").removeClass('hidden');
+  Notifications.displayResultArea();
+  Navigation.disableNext();
+  $("#button-restart").removeClass('hidden');
+};
+
+Navigation.unfinishQuestions = function () {
+  Navigation.showQuestions();
+  Notifications.hideResultArea();
+  $("#button-restart").addClass('hidden');
 };

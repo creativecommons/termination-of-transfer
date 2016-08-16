@@ -120,7 +120,7 @@ Rendering.text = function (config) {
   var text_field = $('<input type="text" class="form-control text-question" id="'
                      + config.variable +
                      '" placeholder="'
-                     + config.placeholder
+                     + (config.placeholder || '')
                      + '">');
   form_group.append(text_field);
   // Set the label
