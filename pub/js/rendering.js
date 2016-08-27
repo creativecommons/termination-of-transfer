@@ -103,9 +103,11 @@ Rendering.radio = function (config) {
 // Text input
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.makeTextLengthHandler = function (element, min_length) {
+Rendering.makeTextLengthHandler = function (element, min_length, optional) {
   return function () {
-    if (element.val().length >= min_length) {
+    var length = element.val().length;
+    if ((optional && (length == 0))
+        || (length >= min_length)) {
       Navigation.enableNext();
     } else {
       Navigation.disableNext();
@@ -129,15 +131,14 @@ Rendering.text = function (config) {
     form_group.find('text-question').val(Values[config.variable]);
   }
   var existing_value = Values[config.variable];
-  if (! config.optional) {
-    // Ensure next isn't enabled until enough characters are entered
-    var min_length = config.min_length || 4;
-    var text_field_element = question.find('.text-question');
-    var validator = Rendering.makeTextLengthHandler(text_field_element,
-                                                    min_length);
-    text_field_element.on('keyup', validator);
-    text_field_element.on('change', validator);
-  }
+  // Ensure next isn't enabled until enough characters are entered
+  var min_length = config.min_length || 4;
+  var text_field_element = question.find('.text-question');
+  var validator = Rendering.makeTextLengthHandler(text_field_element,
+                                                  min_length,
+                                                  config.optional);
+  text_field_element.on('keyup', validator);
+  text_field_element.on('change', validator);
   // If we are returning to the field and the value has already been set, use it
   if (existing_value !== undefined) {
     text_field.val(Values[config.variable]);

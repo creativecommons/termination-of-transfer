@@ -93,7 +93,7 @@ Questions.s1q1ci = {
   question: 'When was the work registered with the United States Copyright Office? (Leave blank if unknown)',
   variable: 'reg_year',
   input: 'year',
-  min_length: 0
+  optional: true
 };
 
 // What is the date of the agreement or transfer? ...
@@ -270,7 +270,7 @@ Questions.s3q3e = {
 Questions.validateAnswer = function () {
   var result = false;
   var question = Questions[Questions.current_question];
-  if (question.validate) {
+  if (question['validate']) {
     result = question.validate();
   } else if (question.type == 'year') {
     result = Validation.validDate();
@@ -293,7 +293,15 @@ Questions.getAnswer = function () {
     answer = $(':input[type="radio"]:checked').val();
     break;
   case 'year':
-    answer = parseInt($('.text-question').val());
+    if ((question.optional != true)
+        || ((question.optional == true) && $('.text-question').val() != '')) {
+      answer = parseInt($('.text-question').val());
+    }
+    break;
+  case 'year_or_empty':
+    if ($('.text-question').val() != '') {
+      answer = parseInt($('.text-question').val());
+    }
     break;
   case 'text':
     // Fall through to default
@@ -388,7 +396,7 @@ Questions.transitionQuestion = function (next_question) {
   } else {
     Questions.current_question = next_question;
     var question = Questions[Questions.current_question];
-    if (question.pre) {
+    if (question['pre']) {
       question.pre();
     }
     Rendering.transitionTo(question);

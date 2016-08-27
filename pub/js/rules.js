@@ -61,13 +61,21 @@ Rules.section304Analysis = function () {
         && (Values.reg_year == undefined)) {
       result = Rules.conclusion('B.vii');
     } else {
-      var cright_year = Math.min(Values.pub_year,
-                                 Values.reg_year);
+      var cright_year = Values.pub_year;
+      // If the work is registered (not all works are!), use the min of pub/reg
+      if (Values.reg_year != undefined) {
+        cright_year = Math.min(Values.pub_year,
+                               Values.reg_year);
+      }
       var term_begin = cright_year + 56;
       term_begin = Math.max(term_begin, 1978);
       var term_end = term_begin + 5;
       notice_begin = term_begin - 10;
       notice_end = term_end - 2;
+      Values.term_begin = term_begin;
+      Values.term_end = term_end;
+      Values.notice_begin = notice_begin;
+      Values.notice_end = notice_end;
       if (notice_begin > Values.current_year) {
         Rules.addFlag('A.i.a');
       } else if (notice_end < Values.current_year) {
@@ -76,6 +84,10 @@ Rules.section304Analysis = function () {
           var d_term_end = d_term_begin + 5;
           var d_notice_begin = d_term_begin - 10;
           var d_notice_end = d_term_end - 2;
+          Values.term_begin = d_term_begin;
+          Values.term_end = d_term_end;
+          Values.notice_begin = d_notice_begin;
+          Values.notice_end = d_notice_end;
           if (d_notice_begin > Values.current_year) {
             result = Rules.conclusion('A.iii.a');
           } else if (notice_end < Values.current_year) {
@@ -108,6 +120,10 @@ Rules.section203Analysis = function () {
     var term_end = term_begin + 5;
     var notice_begin = term_begin - 10;
     var notice_end = term_end - 2;
+    Values.term_begin = term_begin;
+    Values.term_end = term_end;
+    Values.notice_begin = notice_begin;
+    Values.notice_end = notice_end;
     if (notice_begin > Values.current_year) {
       result = Rules.conclusion('B.i');
     } else if (notice_end < Values.current_year) {
@@ -120,7 +136,10 @@ Rules.section203Analysis = function () {
     var p_term_end = p_term_begin  + 5;
     var p_notice_begin = p_term_begin - 10;
     var p_notice_end = p_term_end - 2;
-
+    Values.term_begin = p_term_begin;
+    Values.term_end = p_term_end;
+    Values.notice_begin = p_notice_begin;
+    Values.notice_end = p_notice_end;
     if (p_notice_begin > Values.current_year) {
       result = Rules.conclusion('B.i');
     } else if (p_notice_end < Values.current_year) {
@@ -150,8 +169,10 @@ Rules.s1q1bi = function () {
   var result = undefined;
   if (Values.pub_year < 1923) {
     result = Rules.conclusion('B.viii');
-  } else {
+  } else if (Values.pub_year <= 1989)
     result = 's1q1bi2';
+  else {
+    result = 's1q1c';
   }
   return result;
 };
@@ -289,7 +310,7 @@ Rules.s2q2cia = function () {
   } else if (Values.created_as_part_of_motion_picture == 'no') {
     result = 's2q2d';
   } else /* don't know */ {
-    //FIXME: WAITING FOR SPEC
+    result = 's2q2d';
   }
   return result;
 };
