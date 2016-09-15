@@ -25,6 +25,24 @@ var PDF = {};
 
 PDF.url = 'result-pdf.php';
 
+PDF.appendWindowDetails = function (details) {
+  var noticeWindow = Rules.noticeWindow();
+  if (noticeWindow) {
+    details.push({key: "Notice Window Beginning",
+                  value: noticeWindow.beginning});
+    details.push({key: "Notice Window Ending",
+                  value: noticeWindow.ending});
+  }
+  var termWindow = Rules.terminationWindow();
+  if (termWindow) {
+    details.push({key: "Termination Window Beginning",
+                  value: termWindow.beginning});
+    details.push({key: "Termination Window Ending",
+                  value: termWindow.ending});
+  }
+  return details;
+};
+
 PDF.details = function () {
   var details = [];
   Object.getOwnPropertyNames(varsToTitles).forEach(function (key) {
@@ -34,7 +52,7 @@ PDF.details = function () {
       details.push(mapping);
     }
   });
-  return details;
+  return PDF.appendWindowDetails(details);
 };
 
 PDF.request = function () {

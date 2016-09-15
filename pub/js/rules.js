@@ -50,6 +50,56 @@ Rules.addFlag = function(flag) {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
+// Date range calculations
+////////////////////////////////////////////////////////////////////////////////
+
+Rules.noticeWindow = function () {
+  var window = false;
+  if (Values.notice_begin){
+    window = {
+      beginning: Values.notice_begin,
+      ending: Values.notice_end
+    };
+  }
+  if (Values.d_notice_begin){
+    window = {
+      beginning: Values.d_notice_begin,
+      ending: Values.d_notice_end
+    };
+  }
+  if (Values.p_notice_begin){
+    window = {
+      beginning: Values.p_notice_begin,
+      ending: Values.p_notice_end
+    };
+  }
+  return window
+};
+
+Rules.terminationWindow = function () {
+  var window = false;
+  if (Values.term_begin) {
+    window = {
+      beginning: Values.term_begin,
+      ending: Values.term_end
+    };
+  }
+  if (Values.d_notice_begin){
+    window = {
+      beginning: Values.d_term_begin,
+      ending: Values.d_term_end
+    };
+  }
+  if (Values.p_notice_begin){
+    window = {
+      beginning: Values.p_term_begin,
+      ending: Values.p_term_end
+    };
+  }
+  return window;
+};
+
+////////////////////////////////////////////////////////////////////////////////
 // Section N Analyses
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -67,30 +117,22 @@ Rules.section304Analysis = function () {
         cright_year = Math.min(Values.pub_year,
                                Values.reg_year);
       }
-      var term_begin = cright_year + 56;
-      term_begin = Math.max(term_begin, 1978);
-      var term_end = term_begin + 5;
-      notice_begin = term_begin - 10;
-      notice_end = term_end - 2;
-      Values.term_begin = term_begin;
-      Values.term_end = term_end;
-      Values.notice_begin = notice_begin;
-      Values.notice_end = notice_end;
-      if (notice_begin > Values.current_year) {
+      Values.term_begin = cright_year + 56;
+      Values.term_begin = Math.max(Values.term_begin, 1978);
+      Values.term_end = Values.term_begin + 5;
+      Values.notice_begin = Values.term_begin - 10;
+      Values.notice_end = Values.term_end - 2;
+      if (Values.notice_begin > Values.current_year) {
         Rules.addFlag('A.i.a');
-      } else if (notice_end < Values.current_year) {
+      } else if (Values.notice_end < Values.current_year) {
         if (cright_year < 1938) {
-          var d_term_begin = term_begin + 19;
-          var d_term_end = d_term_begin + 5;
-          var d_notice_begin = d_term_begin - 10;
-          var d_notice_end = d_term_end - 2;
-          Values.term_begin = d_term_begin;
-          Values.term_end = d_term_end;
-          Values.notice_begin = d_notice_begin;
-          Values.notice_end = d_notice_end;
-          if (d_notice_begin > Values.current_year) {
+          Values.d_term_begin = Values.term_begin + 19;
+          Values.d_term_end = Values.d_term_begin + 5;
+          Values.d_notice_begin = Values.d_term_begin - 10;
+          Values.d_notice_end = Values.d_term_end - 2;
+          if (Values.d_notice_begin > Values.current_year) {
             result = Rules.conclusion('A.iii.a');
-          } else if (notice_end < Values.current_year) {
+          } else if (Values.notice_end < Values.current_year) {
             result = Rules.conclusion('A.ii.a');
           } else {
             result = Rules.conclusion('B.ii');
@@ -106,44 +148,39 @@ Rules.section304Analysis = function () {
 
 Rules.section203Analysis = function () {
   var result = 's2q2a';
-  var term_begin = undefined;
-  if (Values.pub_right == true ) {
-    if (Values.pub_year != undefined) {
-      term_begin = Math.min(Values.pub_year + 35 , Values.k_year + 40);
-    } else {
-      term_begin = Values.k_year + 40;
+  if (Values.k_year > 1977) {
+    var term_begin = undefined;
+    if (Values.pub_right == true ) {
+      if (Values.pub_year != undefined) {
+        Values.term_begin = Math.min(Values.pub_year + 35 , Values.k_year + 40);
+      } else {
+        Values.term_begin = Values.k_year + 40;
+      }
+    } else if ((Values.pub_year != Values.k_year)
+               || (Values.pub_right == 'no'))  {
+      Values.term_begin = Values.k_year + 35;
     }
-  } else if (Values.pub_year != Values.k_year ) {
-    term_begin = Values.k_year + 35;
-  }
-  if (term_begin != undefined) {
-    var term_end = term_begin + 5;
-    var notice_begin = term_begin - 10;
-    var notice_end = term_end - 2;
-    Values.term_begin = term_begin;
-    Values.term_end = term_end;
-    Values.notice_begin = notice_begin;
-    Values.notice_end = notice_end;
-    if (notice_begin > Values.current_year) {
-      result = Rules.conclusion('B.i');
-    } else if (notice_end < Values.current_year) {
-      result = Rules.conclusion('B.ii');
+    if (term_begin != undefined) {
+      Values.term_end = Values.term_begin + 5;
+      Values.notice_begin = Values.term_begin - 10;
+      Values.notice_end = Values.term_end - 2;
+      if (Values.notice_begin > Values.current_year) {
+        result = Rules.conclusion('B.i');
+      } else if (Values.notice_end < Values.current_year) {
+        result = Rules.conclusion('B.ii');
+      }
     }
-  }
-  if (Values.pub_right == undefined) {
-    var p_term_begin = Math.min(Values.pub_year + 35,
-                                Values.k_year + 40);
-    var p_term_end = p_term_begin  + 5;
-    var p_notice_begin = p_term_begin - 10;
-    var p_notice_end = p_term_end - 2;
-    Values.term_begin = p_term_begin;
-    Values.term_end = p_term_end;
-    Values.notice_begin = p_notice_begin;
-    Values.notice_end = p_notice_end;
-    if (p_notice_begin > Values.current_year) {
-      result = Rules.conclusion('B.i');
-    } else if (p_notice_end < Values.current_year) {
-      result = Rules.conclusion('B.ii');
+    if (Values.pub_right == undefined) {
+      Values.p_term_begin = Math.min(Values.pub_year + 35,
+                                     Values.k_year + 40);
+      Values.p_term_end = Values.p_term_begin  + 5;
+      Values.p_notice_begin = Values.p_term_begin - 10;
+      Values.p_notice_end = Values.p_term_end - 2;
+      if (Values.p_notice_begin > Values.current_year) {
+        result = Rules.conclusion('B.i');
+      } else if (Values.p_notice_end < Values.current_year) {
+        result = Rules.conclusion('B.ii');
+      }
     }
   }
   return result;

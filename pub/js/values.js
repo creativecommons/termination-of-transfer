@@ -39,10 +39,10 @@ var varsToTitles = {
   pub_year: 'Publication Year',
   reg_year: 'Copyright Registration Year',
   termination_type: 'Termination Type',
-  term_begin: 'Termination Window Begins',
+  /*term_begin: 'Termination Window Begins',
   term_end: 'Termination Window Ends',
   notice_begin: 'Notice Window Begins',
-  notice_end: 'Notice Window Ends',
+  notice_end: 'Notice Window Ends',*/
   work_agreement_type: 'Agreement or Transfer Type',
   work_agreement_desc: 'Agreement or Transfer Description',
   work_authors: 'Author',
