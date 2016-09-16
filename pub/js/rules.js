@@ -160,7 +160,7 @@ Rules.section203Analysis = function () {
                || (Values.pub_right == 'no'))  {
       Values.term_begin = Values.k_year + 35;
     }
-    if (term_begin != undefined) {
+    if (Values.term_begin != undefined) {
       Values.term_end = Values.term_begin + 5;
       Values.notice_begin = Values.term_begin - 10;
       Values.notice_end = Values.term_end - 2;
@@ -170,7 +170,7 @@ Rules.section203Analysis = function () {
         result = Rules.conclusion('B.ii');
       }
     }
-    if (Values.pub_right == undefined) {
+    if (Values.pub_right == 'no') {
       Values.p_term_begin = Math.min(Values.pub_year + 35,
                                      Values.k_year + 40);
       Values.p_term_end = Values.p_term_begin  + 5;

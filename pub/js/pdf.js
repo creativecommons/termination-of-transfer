@@ -40,6 +40,7 @@ PDF.appendWindowDetails = function (details) {
     details.push({key: "Termination Window Ending",
                   value: termWindow.ending});
   }
+  console.log(details);
   return details;
 };
 
