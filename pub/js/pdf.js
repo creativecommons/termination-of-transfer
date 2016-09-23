@@ -57,7 +57,7 @@ PDF.details = function () {
 
 PDF.request = function () {
   var data = {report_timestamp: Values.current_date.getTime()/1000,
-              flags: Values.flags,
+              flags: Values.flags.sort(), // Sorts inline & returns, so OK here
               conclusion: Values.conclusion,
               details: PDF.details(),
              };
