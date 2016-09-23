@@ -118,14 +118,7 @@ Questions.s1q1f =  {
   question: 'Did the agreement or transfer include the right of publication?',
   variable: 'pub_right',
   input: 'radio',
-  values: ['yes', 'no', 'maybe'],
-  post: function () {
-    // Intercept the result so we can add encouragement if things look good
-    var result = Rules.section203Analysis();
-    if (result.indexOf('Question' != -1)) {
-        Notifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
-    }
-  }
+  values: ['yes', 'no', 'maybe']
 };
 
 ////////////////////////////////////////////////////////////////////////////////
