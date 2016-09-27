@@ -172,7 +172,7 @@ Rules.section203Analysis = function () {
   var result = 's2q2a';
   if (Values.k_year > 1977) {
     var term_begin = undefined;
-    if (Values.pub_right == true ) {
+    if (Values.pub_right == 'yes' ) {
       if (Values.pub_year != undefined) {
         Values.term_begin = Math.min(Values.pub_year + 35 , Values.k_year + 40);
       } else {
