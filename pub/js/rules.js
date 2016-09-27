@@ -187,9 +187,9 @@ Rules.section203Analysis = function () {
       Values.notice_begin = Values.term_begin - 10;
       Values.notice_end = Values.term_end - 2;
       if (Values.notice_begin > Values.current_year) {
-        result = Rules.conclusion('B.i');
+        result = Rules.addFlag('A.i.a');
       } else if (Values.notice_end < Values.current_year) {
-        result = Rules.conclusion('B.ii');
+        result = Rules.addFlag('A.ii.a');
       }
     }
     if (Values.pub_right == 'no') {
@@ -199,9 +199,9 @@ Rules.section203Analysis = function () {
       Values.p_notice_begin = Values.p_term_begin - 10;
       Values.p_notice_end = Values.p_term_end - 2;
       if (Values.p_notice_begin > Values.current_year) {
-        result = Rules.conclusion('B.i');
+        result = Rules.addFlag('A.i.a');
       } else if (Values.p_notice_end < Values.current_year) {
-        result = Rules.conclusion('B.ii');
+        result = Rules.addFlag('A.ii.a');
       }
     }
   }
