@@ -170,7 +170,7 @@ Questions.s2q2ci =  {
 // Was the work created for use as one of the following? ...
 
 Questions.s2q2cia = {
-  question: 'Was the work created for use as one of the following? — a contribution to a collective work, part of a motion picture or other audiovisual work; a translation; a test; answer material for a test; an atlas; as an instructional text (text and/or graphics)?',
+  question: 'Was the work created for use as one of the following? — a contribution to a collective work; a part of a motion picture or other audiovisual work; a translation; a supplementary work (such as a foreword, afterword, table, editorial note, musical arrangement, bibliography, appendix, or index); a compilation; an instructional text (text and/or graphics); a test or answer material for a test; or as an atlas?',
   variable: 'created_as_part_of_motion_picture',
   input: 'radio',
   values: ["yes", "no", "don't know"]
