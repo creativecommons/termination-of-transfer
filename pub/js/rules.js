@@ -124,17 +124,25 @@ Rules.beforeEndOfNoticeWindow = function () {
 ////////////////////////////////////////////////////////////////////////////////
 
 Rules.section304Analysis = function () {
+  // Values.reg_year or Values.pub_year must be set, assert if not
+  if(! (Values.reg_year || Values.pub_year)) {
+    alert("Logic error: Values.reg_year or Values.pub_year must be set");
+  }
   var result = 's1q1f';
   if (Values.k_year < 1978) {
     result = 's2q2a';
     if ((Values.pub_year == undefined) && (Values.reg_year == undefined)) {
       result = Rules.conclusion('B.vii');
     } else {
-      Values.cright_year = Values.pub_year;
-      // If the work is registered (not all works are!), use the min of pub/reg
-      if (Values.reg_year != undefined) {
+      // If the work is both registered and published use the minimum of them.
+      if ((Values.reg_year != undefined)
+         && (Values.pub_year != undefined)) {
         Values.cright_year = Math.min(Values.pub_year,
                                       Values.reg_year);
+      }
+      // Otherwise use whichever value is set. One *will* be set here, see top.
+      else {
+        Values.cright_year = Values.reg_year || Values.pub_year;
       }
       if (Values.cright_year < 1950) {
         Rules.addFlag('B.iv');
@@ -160,7 +168,7 @@ Rules.section304Analysis = function () {
             result = Rules.conclusion('B.ii');
           }
         } else {
-          result = 's3q1';
+          result = Rules.jumpToSectionThree;
         }
       }
     }
@@ -187,9 +195,9 @@ Rules.section203Analysis = function () {
       Values.notice_begin = Values.term_begin - 10;
       Values.notice_end = Values.term_end - 2;
       if (Values.notice_begin > Values.current_year) {
-        result = Rules.addFlag('A.i.a');
+        Rules.addFlag('A.i.a');
       } else if (Values.notice_end < Values.current_year) {
-        result = Rules.addFlag('A.ii.a');
+        Rules.addFlag('A.ii.a');
       }
     }
     if (Values.pub_right == 'no') {
@@ -199,9 +207,9 @@ Rules.section203Analysis = function () {
       Values.p_notice_begin = Values.p_term_begin - 10;
       Values.p_notice_end = Values.p_term_end - 2;
       if (Values.p_notice_begin > Values.current_year) {
-        result = Rules.addFlag('A.i.a');
+        Rules.addFlag('A.i.a');
       } else if (Values.p_notice_end < Values.current_year) {
-        result = Rules.addFlag('A.ii.a');
+        Rules.addFlag('A.ii.a');
       }
     }
   }
