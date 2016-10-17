@@ -260,6 +260,7 @@ Rules.s1q1bi2 = function () {
       Rules.addFlag('B.ii');
     }
   } else /* maybe */ {
+    result = 's1q1c';
     Rules.addFlag('B.iii');
   }
   return result;
