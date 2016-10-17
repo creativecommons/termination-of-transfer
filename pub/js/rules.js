@@ -290,10 +290,6 @@ Rules.s1q1ci = 's1q1d';
 // What is the date of the agreement or transfer? ...
 
 Rules.s1q1d = function () {
-  // If the entered year is before the creation year, use that instead
-  if (Values.k_year < Values.creation_year) {
-    Values.k_year = Values.creation_year;
-  }
   // Intercept the result so we can add encouragement if things look good
   var result = Rules.section304Analysis();
   if ((result != Rules.jumpToFinish)
@@ -331,33 +327,66 @@ Rules.s2q2a = function () {
   if (Values.last_will == 'yes') {
     result = Rules.conclusion('B.iv');
   } else {
-    result = 's2q2b';
+    result = 's2q2bi';
+  }
+  return result;
+};
+
+// Are any of the authors still alive?
+// It's i) because the conditional logic that starts b is included in a
+
+Rules.s2q2bi = function () {
+  var result = undefined;
+  if (Values.any_authors_alive == 'yes') {
+    result = 's2q2c'
+  } else {
+    result = 's2q2bi2';
+  }
+  return result;
+};
+
+// What is the year the last surviving author died?
+
+Rules.s2q2bi2 = function () {
+  var result = undefined;
+  if ((Values.creation_year > 1977)
+      && ((Values.death + 70) < Values.current_year)) {
+    result = Rules.conclusion('B.viii');
+  } else if ((Values.creation_year < 1978)
+             && (Values.pub_year < 2003)
+             && ((Values.death + 70) < Math.max(Values.current_year, 2047))) {
+    result = Rules.conclusion('B.viii');
+  }  else if ((Values.creation_year < 1978)
+              && ((Values.death + 70) < Math.max(Values.current_year, 2002))) {
+    result = Rules.conclusion('B.viii');
+  } else {
+    result = 's2q2c'
   }
   return result;
 };
 
 // Was the work created within the scope of the author’s employment?
 
-Rules.s2q2b = function () {
+Rules.s2q2c = function () {
   var result = undefined;
   if (Values.within_scope_of_employment == 'yes') {
     if (Values.creation_year > 1977) {
-      result = 's2q2bi';
+      result = 's2q2ci';
     } else {
       result = Rules.conclusion('B.i');
     }
   } else {
-    result = 's2q2c';
+    result = 's2q2d';
   }
   return result
 };
 
 // Was there an express agreement between you...
 
-Rules.s2q2bi = function () {
+Rules.s2q2ci = function () {
   var result = undefined;
    if (Values.express_agreement == 'yes') {
-    result = 's2q2c';
+    result = 's2q2d';
    } else {
      result = Rules.conclusion('B.i');
   }
@@ -366,55 +395,55 @@ Rules.s2q2bi = function () {
 
 // Was the work created in response to a special order or commission?
 
-Rules.s2q2c = function () {
+Rules.s2q2d = function () {
   var result = undefined;
   if (Values.special_order == 'yes') {
     if (Values.creation_year < 1978) {
       result = Rules.conclusion('D.i');
     } else {
-      result = 's2q2ci';
+      result = 's2q2di';
     }
   } else {
-    result = 's2q2d';
+    result = 's2q2e';
   }
   return result
 };
 
 // Was there a signed written agreement regarding the special order...
 
-Rules.s2q2ci = function () {
+Rules.s2q2di = function () {
   var result = undefined;
   if (Values.signed_written_agreement == 'yes') {
     if (Values.creation_year < 1978) {
       result = Rules.conclusion('B.iii');
     } else {
-      result = 's2q2cia';
+      result = 's2q2dia';
     }
   } else {
-    result = 's2q2d';
+    result = 's2q2e';
   }
   return result
 };
 
 // Was the work created for use as one of the following? ...
 
-Rules.s2q2cia = function () {
+Rules.s2q2dia = function () {
   var result = undefined;
   if (Values.created_as_part_of_motion_picture == 'yes') {
     result = Rules.conclusion('C.ii');
   } else if (Values.created_as_part_of_motion_picture == 'no') {
-    result = 's2q2d';
+    result = 's2q2e';
   } else /* don't know */ {
     Rules.addFlag('D.ii');
-    result = 's2q2d';
+    result = 's2q2e';
   }
   return result;
 };
 
 // Has the original transfer since been renegotiated or altered?
 
-Rules.s2q2d = function () {
-  var result = 's2q2e';
+Rules.s2q2e = function () {
+  var result = 's2q2f';
   if (Values.renego == 'yes') {
     Rules.addFlag('C.i');
   } else if (Values.renego == 'no') {
@@ -427,7 +456,7 @@ Rules.s2q2d = function () {
 
 // Did one or more of the authors or artists enter into the agreement...
 
-Rules.s2q2e = function () {
+Rules.s2q2f = function () {
   var result = undefined;
   if (Values.authors_entered_agreement == 'yes') {
     if (Values.k_year < 1978) {
@@ -437,7 +466,7 @@ Rules.s2q2e = function () {
     }
   } else {
     if (Values.k_year < 1978) {
-      result = 's2q2eii';
+      result = 's2q2fii';
     } else /*if (Values.k_year > 1977)*/ {
       result = Rules.conclusion('B.vi');
     }
@@ -447,7 +476,7 @@ Rules.s2q2e = function () {
 
 // Was the agreement or transfer made by a member of...
 
-Rules.s2q2eii = function () {
+Rules.s2q2fii = function () {
   var result = undefined;
   if (Values.agreement_by_family_or_executor) {
     result = Rules.conclusionPDF('A.i-ii');

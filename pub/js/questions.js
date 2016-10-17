@@ -138,9 +138,25 @@ Questions.s2q2a =  {
   input: 'radio'
 };
 
+// Are any of the authors still alive?
+
+Questions.s2q2bi = {
+  question: 'Are <i>any</i> of the authors still alive?',
+  variable: 'any_authors_alive',
+  input: 'radio'
+};
+
+// What is the year the last surviving author died?
+
+Questions.s2q2bi2 = {
+  question: 'What is the year the last surviving author died?',
+  variable: 'death',
+  input: 'year'
+};
+
 // Was the work created within the scope of the author’s employment?
 
-Questions.s2q2b =  {
+Questions.s2q2c =  {
   question: "Was the work created within the scope of the author’s employment?",
   variable: 'within_scope_of_employment',
   input: 'radio'
@@ -148,7 +164,7 @@ Questions.s2q2b =  {
 
 // Was there an express agreement between you...
 
-Questions.s2q2bi =  {
+Questions.s2q2ci =  {
   question: 'Was there an express agreement between you, the author or artist, and your, or his or her, employer to not treat the work as a work for hire?',
   variable: 'express_agreement',
   input: 'radio'
@@ -156,7 +172,7 @@ Questions.s2q2bi =  {
 
 // Was the work created in response to a special order or commission
 
-Questions.s2q2c =  {
+Questions.s2q2d =  {
   question: 'Was the work created in response to a special order or commission by some other person or company?',
   variable: 'special_order',
   input: 'radio'
@@ -164,7 +180,7 @@ Questions.s2q2c =  {
 
 // Was there a signed written agreement regarding the special order...
 
-Questions.s2q2ci =  {
+Questions.s2q2di =  {
   question: 'Was there a signed written agreement regarding the special order or commission which explicitly refers to the work as a &quot;work for hire&quot;?',
   variable: 'signed_written_agreement',
   input: 'radio'
@@ -172,7 +188,7 @@ Questions.s2q2ci =  {
 
 // Was the work created for use as one of the following? ...
 
-Questions.s2q2cia = {
+Questions.s2q2dia = {
   question: 'Was the work created for use as one of the following? — a contribution to a collective work; a part of a motion picture or other audiovisual work; a translation; a supplementary work (such as a foreword, afterword, table, editorial note, musical arrangement, bibliography, appendix, or index); a compilation; an instructional text (text and/or graphics); a test or answer material for a test; or as an atlas?',
   variable: 'created_as_part_of_motion_picture',
   input: 'radio',
@@ -181,7 +197,7 @@ Questions.s2q2cia = {
 
 // Has the original transfer since been renegotiated or altered?
 
-Questions.s2q2d = {
+Questions.s2q2e = {
   question: 'Has the original transfer since been renegotiated or altered?',
   variable: 'renego',
   input: 'radio',
@@ -190,7 +206,7 @@ Questions.s2q2d = {
 
 // Did one or more of the authors or artists enter into the agreement...
 
-Questions.s2q2e =  {
+Questions.s2q2f =  {
   question: 'Did one or more of the authors or artists enter into the agreement or transfer?',
   variable: 'authors_entered_agreement',
   input: 'radio'
