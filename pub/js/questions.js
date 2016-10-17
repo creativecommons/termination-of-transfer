@@ -103,10 +103,13 @@ Questions.s1q1d = {
   variable: 'k_year',
   input: 'year',
   validate: function () {
-    return Validation.validDate()
-      || ((parseInt($('.text-question').val()) < Values.creation_year)
-          ? 'If the agreement predates the work’s creation, please enter the creation year.'
-          : false);
+    var errors = Validation.validDate();
+    // If the date is before the creation year, use the creation year instead
+    if ((errors == false)
+        && (parseInt($('.text-question').val()) < Values.creation_year)) {
+      $('.text-question').val(Values.creation_year);
+    }
+    return errors;
   }
 };
 

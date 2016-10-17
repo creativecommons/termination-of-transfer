@@ -128,6 +128,7 @@ Rules.section304Analysis = function () {
   if(! (Values.reg_year || Values.pub_year)) {
     alert("Logic error: Values.reg_year or Values.pub_year must be set");
   }
+  // Note that this is part of the logic from the section 203 analysis
   var result = 's1q1f';
   if (Values.k_year < 1978) {
     result = 's2q2a';
@@ -289,6 +290,10 @@ Rules.s1q1ci = 's1q1d';
 // What is the date of the agreement or transfer? ...
 
 Rules.s1q1d = function () {
+  // If the entered year is before the creation year, use that instead
+  if (Values.k_year < Values.creation_year) {
+    Values.k_year = Values.creation_year;
+  }
   // Intercept the result so we can add encouragement if things look good
   var result = Rules.section304Analysis();
   if ((result != Rules.jumpToFinish)
