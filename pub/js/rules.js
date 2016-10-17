@@ -168,9 +168,11 @@ Rules.section304Analysis = function () {
           } else {
             result = Rules.conclusion('B.ii');
           }
-        } else {
-          result = Rules.jumpToSectionThree;
         }
+      } else {
+        // Here for clarity / to reflect decision tree structure
+        // But note that we set it as the result above.
+        result = 's2q2a';
       }
     }
   }
