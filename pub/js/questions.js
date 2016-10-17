@@ -84,7 +84,7 @@ Questions.s1q1c = {
   question: 'Has the work been registered with the United State Copyright Office?',
   variable: 'work_registered',
   input: 'radio',
-  values: ['yes', 'no', "don't know"]
+  values: ['yes', 'no'] //, "don't know"] GitHub issue #33
 };
 
 // When was the work registered with the United States Copyright Office?
