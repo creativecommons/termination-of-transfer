@@ -379,23 +379,6 @@ Questions.start = function () {
   Rendering.transitionTo(Questions.first_question);
 };
 
-Questions.setButtons = function () {
-  if (Questions.current_question != Questions.first_question) {
-    Widgets.enablePrevious();
-    $('#button-question-next').click(next);
-  } else {
-    $('#button-question-previous').unbind("click");
-    Widgets.disablePrevious();
-  }
-  // We need "next" to get to the result from the final question
-  /*if (Questions.current_question != Questions.last_question) {
-    Widgets.enableNext();
-  } else {
-    $('#button-question-next').unbind("click");
-    Widgets.disableNext();
-  }*/
-};
-
 Questions.transitionQuestion = function (next_question) {
   var previous_question = Questions[Questions.current_question];
   if (previous_question) {
@@ -449,7 +432,7 @@ Questions.previousQuestion = function () {
     Navigation.unfinishQuestions();
   }
   // Don't pop past the very first item
-  if (Questions.progress_stack.length > 1) {
+  if (Questions.progress_stack.length > 0) {
     // Clear current answer
     var current_question = Questions[Questions.current_question];
     delete Values[current_question.variable];
@@ -488,4 +471,5 @@ Questions.start = function () {
     return false;
   });
   Questions.transitionQuestion(Questions.first_question);
+  Questions.progress_stack.push(Questions.first_question);
 };
