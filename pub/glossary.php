@@ -79,7 +79,7 @@ All of these agreements - with the exception of non-exclusive licenses - must
 be in writing, so if you have a copy of an agreement, you should be able to
 identify what type of transfer it is by reviewing the agreement.  To learn more
 about where to find out details about the type of agreement, check out our
-<a href="/termination/documents.php">List of Useful Documents</a>.
+<a href="../documents.php">List of Useful Documents</a>.
 </p>
 </div>
 
@@ -142,10 +142,10 @@ you with progressing your termination claim.
 <h3><a name="#compilation">Compilation</a></h3>
 <p>
 This term means a collection of materials or data that is co-ordinated,
-selected or arranged in such a way as to create a whole copyrighted work.  The
-specific examples given in the US Copyright Act include catalogs directories
-and software programs; but the term extends beyond just written works to
-include all types of compilations of
+selected or arranged in such a way as to create a new copyrighted work in the 
+collection. The specific examples given in the US Copyright Act include catalogs 
+directories and software programs; but the term extends beyond just written 
+works to include all types of compilations of
 <a class="glossarylink" href="#type_of_work">copyrighted works</a>.
 </p>
 </div>
@@ -156,8 +156,8 @@ include all types of compilations of
 This term means a combination of works, which are each themselves independent
 and separate works protected by copyright. The specific examples given in the
 US Copyright Act include a magazine, an anthology or an encyclopedia but the
-term extends beyond just written works to include all types of compilations of
-<a class="glossarylink" href="#type_of_work">copyrighted works</a>.
+term extends beyond just written works to include all types of compilations of 
+copyrighted works.
 </p>
 </div>
 
@@ -205,40 +205,6 @@ recorded, stored or fixed in a material form from which it can be again
 reproduced, perceived or communicated. This means, for example, that a
 copyright protected work is created when you put pen to paper, hit save on your
 computer or record on your video camera.
-</p>
-</div>
-
-<div id="current_grantee">
-<h3><a name="#current_grantee">Current Grantee</a></h3>
-<p>
-When used in the tool, this question is asking for the identity of the person
-or entity who is currently the
-<a class="glossarylink" href="#grantee">"Grantee"</a>.
-The identity of the grantee may change over time because the
-<a class="glossarylink" href="#grantee">"Original Grantee"</a>
-may have transferred to some other person or company their rights under the
-agreement.  In the case of a person, they may have decided to sell the benefits
-of rights to another person or to a company.  In the case of a company, they
-may have sold the rights or the rights may have moved to a new corporate entity
-as a result of a merger, takeover, bankruptcy or other corporate restructuring.
-While there may be a number of different grantees subsequent to the original
-grantee, the current grantee is obviously the most recent.  See the
-<a href="/termination/documents.php">List of Useful Documents</a> for tips and
-hints as to where you may be able to find information about the grantees. 
-</p>
-</div>
-
-<div id="agreement_description">
-<h3><a name="#agreement_description">Description of the Agreement or Transfer</a></h3>
-<p>
-When asked to describe the agreement or transfer, the tool is seeking
-information about the nature of the document; whether it is an assignment of
-copyright ownership, an exclusive license, a non-exclusive license or a
-mortgage. See the definition of
-<a class="glossarylink" href="#agreement">Agreement or Transfer</a>
-for more information about what types of agreements or transfers qualify.  If
-the agreement or transfer has been recorded in writing and signed, often the
-name or title of the document will provide the best description of it.
 </p>
 </div>
 
@@ -351,17 +317,6 @@ artist's children died prior to being able to exercise the termination right.
 </p>
 </div>
 
-<div id="grantee">
-<h3><a name="#grantee">Grantee</a></h3>
-<p>
-This term refers to a person or entity that takes the benefit of the rights
-under an <a class="glossarylink" href="#agreement">"Agreement or Transfer"</a>.
-So, for example, if Alejandra owns copyright in a book enters into an exclusive
-50-year publishing deal with BigBookCo., Alejandra is the grantor and
-BigBookCo. is the grantee under the agreement.
-</p>
-</div>
-
 <div id="instructional_text">
 <h3><a name="#instructional_text">Instructional text (text and/or graphics)</a></h3>
 <p>
@@ -372,28 +327,6 @@ a general rule, it is intended to refer to what might loosely be called
 text. The basic characteristic of an instructional text is the purpose
 underlying its preparation is for use in systematic instructional activities;
 as opposed to works prepared for use by a general readership.
-</p>
-</div>
-
-<div id="grantee">
-<h3><a name="#grantee">Original grantee</a></h3>
-<p>
-When used in the tool, this phrase means
-<a class="glossarylink" href="#grantee">"Grantee"</a> with whom the agreement
-or transfer was originally entered into. If the agreement or transfer was in
-writing and signed by both parties, then you should be able to identify the
-"Original Grantee" from the agreement itself.  See the
-<a href="/termination/documents.php">List of Useful Documents</a> for more tips
-and hints about where else details about the "Original Grantee" may be able to
-be found.
-</p>
-</div>
-
-<div id="audiovisual_work">
-<h3><a name="#audiovisual_work">Motion picture or other audiovisual work</a></h3>
-<p>
-This term refers to movies, films, video games and other content in which
-visuals and music are synched together.
 </p>
 </div>
 
@@ -433,21 +366,6 @@ may be open (and consequently, when the notice window may open) to ensure that
 you are able to obtain legal advice on whether the publication right is
 included in a post-1978 agreement and to avoid you being excluded from the tool
 because of a misunderstanding about the nature of the agreement.
-</p>
-</div>
-
-<div id="clinic">
-<h3><a name="#clinic">Participating law clinic</a></h3>
-<p>
-When used in this tool, this term means one of the listed clinics that have
-agreed to consider cases referred to them via this Returning Author's Rights
-Tool and decide whether to represent and take these cases further.  To
-understand more about these clinics, please review
-<a href="faq.php#What_are_the_.E2.80.9CIP_Clinics.E2.80.9D_referred_to.3F_Are_they_now_my_lawyer.3F">What
-are the "IP Clinics" referred to? Are they now my lawyer?</a>.  Please note -
-while this tool is on ccLabs, we are only testing the functionality and
-useability of the tool and are still working on developing relationships with
-the IP Clinics.
 </p>
 </div>
 
@@ -501,20 +419,6 @@ adopts the broadest possible interpretation of when the termination window may
 be open to ensure that you are able to obtain legal advice on whether the
 publication right is included in the agreement and to avoid you being excluded
 from the tool because of a misunderstanding about the nature of the agreement.
-</p>
-</div>
-
-<div id="type_of_work">
-<h3><a name="#type_of_work">Type of work</a></h3>
-<p>
-When used in the tool, this question is asking you to described the nature of
-the work. Examples of categories to describe the work are: (i) a literary work
-(such as a book, article, computer software or other type of writing); (ii) a
-musical work (such as a composition, whether the score and/or lyrics); (iii) a
-dramatic work (such as an opera, play, dance piece or other performance); (iv)
-an artistic work (such as a picture, graphic, sculpture or architectural work);
-(v) an audiovisual work (such as a movie or video game); or, (vi) a sound
-recording (being an recording of a performance of a musical composition).
 </p>
 </div>
 
