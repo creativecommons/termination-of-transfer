@@ -32,6 +32,7 @@ var Questions = {};
 Questions.s1q1a = {
   section: 1,
   question: 'When was the work created?',
+  explanation:'The year in which a work was created can affect its copyright status and its treatment under U.S. copyright law. Most importantly, the tool is concerned with whether a worked was made before or after January 1, 1978, when the most recent overhaul of U.S. copyright went into effect.',   
   variable: 'creation_year',
   input: 'year',
   pre: function () {
@@ -47,6 +48,7 @@ Questions.s1q1a = {
 
 Questions.s1q1b = {
   question: 'Has the work been published?',
+  explanation:'Whether a work has been published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="../glossary.php#publication_date" title="Termination of Transfer: Glossary">glossary</a>.',
   variable: 'work_published',
   input: 'radio',
   pre: function () {
@@ -59,6 +61,7 @@ Questions.s1q1b = {
 Questions.s1q1bi = {
   variable: 'pub_year',
   question: 'When was the work first published?',
+  explanation:'When a work was published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="../glossary.php#publication_date" title="Termination of Transfer: Glossary">glossary</a>.',
   input: 'year',
   validate: function () {
     return Validation.validDate()
@@ -72,7 +75,8 @@ Questions.s1q1bi = {
 // Works from 1989 and earlier usually display a copyright notice...
 
 Questions.s1q1bi2 = {
-  question: 'Works from 1989 and earlier usually display a copyright notice. Did the work have a copyright notice?',
+  question: 'Published works from 1989 and earlier usually display a copyright notice. Did the work have a copyright notice?',
+  explanation:'For U.S. works published in certain years, U.S. law required that they feature a "copyright notice" in order to receive copyright. Whether or not the published version featured a copyright notice can affect the copyright status of these works.',	
   variable: 'copyright_notice',
   input: 'radio',
   values: ['yes', 'no', 'maybe']
@@ -82,6 +86,7 @@ Questions.s1q1bi2 = {
 
 Questions.s1q1c = {
   question: 'Has the work been registered with the United State Copyright Office?',
+  explanation:'Before 1989, registration was one of the ways authors could secure copyright in their work. Whether a work was reigstered can affect copyright status and the timing of termination right.',  
   variable: 'work_registered',
   input: 'radio',
   values: ['yes', 'no'] //, "don't know"] GitHub issue #33
@@ -91,6 +96,7 @@ Questions.s1q1c = {
 
 Questions.s1q1ci = {
   question: 'When was the work registered with the United States Copyright Office? (Leave blank if unknown)',
+  explanation:'Before 1989, registration was one of the ways authors could secure copyright in their work. When a work was reigstered can affect copyright status and the timing of termination right.',  
   variable: 'reg_year',
   input: 'year',
   optional: true
@@ -99,7 +105,8 @@ Questions.s1q1ci = {
 // What is the date of the agreement or transfer? ...
 
 Questions.s1q1d = {
-  question: 'What is the date of the agreement or transfer?<br>If the agreement predates the work’s creation, please enter the creation year.',
+  question: 'What is the date of the agreement or transfer?',
+  explanation:'When a transfer took place determines the particular set of termination rules that will be applicable. The timing of a transfer is also needed to in order to know when an author might be able to exercise their termination rights.',
   variable: 'k_year',
   input: 'year',
   validate: function () {
@@ -119,6 +126,7 @@ Questions.s1q1f =  {
   // Last question in section 1, so set this if we've arrived via back button
   section: 1,
   question: 'Did the agreement or transfer include the right of publication?',
+  explanation:'If a <a href="../glossary.php/#agreement" title="Termination of Transfer: Glossary">transfer</a> from 1978 or later includes the right of <a href="../glossary.php#publication_date" title="Termination of Transfer: Glossary">publication</a>, there is a different set of rules for determining when the transfer is eligible for termination.',	
   variable: 'pub_right',
   input: 'radio',
   values: ['yes', 'no', 'maybe']
@@ -133,7 +141,7 @@ Questions.s1q1f =  {
 Questions.s2q2a =  {
   // First question in section 2
   section: 2,
-  question: 'Is the agreement or transfer you want to terminate part of a last will and testament?',
+  question: 'Is the agreement or transfer you want to terminate part of a <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#will" title="Termination of Transfer: Glossary">last will and testament</a>?',	
   variable: 'last_will',
   input: 'radio'
 };
@@ -141,7 +149,8 @@ Questions.s2q2a =  {
 // Are any of the authors still alive?
 
 Questions.s2q2bi = {
-  question: 'Are <i>any</i> of the authors still alive?',
+  question: 'Are <i>any</i> of the <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#author" title="Termination of Transfer: Glossary">authors or artists</a> still alive?',
+  explanation:'The copyright term for many works is based on the life of the author.',	
   variable: 'any_authors_alive',
   input: 'radio'
 };
@@ -149,7 +158,8 @@ Questions.s2q2bi = {
 // What is the year the last surviving author died?
 
 Questions.s2q2bi2 = {
-  question: 'What is the year the last surviving author died?',
+  question: 'What is the year the last surviving <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#author" title="Termination of Transfer: Glossary">author or artist</a> died?',
+  explanation:'The copyright term for many works is based on the life of the author.',
   variable: 'death',
   input: 'year'
 };
@@ -157,7 +167,7 @@ Questions.s2q2bi2 = {
 // Was the work created within the scope of the author’s employment?
 
 Questions.s2q2c =  {
-  question: "Was the work created within the scope of the author’s employment?",
+  question: 'Was the work created within the <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#scope_of_employment" title="Termination of Transfer: Glossary">scope of the author’s employment</a>?',	
   variable: 'within_scope_of_employment',
   input: 'radio'
 };
@@ -165,7 +175,7 @@ Questions.s2q2c =  {
 // Was there an express agreement between you...
 
 Questions.s2q2ci =  {
-  question: 'Was there an express agreement between you, the author or artist, and your, or his or her, employer to not treat the work as a work for hire?',
+  question: 'Was there an express agreement between you, the author or artist, and your, or his or her, employer to not treat the work as a <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#work_for_hire" title="Termination of Transfer: Glossary">work for hire</a>?',
   variable: 'express_agreement',
   input: 'radio'
 };
@@ -173,7 +183,7 @@ Questions.s2q2ci =  {
 // Was the work created in response to a special order or commission
 
 Questions.s2q2d =  {
-  question: 'Was the work created in response to a special order or commission by some other person or company?',
+  question: 'Was the work created in response to a <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#work_for_hire" title="Termination of Transfer: Glossary">special order or commission</a> by some other person or company?',
   variable: 'special_order',
   input: 'radio'
 };
@@ -181,7 +191,7 @@ Questions.s2q2d =  {
 // Was there a signed written agreement regarding the special order...
 
 Questions.s2q2di =  {
-  question: 'Was there a signed written agreement regarding the special order or commission which explicitly refers to the work as a &quot;work for hire&quot;?',
+  question: 'Was there a signed written agreement regarding the special order or commission which explicitly refers to the work as a <a href="../glossary.php#work_for_hire" title="Termination of Transfer: Glossary">work for hire</a>?',
   variable: 'signed_written_agreement',
   input: 'radio'
 };
@@ -189,7 +199,7 @@ Questions.s2q2di =  {
 // Was the work created for use as one of the following? ...
 
 Questions.s2q2dia = {
-  question: 'Was the work created for use as one of the following? — a contribution to a collective work; a part of a motion picture or other audiovisual work; a translation; a supplementary work (such as a foreword, afterword, table, editorial note, musical arrangement, bibliography, appendix, or index); a compilation; an instructional text (text and/or graphics); a test or answer material for a test; or as an atlas?',
+  question: 'Was the work created for use as one of the following? — <ul><li>a contribution to a collective work; a part of a motion picture or other audiovisual work;</li> <li>a translation;</li> <li>a <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#supplementary_work" title="Termination of Transfer: Glossary">supplementary work</a> (such as a foreword, afterword, table, editorial note, musical arrangement, bibliography, appendix, or index);</li> <li>a <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#compilation" title="Termination of Transfer: Glossary">compilation</a>;</li> <li>an <a href="../glossary.php#instructional_text" title="Termination of Transfer: Glossary">instructional text (text and/or graphics)</a>;</li> <li>a test or answer material for a test; or as an atlas?</li></ul?>',
   variable: 'created_as_part_of_motion_picture',
   input: 'radio',
   values: ["yes", "no", "don't know"]
@@ -207,7 +217,7 @@ Questions.s2q2e = {
 // Did one or more of the authors or artists enter into the agreement...
 
 Questions.s2q2f =  {
-  question: 'Did one or more of the authors or artists enter into the agreement or transfer?',
+  question: 'Did one or more of the <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#author" title="Termination of Transfer: Glossary">authors or artists</a> enter into the agreement or transfer?',
   variable: 'authors_entered_agreement',
   input: 'radio'
 };
@@ -219,7 +229,7 @@ Questions.s2q2f =  {
 Questions.s2q2eii =  {
   // Last question in section 2, so set section if we're going back
   section: 2,
-  question: "Was the agreement or transfer made by a member of the author or artist's immediate family, or by the executors?<br><i>For more information about which family members qualify, check out the FAQ.</i>",
+  question: 'Was the agreement or transfer made by a member of the <a href="http://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#author" title="Termination of Transfer: Glossary">author or artists\'s</a> immediate family, or by the executors?<br><i>For more information about which family members qualify, check out the FAQ.</i>',
   variable: 'agreement_by_family_or_executor',
   input: 'radio'
 };
@@ -234,6 +244,7 @@ Questions.s3q3a = {
   // First question in section 3
   section: 3,
   question: 'Title of Work [optional]',
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',
   variable: 'work_title',
   placeholder: 'Work Title',
   optional: true
@@ -242,7 +253,8 @@ Questions.s3q3a = {
 // Copyright Registration Number
 
 Questions.s3q3b = {
-  question: 'Copyright Registration Number',
+  question: 'Copyright Registration Number [optional]',
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',	
   variable: 'work_copyright_reg_num',
   placeholder: 'TX0000124166',
   optional: true
@@ -251,6 +263,7 @@ Questions.s3q3b = {
 // Tell us about the Agreement or Transfer...
 Questions.s3q3c = {
   question: 'Tell us about the Agreement or Transfer [optional]',
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',	
   variable: 'work_agreement_type',
   input: 'radio',
   values: ['assignment', 'exclusive license', 'non-exclusive license'],
@@ -261,6 +274,7 @@ Questions.s3q3c = {
 
 Questions.s3q3d = {
   question: 'Description of the Agreement or Transfer [optional]',
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',	
   variable: 'work_agreement_desc',
   placeholder: 'About the agreement',
   optional: true
@@ -270,6 +284,7 @@ Questions.s3q3d = {
 
 Questions.s3q3e = {
   question: 'Please list all authors or artists of the work',
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',	
   variable: 'work_authors',
   placeholder: 'A. N. Other',
   min_length: 1
