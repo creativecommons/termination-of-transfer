@@ -496,7 +496,7 @@ Rules.s3q3a = function () {
   if (Values.work_registered == 'yes') {
     result = 's3q3b';
   } else {
-    result = 's3q3c';
+    result = 's3q3d';
   }
   return result
 };

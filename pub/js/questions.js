@@ -254,19 +254,9 @@ Questions.s3q3a = {
 
 Questions.s3q3b = {
   question: 'Copyright Registration Number [optional]',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',	
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',
   variable: 'work_copyright_reg_num',
   placeholder: 'TX0000124166',
-  optional: true
-};
-
-// Tell us about the Agreement or Transfer...
-Questions.s3q3c = {
-  question: 'Tell us about the Agreement or Transfer [optional]',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',	
-  variable: 'work_agreement_type',
-  input: 'radio',
-  values: ['assignment', 'exclusive license', 'non-exclusive license'],
   optional: true
 };
 
@@ -274,7 +264,7 @@ Questions.s3q3c = {
 
 Questions.s3q3d = {
   question: 'Description of the Agreement or Transfer [optional]',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',	
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',
   variable: 'work_agreement_desc',
   placeholder: 'About the agreement',
   optional: true
@@ -284,7 +274,7 @@ Questions.s3q3d = {
 
 Questions.s3q3e = {
   question: 'Please list all authors or artists of the work',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',	
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',
   variable: 'work_authors',
   placeholder: 'A. N. Other',
   min_length: 1,
