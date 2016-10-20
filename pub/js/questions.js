@@ -272,7 +272,8 @@ Questions.s3q3e = {
   question: 'Please list all authors or artists of the work',
   variable: 'work_authors',
   placeholder: 'A. N. Other',
-  min_length: 1
+  min_length: 1,
+  optional: true
 };
 
 ////////////////////////////////////////////////////////////////////////////////
