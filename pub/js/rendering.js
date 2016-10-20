@@ -43,6 +43,7 @@ Rendering.questionTemplate = '\
 <form class="question-form">\
   <div class="form-group">\
     <label class="question-label"></label><br>\
+    <p class="help-block"></p> \
   </div>\
 </form>';
 
@@ -59,6 +60,9 @@ Rendering.common = function (config) {
     $('#section-title').html(Rendering.sections[config.section]).fadeIn();
   }
   question.find('.question-label').html(config.question);
+  if (config.explanation) {
+    question.find('.help-block').html(config.explanation);
+  }
   question.css("display", "none");
   // If we're entering this value for the first time (not via the back button)
   // and this isn't an optional value
