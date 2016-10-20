@@ -329,7 +329,13 @@ Rules.s2q2a = function () {
   if (Values.last_will == 'yes') {
     result = Rules.conclusion('B.iv');
   } else {
-    result = 's2q2bi';
+    if ((Values.creation_year > 1977)
+        || (((Values.pub_year == undefined) || (Values.pub_year > 1977))
+            && ((Values.reg_year == undefined) || (Values.reg_year > 1977)))) {
+      result = 's2q2bi';
+    } else {
+      result = 's2q2c';
+    }
   }
   return result;
 };
