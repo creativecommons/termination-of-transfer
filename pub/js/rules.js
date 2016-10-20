@@ -502,12 +502,8 @@ Rules.s3q3a = function () {
 };
 
 // Copyright Registration Number
-
-Rules.s3q3b = 's3q3c';
-
-// Tell us about the Agreement or Transfer
-
-Rules.s3q3c = 's3q3d';
+// Note that 3c was deleted, so we go to 3d (renumber?)
+Rules.s3q3b = 's3q3d';
 
 // Description of the Agreement or Transfer
 

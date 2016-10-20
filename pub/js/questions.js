@@ -248,15 +248,6 @@ Questions.s3q3b = {
   optional: true
 };
 
-// Tell us about the Agreement or Transfer...
-Questions.s3q3c = {
-  question: 'Tell us about the Agreement or Transfer [optional]',
-  variable: 'work_agreement_type',
-  input: 'radio',
-  values: ['assignment', 'exclusive license', 'non-exclusive license'],
-  optional: true
-};
-
 // Description of the Agreement or Transfer...
 
 Questions.s3q3d = {
