@@ -401,9 +401,6 @@ Questions.transitionQuestion = function (next_question) {
       question.pre();
     }
     Rendering.transitionTo(question);
-    // Scroll down to make sure the input UI is visible
-    $('html,body').animate({
-      scrollTop: $('#button-question-next').offset().top}, 'slow');
   }
 };
 
@@ -427,6 +424,9 @@ Questions.nextQuestion = function () {
       Questions.finish();
     } else {
       Questions.transitionQuestion(id);
+      // Scroll down to make sure the input UI is visible
+      $('html,body').animate({
+        scrollTop: $('#button-question-next').offset().top}, 'slow');
     }
   }
 };
@@ -449,6 +449,9 @@ Questions.previousQuestion = function () {
     Questions.transitionQuestion(previous_question);
     Questions.progress_stack.pop();
     Notifications.clearAlerts();
+    // Scroll down to make sure the input UI is visible
+    $('html,body').animate({
+      scrollTop: $('#button-question-next').offset().top}, 'slow');
   }
 };
 
