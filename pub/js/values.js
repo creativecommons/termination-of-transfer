@@ -36,15 +36,15 @@ Values.reset = function () {
 //FIXME: Hello namespace pollution
 
 var varsToTitles = {
+  work_authors: 'Author',
+  work_title: 'Title of Work',
   creation_year: 'Creation Year',
-  k_year: 'Grant Year',
   pub_year: 'Publication Year',
+  k_year: 'Grant Year',
   reg_year: 'Copyright Registration Year',
+  work_copyright_reg_num: 'Registration Number',
   termination_type: 'Termination Type',
   work_agreement_type: 'Agreement or Transfer Type',
   work_agreement_desc: 'Agreement or Transfer Description',
-  work_authors: 'Author',
-  work_title: 'Title of Work',
-  work_copyright_reg_num: 'Registration Number',
   //'': 'Grantor',
 };
