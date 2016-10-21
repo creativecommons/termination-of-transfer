@@ -165,7 +165,7 @@ Rules.section203Analysis = function () {
         Rules.addFlag('A.ii.a');
       }
     }
-    if (Values.pub_right == undefined) {
+    if (Values.pub_right != 'yes') {
       Values.p_term_begin = Math.min(Values.pub_year + 35,
                                      Values.k_year + 40);
       Values.p_term_end = Values.p_term_begin  + 5;
