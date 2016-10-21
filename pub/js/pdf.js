@@ -25,34 +25,65 @@ var PDF = {};
 
 PDF.url = 'result-pdf.php';
 
-PDF.appendWindowDetails = function (details) {
-  var noticeWindow = Rules.noticeWindow();
-  if (noticeWindow) {
-    details.push({key: "Notice Window Beginning",
-                  value: noticeWindow.beginning});
-    details.push({key: "Notice Window Ending",
-                  value: noticeWindow.ending});
+PDF.appendProperty = function (details, key, value) {
+  var mapping = {key: key,
+                 value: value};
+  details.push(mapping);
+};
+
+PDF.append203Windows = function (details) {
+  var notice = Values.notice_begin + '-' + Values.notice_end;
+  var termination = Values.term_begin + '-' + Values.term_end
+
+  if (Values.p_term_begin != undefined) {
+    notice += ' or ' + Values.p_notice_begin + '-' + Values.p_notice_end;
+    termination += ' or ' + Values.p_term_begin + '-'
+      + Values.p_term_end;
   }
-  var termWindow = Rules.terminationWindow();
-  if (termWindow) {
-    details.push({key: "Termination Window Beginning",
-                  value: termWindow.beginning});
-    details.push({key: "Termination Window Ending",
-                  value: termWindow.ending});
+
+  PDF.appendProperty(details, '&sect; 203 notice window', notice);
+  PDF.appendProperty(details, '&sect; 203 termination window', termination);
+};
+
+PDF.append304Windows = function (details) {
+  PDF.appendProperty(details, '&sect; 304(c) notice window begins',
+                     Values.notice_begin);
+  PDF.appendProperty(details, '&sect; 304(c) notice window ends',
+                     Values.notice_end);
+  PDF.appendProperty(details, '&sect; 304(c) termination window begins',
+                     Values.term_begin);
+  PDF.appendProperty(details, '&sect; 304(c) termination window ends',
+                     Values.term_end);
+  if (Values.d_notice_begin != undefined) {
+    PDF.appendProperty(details, '&sect; 304(d) notice window begins',
+                       Values.d_notice_begin);
+    PDF.appendProperty(details, '&sect; 304(d) notice window ends',
+                       Values.d_notice_end);
+    PDF.appendProperty(details, '&sect; 304(d) termination window begins',
+                       Values.d_term_begin);
+    PDF.appendProperty(details, '&sect; 304(d) termination window ends',
+                       Values.d_term_end);
   }
-  return details;
+};
+
+PDF.appendWindows = function (details) {
+  if (Rules.is203()) {
+    PDF.append203Windows(details);
+  } else if (Rules.is304()) {
+    PDF.append304Windows(details);
+  }
 };
 
 PDF.details = function () {
   var details = [];
   Object.getOwnPropertyNames(varsToTitles).forEach(function (key) {
-    if (Values[key] ) {
-      var mapping = {key: varsToTitles[key],
-                     value: Values[key]};
-      details.push(mapping);
+    if ((Values[key] != undefined)
+        && (Values[key] != '')) {
+      PDF.appendProperty(details, varsToTitles[key], Values[key]);
     }
   });
-  return PDF.appendWindowDetails(details);
+  PDF.appendWindows(details);
+  return details;
 };
 
 PDF.request = function () {

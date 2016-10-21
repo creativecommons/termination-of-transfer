@@ -50,53 +50,15 @@ Rules.addFlag = function(flag) {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-// Date range calculations
+// Calculated/inferred properties
 ////////////////////////////////////////////////////////////////////////////////
 
-Rules.noticeWindow = function () {
-  var window = false;
-  if (Values.notice_begin){
-    window = {
-      beginning: Values.notice_begin,
-      ending: Values.notice_end
-    };
-  }
-  if (Values.d_notice_begin){
-    window = {
-      beginning: Values.d_notice_begin,
-      ending: Values.d_notice_end
-    };
-  }
-  if (Values.p_notice_begin){
-    window = {
-      beginning: Values.p_notice_begin,
-      ending: Values.p_notice_end
-    };
-  }
-  return window
+Rules.is203 = function () {
+  return (Values.conclusion == "A.iii");
 };
 
-Rules.terminationWindow = function () {
-  var window = false;
-  if (Values.term_begin) {
-    window = {
-      beginning: Values.term_begin,
-      ending: Values.term_end
-    };
-  }
-  if (Values.d_notice_begin){
-    window = {
-      beginning: Values.d_term_begin,
-      ending: Values.d_term_end
-    };
-  }
-  if (Values.p_notice_begin){
-    window = {
-      beginning: Values.p_term_begin,
-      ending: Values.p_term_end
-    };
-  }
-  return window;
+Rules.is304 = function () {
+  return (['A.i', 'A.ii', 'A.i-ii'].indexOf(Values.conclusion) > -1);
 };
 
 
