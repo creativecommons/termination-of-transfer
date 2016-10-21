@@ -86,10 +86,6 @@ Rules.beforeEndOfNoticeWindow = function () {
 ////////////////////////////////////////////////////////////////////////////////
 
 Rules.section304Analysis = function () {
-  // Values.reg_year or Values.pub_year must be set, assert if not
-  if(! (Values.reg_year || Values.pub_year)) {
-    alert("Logic error: Values.reg_year or Values.pub_year must be set");
-  }
   // Note that this is part of the logic from the section 203 analysis
   var result = 's1q1f';
   if (Values.k_year < 1978) {
