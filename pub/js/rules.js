@@ -201,7 +201,7 @@ Rules.s1q1bi = function () {
   } else if (Values.pub_year < 1990)
     result = 's1q1bi2';
   else {
-    result = 's1q1c';
+    result = 's1q1d';
   }
   return result;
 };
