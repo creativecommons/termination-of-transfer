@@ -21,7 +21,7 @@ $page = 'Questionnaire';
 include_once __DIR__ . '/../include/header.php';
 ?>
 
-       <h2>Returning Author's Rights: The CC Termination of Transfer Tool [BETA]</h2>
+       <h2>Returning Author's Rights: The Termination of Transfer Tool [BETA]</h2>
 
        <div class="panel panel-default">
          <div class="panel-body">
