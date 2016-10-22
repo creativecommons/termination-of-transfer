@@ -366,7 +366,7 @@ $.getJSON("js/results.json",
 Questions.getResultDetails = function (specifier) {
   var path = specifier.split('.');
   var result = resultMap['Conclusion'][path[0]][path[1]];
-  return result
+  return result;
 };
 
 ////////////////////////////////////////////////////////////////////////////////

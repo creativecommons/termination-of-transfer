@@ -365,7 +365,8 @@ Rules.s2q2d = function () {
   var result = undefined;
   if (Values.special_order == 'yes') {
     if (Values.creation_year < 1978) {
-      result = Rules.conclusion('D.i');
+      Rules.addFlag('D.i');
+      result = 's2q2e';
     } else {
       result = 's2q2di';
     }
