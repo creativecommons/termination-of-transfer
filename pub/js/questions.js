@@ -141,7 +141,7 @@ Questions.s1q1f =  {
 Questions.s2q2a =  {
   // First question in section 2
   section: 2,
-  question: 'Is the agreement or transfer you want to terminate part of a <a href="./glossary.php#will" target="_blank" title="Termination of Transfer: Glossary">last will and testament</a>?',	
+  question: 'Is the agreement or transfer you want to terminate part of a <a href="./glossary.php#will" target="_blank" title="Termination of Transfer: Glossary">last will and testament</a>?',
   variable: 'last_will',
   input: 'radio'
 };
@@ -150,7 +150,7 @@ Questions.s2q2a =  {
 
 Questions.s2q2bi = {
   question: 'Are <i>any</i> of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">authors or artists</a> still alive?',
-  explanation:'The copyright term for many works is based on the life of the author.',	
+  explanation:'The copyright term for many works is based on the life of the author.',
   variable: 'any_authors_alive',
   input: 'radio'
 };
@@ -167,7 +167,7 @@ Questions.s2q2bi2 = {
 // Was the work created within the scope of the author’s employment?
 
 Questions.s2q2c =  {
-  question: 'Was the work created within the <a href="./glossary.php#scope_of_employment" target="_blank" title="Termination of Transfer: Glossary">scope of the author’s employment</a>?',	
+  question: 'Was the work created within the <a href="./glossary.php#scope_of_employment" target="_blank" title="Termination of Transfer: Glossary">scope of the author’s employment</a>?',
   variable: 'within_scope_of_employment',
   input: 'radio'
 };

@@ -315,18 +315,20 @@ Rules.s2q2bi = function () {
 
 Rules.s2q2bi2 = function () {
   var result = undefined;
-  if ((Values.creation_year > 1977)
-      && ((Values.death + 70) < Values.current_year)) {
-    result = Rules.conclusion('B.viii');
-  } else if ((Values.creation_year < 1978)
-             && (Values.pub_year < 2003)
-             && ((Values.death + 70) < Math.max(Values.current_year, 2047))) {
-    result = Rules.conclusion('B.viii');
-  }  else if ((Values.creation_year < 1978)
-              && ((Values.death + 70) < Math.max(Values.current_year, 2002))) {
+  // creation_year is always set, pub_year may not be, death will be here
+  if (Values.creation_year > 1977) {
+    Values.pd = Values.death + 71;
+  } else if ((Values.pub_year != undefined)
+             && (Values.pub_year < 2003)) {
+    Values.pd = Math.max((Values.death + 71), 2048);
+  } else {
+    Values.pd = Math.max((Values.death + 71), 2003);
+  }
+  // pd *will* have been set in the if/else block
+  if (Values.current_year > Values.pd) {
     result = Rules.conclusion('B.viii');
   } else {
-    result = 's2q2c'
+    result = 's2q2c';
   }
   return result;
 };
