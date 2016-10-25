@@ -103,6 +103,7 @@ Rules.section304Analysis = function () {
       else {
         Values.cright_year = Values.reg_year || Values.pub_year;
       }
+      Values.cright_year = Math.min(Values.cright_year, 1978);
       if (Values.cright_year < 1950) {
         Rules.addFlag('B.iv');
       }
