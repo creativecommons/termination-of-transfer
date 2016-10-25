@@ -140,7 +140,6 @@ Rules.section304Analysis = function () {
 Rules.section203Analysis = function () {
   var result = 's2q2a';
   if (Values.k_year > 1977) {
-    var term_begin = undefined;
     if (Values.pub_right == 'yes' ) {
       if (Values.pub_year != undefined) {
         Values.term_begin = Math.min(Values.pub_year + 35 , Values.k_year + 40);
@@ -151,6 +150,7 @@ Rules.section203Analysis = function () {
                || (Values.pub_right == 'no'))  {
       Values.term_begin = Values.k_year + 35;
     }
+    console.log(Values.term_begin);
     if (Values.term_begin != undefined) {
       Values.term_end = Values.term_begin + 5;
       Values.notice_begin = Values.term_begin - 10;
@@ -162,8 +162,11 @@ Rules.section203Analysis = function () {
       }
     }
     if (Values.pub_right != 'yes') {
-      Values.p_term_begin = Math.min(Values.pub_year + 35,
-                                     Values.k_year + 40);
+      Values.p_term_begin = Values.k_year + 40;
+      if (Values.pub_year != undefined) {
+        Values.p_term_begin = Math.min(Values.pub_year + 35,
+                                       Values.p_term_begin);
+      }
       Values.p_term_end = Values.p_term_begin  + 5;
       Values.p_notice_begin = Values.p_term_begin - 10;
       Values.p_notice_end = Values.p_term_end - 2;

@@ -32,13 +32,21 @@ PDF.appendProperty = function (details, key, value) {
 };
 
 PDF.append203Windows = function (details) {
-  var notice = Values.notice_begin + '-' + Values.notice_end;
-  var termination = Values.term_begin + '-' + Values.term_end
+  var notice = '';
+  var termination = '';
+
+  if (Values.notice_begin != undefined) {
+    notice += Values.notice_begin + '-' + Values.notice_end;
+    termination += Values.term_begin + '-' + Values.term_end
+  }
 
   if (Values.p_term_begin != undefined) {
-    notice += ' or ' + Values.p_notice_begin + '-' + Values.p_notice_end;
-    termination += ' or ' + Values.p_term_begin + '-'
-      + Values.p_term_end;
+    if (notice != '') {
+      notice += ' or ';
+      termination += ' or ';
+    }
+    notice += Values.p_notice_begin + '-' + Values.p_notice_end;
+    termination += Values.p_term_begin + '-' + Values.p_term_end;
   }
 
   PDF.appendProperty(details, '&sect; 203 notice window', notice);
