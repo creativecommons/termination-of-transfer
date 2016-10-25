@@ -61,7 +61,7 @@ and an outline of the kinds of information you will need to have to hand in orde
 to complete the tool. While the tool does not record your responses from one session to the next, don't be afraid to run through it multiple times with different inputs. The tool is designed to provide helpful information even to users who do not have a full set of details, and it should take less than ten minutes to
 complete any one approach.</p>
 
-<p>If you are unsure about something the tool requires, try to answer it as best
+<p>If you are unsure about something the tool requires, try to answer it as well
 and as accurately you can, giving as much information as you can so that this
 information can be assessed by a lawyer who you consult with this information
 or by a <a class="glossarylink" href="glossary.php#clinic">participating law clinic</a>.
@@ -77,6 +77,8 @@ in relation to a <a class="glossarylink" href="glossary.php#work">copyrighted wo
 do not be disheartened.  It may be that
 you entered some of the information in incorrectly and/or that you need
 some advice and assistance to correctly interpret and/or respond to the questions.</p>
+
+<p>Of course, some authors simply won't have termination windows available. The window may have passed, or it might be too far in the future, or the cirucmstances of the work's creation might put it beyond the law's scope. In these instances, it is important to remember that there are other options for reclaiming (or obtaining) rights. A good starting place is the Authors Alliance guide <em><a href="http://authorsalliance.org/reversion" title="Rights Reversion Portal | Authors Alliance">Understanding Rights Reversion</a></em>, which walks through the process of using contractual terms and non-contractual negotiating tactics to get rights back without a termination right.</p>
 
 <p>If you work through the tool and it says that you cannot currently
 activate your termination right but that you may be able to do so in future,
