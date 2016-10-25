@@ -58,11 +58,8 @@ and if so, whether your <a class="glossarylink" href="glossary.php#notice_window
 
 <p>Below is an overview of the questions that are asked as you complete the tool
 and an outline of the kinds of information you will need to have to hand in order
-to complete the tool.  Don't worry if you start working your way through the tool
-and then find that you don't have all of the information available with you right now;
-the tool does not record your responses from one session to the next session,
-so you can stop at any time and start again.  It should take about 25 minutes to
-complete the tool once you have all the relevant information.</p>
+to complete the tool. While the tool does not record your responses from one session to the next, don't be afraid to run through it multiple times with different inputs. The tool is designed to provide helpful information even to users who do not have a full set of details, and it should take less than ten minutes to
+complete any one approach.</p>
 
 <p>If you are unsure about something the tool requires, try to answer it as best
 and as accurately you can, giving as much information as you can so that this
