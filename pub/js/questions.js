@@ -66,7 +66,7 @@ Questions.s1q1bi = {
   validate: function () {
     return Validation.validDate()
       || ((parseInt($('.text-question').val()) < Values.creation_year)
-          ? 'The publication date cannot be earlier than the creation date.'
+          ? 'The publication year cannot be earlier than the creation year.'
           : false);
   }
 
@@ -105,7 +105,7 @@ Questions.s1q1ci = {
 // What is the date of the agreement or transfer? ...
 
 Questions.s1q1d = {
-  question: 'What is the date of the agreement or transfer?',
+  question: 'What is the year of the agreement or transfer?',
   explanation:'When a transfer took place determines the particular set of termination rules that will be applicable. The timing of a transfer is also needed to in order to know when an author might be able to exercise their termination rights.',
   variable: 'k_year',
   input: 'year',
