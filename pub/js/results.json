@@ -16,7 +16,22 @@
                 "i":  {"b": "Based on the information you have provided, the transfer may have been renegotiated. Some courts have found renegotiations to affect the availability of the termination right. You may wish to consult an attorney about the availability and timing of your termination right."}},
           "D": {"title": "Possible work for hire",
                 "i":  {"b": "Pre-1978."},
-                "ii": {"b": "Post-1978"}}},
+                "ii": {"b": "Post-1978"}},
+	      "E": {"title": "Dual Window Scenario",
+	              "i":  {"title": "Two possible notice/termination windows",
+					  "Under § 304, some works receive two possible windows for termination. Under § 304(c), transfers are terminable in a window beginning 56 years from the date copyright was secured. Under § 304(d), transfers are terminable in a window beginning 75 years from the date copyright was secured. Note that transfers of rights related to a single work can only be terminated under one of these provisions—it is not possible to exercise both the § 304(c) and  304(d) rights."},
+	              "ii": {"title": "Uncertain notice/termination window",
+					  "In your answers, you were not certain whether or not the right of publication was transferred. For transfers from 1978 or later, knowing this information is often necessary in order to identify the correct termination window. Even not knowing this information, it is possible to see what the termination might look like in either scenario.
+As a result, you should see two windows specified for both notice and termination. Only one window can apply to works transferred in 1978 or later. In order to know which is applicable, please re-try the tool, specifying whether or not the publication right was transferred."}}
+		  "F": {"title": "Window explanations",
+			      "i":  {"title": "Understanding the § 304(c) termination window",
+				  "When a transfer made before 1978 is eligible for a termination, it will be under section 304 of the Copyright Act. Under section 304(c), the termination window opens 56 years after copyright was secured and lasts for five years."},
+			      "ii": {"title": "Understanding the § 304(d) termination window",
+					  "When a transfer made before 1978 is eligible for a termination, it will be under section 304 of the Copyright Act. Under section 304(d), the termination window opens 75 years after copyright was secured and lasts for five years."}
+				      "iii":  {"title": "Understanding the § 203 termination window",
+					  "When a transfer made in or after 1978 is eligible for a termination, it will be under section 203 of the Copyright Act. In these circumstances, the termination window opens 35 years after the transfer and lasts for five years.
+However, if the author granted publication rights, the test is a little different. In those cases, the five-year termination window opens either 35 years from publication or 40 years from the transfer—whichever comes first."}}},
+
  "Conclusion": {"A": {"title": "Eligible for termination",
                       "i": {"title": "Under § 304(c)",
                             "description": "Thank you for using the Termination of Transfer Tool. Based on the information you provided, it appears that the work in question may be eligible for termination during the windows specified in your PDF information sheet. To better understand what this result means, feel free to check out the FAQ, or take your information sheet to legal counsel."},
