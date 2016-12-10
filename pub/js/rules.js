@@ -134,6 +134,10 @@ Rules.section304Analysis = function () {
         result = 's2q2a';
       }
     }
+    if ((Values.d_term_begin != undefined)
+	&& (Values.term_begin != undefined)) {
+        Rules.addFlag('E.i');
+    }
   }
   return result;
 };
@@ -177,6 +181,10 @@ Rules.section203Analysis = function () {
         Rules.addFlag('A.ii.a');
       }
     }
+  }  
+  if ((Values.p_term_begin != undefined)
+      && (Values.term_begin != undefined)) {
+      Rules.addFlag('E.ii');
   }
   return result;
 };
