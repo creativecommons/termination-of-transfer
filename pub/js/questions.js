@@ -381,7 +381,7 @@ Questions.progress_stack = [];
 Questions.start = function () {
   $('.questionnaire-section, .question-progress-buttons').removeClass('hidden');
   $('.no-javascript-alert').addClass('hidden');
-  $('#button-question-back').prop("disabled", true);
+  //Navigation.disablePrevious();
   Rendering.transitionTo(Questions.first_question);
 };
 
@@ -471,7 +471,7 @@ Questions.start = function () {
   Navigation.showAnswersTable();
   Navigation.showNextPrevious();
   $('#button-question-next').click(Questions.nextQuestion);
-  $('#button-question-back').click(Questions.previousQuestion);
+  //$('#button-question-back').click(Questions.previousQuestion);
   // When the user presses "return" in a text area, move to next question
   $('#question-rendering-area').on('submit', function () {
     if ($('#button-question-next').is(':enabled')) {
