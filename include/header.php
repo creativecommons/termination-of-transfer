@@ -37,9 +37,6 @@ if (isset($header_extra)) {
               <span class="icon-bar"></span>
             </button>
 
-            <img class="pull-left"
-                 style="padding-top: 14.75px; padding-right: 10px;"
-                 src="images/cc-labs-b.png">
             <a class="navbar-brand" href="#">Termination of Transfer Tool</a>
           </div>
           <div class="navbar-collapse collapse" id="navbar">

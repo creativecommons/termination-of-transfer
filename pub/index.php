@@ -22,7 +22,7 @@ include_once __DIR__ . '/../include/header.php';
 ?>
 
 <div id="totnav" class="panel panel-info">
-<div class="panel-heading"><h4 class="panel-title">CC Termination of Transfer Tool</h4></div>
+<div class="panel-heading"><h4 class="panel-title">Termination of Transfer Tool</h4></div>
 <div class="panel-body">
 <h4>Overview</h4>
 <a href="#get_rights_back">Termination of transfers: get rights back!</a><br>
@@ -39,7 +39,13 @@ include_once __DIR__ . '/../include/header.php';
 </div>
 
 <div id="intro">
-<h3>[BETA]Returning Author's Rights: The Authors Alliance/Creative Commons Termination of Transfer Tool [BETA]</h3>
+<div class="text-center">
+<img src="images/aa.logo.png">
+&nbsp;
+<img style="padding-bottom: 22px;" src="images/cc.logo.png">
+</div>
+                                                         
+<h3>Returning Author's Rights: The Authors Alliance/Creative Commons Termination of Transfer Tool</h3>
 
 <p>Welcome to the Authors Alliance/Creative Commons Termination of Transfer Tool. On this page we briefly explain what
 termination of transfer is all about, and how this tool can work for you.</p>
