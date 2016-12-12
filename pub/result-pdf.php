@@ -81,7 +81,7 @@ function flag_title_and_description ($spec)
     return [$title, $description];
 }
 
-$flags = array_map(flag_title_and_description, $data['flags']);
+$flags = array_map('flag_title_and_description', $data['flags']);
 
 $conclusion_path = explode('.', $data['conclusion']);
 $conclusion_section = $results_strings['Conclusion'][$conclusion_path[0]];
