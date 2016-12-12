@@ -60,13 +60,28 @@ if (!isset($data['details'])) {
 $results_json = file_get_contents(__DIR__ . '/js/results.json');
 $results_strings = json_decode($results_json, $assoc=true);
 
-$flags = array_map(function ($spec) {
+function flag_title_and_description ($spec)
+{
     global $results_strings;
     $path = explode('.', $spec);
-    return [$results_strings['Flag'][$path[0]]['title'],
-            $results_strings['Flag'][$path[0]][$path[1]]['b']];
-},
-    $data['flags']);
+    // A, B, C, D
+    $section = $results_strings['Flag'][$path[0]];
+    // i, ii, iii
+    $subsection = $results_strings['Flag'][$path[0]][$path[1]];
+    // For historical reasons, some flags take their section title and have
+    // their description under 'b', and others have their own title and thei
+    // description under 'description'
+    if (array_key_exists('title', $subsection)) {
+        $title = $subsection['title'];
+        $description = $subsection['description'];
+    } else {
+        $title = $section['title'];
+        $description = $subsection['b'];
+    }
+    return [$title, $description];
+}
+
+$flags = array_map(flag_title_and_description, $data['flags']);
 
 $conclusion_path = explode('.', $data['conclusion']);
 $conclusion_section = $results_strings['Conclusion'][$conclusion_path[0]];

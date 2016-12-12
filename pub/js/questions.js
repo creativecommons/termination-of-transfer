@@ -358,10 +358,14 @@ Questions.processAnswer = function () {
 Questions.resultMap = undefined;
 // Asynchronous fetch of data that is accessed synchronously.
 // This data won't be used until after several questions, so this is tolerable.
-$.getJSON("js/results.json",
-          function (result) {
-            resultMap = result;
-          });
+$.getJSON("js/results.json")
+    .done(function (result) {
+        resultMap = result;
+    })
+    .fail(function (jqxhr, textStatus, error) {
+	var err = textStatus + ", " + error;
+	console.log("Request Failed: " + err);
+    });
 
 Questions.getResultDetails = function (specifier) {
   var path = specifier.split('.');
