@@ -90,6 +90,7 @@ Rules.section304Analysis = function () {
   var result = 's1q1f';
   if (Values.k_year < 1978) {
     result = 's2q2a';
+    Rules.addFlag('F.i');	  
     if ((Values.pub_year == undefined) && (Values.reg_year == undefined)) {
       result = Rules.conclusion('B.vii');
     } else {
@@ -116,6 +117,7 @@ Rules.section304Analysis = function () {
         Rules.addFlag('A.i.a');
       } else if (Values.notice_end < Values.current_year) {
         if (Values.cright_year < 1938) {
+	  Rules.addFlag('F.ii');	
           Values.d_term_begin = Values.term_begin + 19;
           Values.d_term_end = Values.d_term_begin + 5;
           Values.d_notice_begin = Values.d_term_begin - 10;
@@ -145,6 +147,7 @@ Rules.section304Analysis = function () {
 Rules.section203Analysis = function () {
   var result = 's2q2a';
   if (Values.k_year > 1977) {
+    Rules.addFlag('F.iii');
     if (Values.pub_right == 'yes' ) {
       if (Values.pub_year != undefined) {
         Values.term_begin = Math.min(Values.pub_year + 35 , Values.k_year + 40);
