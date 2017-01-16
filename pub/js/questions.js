@@ -111,9 +111,10 @@ Questions.s1q1d = {
   input: 'year',
   validate: function () {
     var errors = Validation.validDate();
-    // If the date is before the creation year, use the creation year instead
+    // If the date is before the creation year and pre-78, use the creation year instead
     if ((errors == false)
-        && (parseInt($('.text-question').val()) < Values.creation_year)) {
+        && (parseInt($('.text-question').val()) < Values.creation_year) && 
+        (parseInt($('.text-question').val()) < 1978)) {
       $('.text-question').val(Values.creation_year);
     }
     return errors;
