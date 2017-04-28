@@ -259,18 +259,33 @@ Rules.s1q1c = function () {
 
 // When was the work registered with the United States Copyright Office?
 
-Rules.s1q1ci = 's1q1d';
+Rules.s1q1ci = function () {
+  var result = undefined;
+  if (Values.reg_year < 1923) {
+    result = Rules.conclusion('B.viii');
+  } else {
+    result = 's1q1d';
+  }
+  return result;
+};
 
 // For s1q1d,
 // What is the date of the agreement or transfer? ...
 
 Rules.s1q1d = function () {
-  // Intercept the result so we can add encouragement if things look good
-  var result = Rules.section304Analysis();
-  if ((result != Rules.jumpToFinish)
-      && Rules.beforeEndOfNoticeWindow()
-      && (! Rules.hasPublicDomainFlags())) {
-    Notifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
+  var result = undefined;
+  if ((Values.user_inputted_k_year < 1978)
+      && ((Values.pub_year == undefined)
+          && (Values.contract_year == undefined))) {
+      result = Rules.conclusion('B.vii');
+  } else {
+    // Intercept the result so we can add encouragement if things look good
+    result = Rules.section304Analysis();
+    if ((result != Rules.jumpToFinish)
+	&& Rules.beforeEndOfNoticeWindow()
+	&& (! Rules.hasPublicDomainFlags())) {
+	Notifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
+    }
   }
   return result;
 };

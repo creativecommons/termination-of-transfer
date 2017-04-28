@@ -111,10 +111,13 @@ Questions.s1q1d = {
   input: 'year',
   validate: function () {
     var errors = Validation.validDate();
-    // If the date is before the creation year, use the creation year instead
-    if ((errors == false)
-        && (parseInt($('.text-question').val()) < Values.creation_year)) {
-      $('.text-question').val(Values.creation_year);
+    if (errors == false) {
+        // Stash the user-entered agreement year
+        Values.user_inputted_k_year = parseInt($('.text-question').val());
+        // If date is before the creation year, use the creation year instead
+        if (Values.user_inputted_k_year < Values.creation_year) {
+	  $('.text-question').val(Values.creation_year);
+	}
     }
     return errors;
   }
