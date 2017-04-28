@@ -244,7 +244,7 @@ Questions.s3q3a = {
   // First question in section 3
   section: 3,
   question: 'Title of Work [optional]',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not affect the outcome of the tool',
   variable: 'work_title',
   placeholder: 'Work Title',
   optional: true
