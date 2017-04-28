@@ -111,10 +111,13 @@ Questions.s1q1d = {
   input: 'year',
   validate: function () {
     var errors = Validation.validDate();
-    // If the date is before the creation year, use the creation year instead
-    if ((errors == false)
-        && (parseInt($('.text-question').val()) < Values.creation_year)) {
-      $('.text-question').val(Values.creation_year);
+    if (errors == false) {
+        // Stash the user-entered agreement year
+        Values.user_inputted_k_year = parseInt($('.text-question').val());
+        // If date is before the creation year, use the creation year instead
+        if (Values.user_inputted_k_year < Values.creation_year) {
+	  $('.text-question').val(Values.creation_year);
+	}
     }
     return errors;
   }
@@ -244,7 +247,7 @@ Questions.s3q3a = {
   // First question in section 3
   section: 3,
   question: 'Title of Work [optional]',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',
+  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not affect the outcome of the tool',
   variable: 'work_title',
   placeholder: 'Work Title',
   optional: true

@@ -74,11 +74,11 @@ Rules.hasPublicDomainFlags = function () {
 
 Rules.beforeEndOfNoticeWindow = function () {
   return ((Values.notice_end != undefined)
-          && (Values.notice_end >= Values.current_year))
+      && (Values.notice_end >= Values.current_year))
     || ((Values.d_notice_end != undefined)
-        && (Values.d_notice_end >= Values.current_year))
+    && (Values.d_notice_end >= Values.current_year))
     || ((Values.p_notice_end != undefined)
-        && (Values.p_notice_end >= Values.current_year));
+    && (Values.p_notice_end >= Values.current_year));
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -90,15 +90,17 @@ Rules.section304Analysis = function () {
   var result = 's1q1f';
   if (Values.k_year < 1978) {
     result = 's2q2a';
+    Rules.addFlag('F.i');
     if ((Values.pub_year == undefined) && (Values.reg_year == undefined)) {
       result = Rules.conclusion('B.vii');
     } else {
-      // Under the 1909 Act, copyright term begins at the earlier of the registration date and the publication date
-	  // If the work is both registered and published use the minimum of them.
+      // Under the 1909 Act, copyright term begins at the earlier of
+      // the registration date and the publication date.
+      // If the work is both registered and published use the minimum of them.
       if ((Values.reg_year != undefined)
-         && (Values.pub_year != undefined)) {
-        Values.cright_year = Math.min(Values.pub_year,
-                                      Values.reg_year);
+          && (Values.pub_year != undefined)) {
+            Values.cright_year = Math.min(Values.pub_year,
+                                          Values.reg_year);
       }
       // Otherwise use whichever value is set. One *will* be set here, see top.
       else {
@@ -115,36 +117,37 @@ Rules.section304Analysis = function () {
       Values.notice_end = Values.term_end - 2;
       if (Values.notice_begin > Values.current_year) {
         Rules.addFlag('A.i.a');
-      } 
-	  // Following Copyright Office guidance, works copyrighted before 1940 may also be eligible for termination under 304d
-	  else if (Values.cright_year < 1940) {
+       // Following Copyright Office guidance, works copyrighted before 1940 may also be eligible for termination under 304d
+       } else if (Values.cright_year < 1940) {
+          Rules.addFlag('F.ii');
           Values.d_term_begin = Values.term_begin + 19;
           Values.d_term_end = Values.d_term_begin + 5;
           Values.d_notice_begin = Values.d_term_begin - 10;
           Values.d_notice_end = Values.d_term_end - 2;
           if (Values.cright_year > 1937) {
-			Rules.addFlag('G.i');
-		  } 
-		  if (Values.cright_year == 1939) {
-			Rules.addFlag('G.ii.a');
-		  }
-		  if (Values.d_notice_begin > Values.current_year) {
-            Rules.addFlag('A.iii.a'); /* time traveler flag -- applies where the present day is between the 304(c) and 304(d) notice windows */
+            Rules.addFlag('G.i');
+          }
+          if (Values.cright_year == 1939) {
+            Rules.addFlag('G.ii.a');
+          }
+          if (Values.d_notice_begin > Values.current_year) {
+	    // time traveler flag -- applies where the present day is between
+            // the 304(c) and 304(d) notice windows
+            Rules.addFlag('A.iii.a');
           } else if (Values.notice_end < Values.current_year) {
             Rules.addFlag('A.ii.a');
           } else {
             result = Rules.conclusion('B.ii');
-          }
-        }
-       else {
+	  }
+        } else {
         // Here for clarity / to reflect decision tree structure
         // But note that we set it as the result above.
         result = 's2q2a';
       }
     }
     if ((Values.d_term_begin != undefined)
-	&& (Values.term_begin != undefined)) {
-        Rules.addFlag('E.i');
+        && (Values.term_begin != undefined)) {
+      Rules.addFlag('E.i');
     }
   }
   return result;
@@ -153,14 +156,15 @@ Rules.section304Analysis = function () {
 Rules.section203Analysis = function () {
   var result = 's2q2a';
   if (Values.k_year > 1977) {
+    Rules.addFlag('F.iii');
     if (Values.pub_right == 'yes' ) {
       if (Values.pub_year != undefined) {
-        Values.term_begin = Math.min(Values.pub_year + 35 , Values.k_year + 40);
+    Values.term_begin = Math.min(Values.pub_year + 35 , Values.k_year + 40);
       } else {
-        Values.term_begin = Values.k_year + 40;
+    Values.term_begin = Values.k_year + 40;
       }
     } else if ((Values.pub_year != Values.k_year)
-               || (Values.pub_right == 'no'))  {
+           || (Values.pub_right == 'no'))  {
       Values.term_begin = Values.k_year + 35;
     }
     console.log(Values.term_begin);
@@ -169,27 +173,27 @@ Rules.section203Analysis = function () {
       Values.notice_begin = Values.term_begin - 10;
       Values.notice_end = Values.term_end - 2;
       if (Values.notice_begin > Values.current_year) {
-        Rules.addFlag('A.i.a');
+    Rules.addFlag('A.i.a');
       } else if (Values.notice_end < Values.current_year) {
-        Rules.addFlag('A.ii.a');
+    Rules.addFlag('A.ii.a');
       }
     }
     if (Values.pub_right != 'yes') {
       Values.p_term_begin = Values.k_year + 40;
       if (Values.pub_year != undefined) {
-        Values.p_term_begin = Math.min(Values.pub_year + 35,
-                                       Values.p_term_begin);
+    Values.p_term_begin = Math.min(Values.pub_year + 35,
+                       Values.p_term_begin);
       }
       Values.p_term_end = Values.p_term_begin  + 5;
       Values.p_notice_begin = Values.p_term_begin - 10;
       Values.p_notice_end = Values.p_term_end - 2;
       if (Values.p_notice_begin > Values.current_year) {
-        Rules.addFlag('A.i.a');
+    Rules.addFlag('A.i.a');
       } else if (Values.p_notice_end < Values.current_year) {
-        Rules.addFlag('A.ii.a');
+    Rules.addFlag('A.ii.a');
       }
     }
-  }  
+  }
   if ((Values.p_term_begin != undefined)
       && (Values.term_begin != undefined)) {
       Rules.addFlag('E.ii');
@@ -209,8 +213,8 @@ Rules.s1q1a = 's1q1b';
 // Has the work been published?
 
 Rules.s1q1b = Rules.simpleYesNoRule('work_published',
-                                    's1q1bi',
-                                    's1q1c');
+                    's1q1bi',
+                    's1q1c');
 
 // When was the work first published?
 
@@ -264,18 +268,36 @@ Rules.s1q1c = function () {
 
 // When was the work registered with the United States Copyright Office?
 
-Rules.s1q1ci = 's1q1d';
+Rules.s1q1ci = function () {
+  var result = undefined;
+  if (Values.reg_year < 1923) {
+    result = Rules.conclusion('B.viii');
+  } else {
+    result = 's1q1d';
+  }
+  return result;
+};
 
 // For s1q1d,
 // What is the date of the agreement or transfer? ...
 
 Rules.s1q1d = function () {
-  // Intercept the result so we can add encouragement if things look good
-  var result = Rules.section304Analysis();
-  if ((result != Rules.jumpToFinish)
-      && Rules.beforeEndOfNoticeWindow()
-      && (! Rules.hasPublicDomainFlags())) {
+  var result = undefined;
+  if (Values.user_inputted_k_year != Values.k_year) {
+    Rules.addFlag('H.i');
+  }
+  if ((Values.user_inputted_k_year < 1978)
+      && ((Values.pub_year == undefined)
+      && (Values.contract_year == undefined))) {
+      result = Rules.conclusion('B.vii');
+  } else {
+    // Intercept the result so we can add encouragement if things look good
+    result = Rules.section304Analysis();
+    if ((result != Rules.jumpToFinish)
+    && Rules.beforeEndOfNoticeWindow()
+    && (! Rules.hasPublicDomainFlags())) {
     Notifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
+    }
   }
   return result;
 };
@@ -308,8 +330,8 @@ Rules.s2q2a = function () {
     result = Rules.conclusion('B.iv');
   } else {
     if ((Values.creation_year > 1977)
-        || (((Values.pub_year == undefined) || (Values.pub_year > 1977))
-            && ((Values.reg_year == undefined) || (Values.reg_year > 1977)))) {
+    || (((Values.pub_year == undefined) || (Values.pub_year > 1977))
+        && ((Values.reg_year == undefined) || (Values.reg_year > 1977)))) {
       result = 's2q2bi';
     } else {
       result = 's2q2c';
@@ -339,7 +361,7 @@ Rules.s2q2bi2 = function () {
   if (Values.creation_year > 1977) {
     Values.pd = Values.death + 71;
   } else if ((Values.pub_year != undefined)
-             && (Values.pub_year < 2003)) {
+     && (Values.pub_year < 2003)) {
     Values.pd = Math.max((Values.death + 71), 2048);
   } else {
     Values.pd = Math.max((Values.death + 71), 2003);
