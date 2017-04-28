@@ -274,6 +274,9 @@ Rules.s1q1ci = function () {
 
 Rules.s1q1d = function () {
   var result = undefined;
+  if (Values.user_inputted_k_year != Values.k_year) {
+    Rules.addFlag('H.i');
+  }
   if ((Values.user_inputted_k_year < 1978)
       && ((Values.pub_year == undefined)
           && (Values.contract_year == undefined))) {
