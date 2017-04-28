@@ -93,7 +93,8 @@ Rules.section304Analysis = function () {
     if ((Values.pub_year == undefined) && (Values.reg_year == undefined)) {
       result = Rules.conclusion('B.vii');
     } else {
-      // If the work is both registered and published use the minimum of them.
+      // Under the 1909 Act, copyright term begins at the earlier of the registration date and the publication date
+	  // If the work is both registered and published use the minimum of them.
       if ((Values.reg_year != undefined)
          && (Values.pub_year != undefined)) {
         Values.cright_year = Math.min(Values.pub_year,
@@ -114,21 +115,28 @@ Rules.section304Analysis = function () {
       Values.notice_end = Values.term_end - 2;
       if (Values.notice_begin > Values.current_year) {
         Rules.addFlag('A.i.a');
-      } else if (Values.notice_end < Values.current_year) {
-        if (Values.cright_year < 1938) {
+      } 
+	  // Following Copyright Office guidance, works copyrighted before 1940 may also be eligible for termination under 304d
+	  else if (Values.cright_year < 1940) {
           Values.d_term_begin = Values.term_begin + 19;
           Values.d_term_end = Values.d_term_begin + 5;
           Values.d_notice_begin = Values.d_term_begin - 10;
           Values.d_notice_end = Values.d_term_end - 2;
-          if (Values.d_notice_begin > Values.current_year) {
-            Rules.addFlag('A.iii.a');
+          if (Values.cright_year > 1937) {
+			Rules.addFlag('G.i');
+		  } 
+		  if (Values.cright_year == 1939) {
+			Rules.addFlag('G.ii.a');
+		  }
+		  if (Values.d_notice_begin > Values.current_year) {
+            Rules.addFlag('A.iii.a'); /* time traveler flag -- applies where the present day is between the 304(c) and 304(d) notice windows */
           } else if (Values.notice_end < Values.current_year) {
             Rules.addFlag('A.ii.a');
           } else {
             result = Rules.conclusion('B.ii');
           }
         }
-      } else {
+       else {
         // Here for clarity / to reflect decision tree structure
         // But note that we set it as the result above.
         result = 's2q2a';
