@@ -169,7 +169,7 @@ Rules.section203Analysis = function () {
         Rules.addFlag('A.ii.a');
       }
     }
-    if (Values.pub_right != 'yes') {
+    if (Values.pub_right == 'maybe') {
       Values.p_term_begin = Values.k_year + 40;
       if (Values.pub_year != undefined) {
         Values.p_term_begin = Math.min(Values.pub_year + 35,
