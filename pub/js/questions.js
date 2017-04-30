@@ -219,7 +219,7 @@ Questions.s2q2e = {
 
 // Did one or more of the authors or artists enter into the agreement...
 
-Questions.s2q2f =  {
+Questions.s2q2fi =  {
   question: 'Did one or more of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">authors or artists</a> enter into the agreement or transfer?',
   variable: 'authors_entered_agreement',
   input: 'radio'
@@ -229,7 +229,7 @@ Questions.s2q2f =  {
 
 // Was the agreement or transfer made by a member of...
 
-Questions.s2q2eii =  {
+Questions.s2q2fii =  {
   // Last question in section 2, so set section if we're going back
   section: 2,
   question: 'Was the agreement or transfer made by a member of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">author or artists\'s</a> immediate family, or by the executors?<br><i>For more information about which family members qualify, check out the FAQ.</i>',
