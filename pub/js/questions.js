@@ -120,6 +120,10 @@ Questions.s1q1d = {
 	}
     }
     return errors;
+  },
+  answerDisplayValue: function () {
+    return "Effective: " + Values.k_year + "<br/>User entered: "
+	   + Values.user_inputted_k_year;
   }
 };
 
@@ -343,6 +347,8 @@ Questions.processAnswer = function () {
     // FIXME: handle converting radio buttons to correct store values
     //        while recording their label in the answers table
     if (answer) {
+      answer = (question.answerDisplayValue && question.answerDisplayValue())
+	       || answer;
       Answers.appendAnswer(question.variable, question.question, answer);
     }
     Notifications.clearAlerts();

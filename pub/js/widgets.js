@@ -39,7 +39,8 @@ Answers.appendAnswer = function (myId, label, value) {
   // If the user has gone back and is changing the answer, first remove it
   Answers.removeAnswer(myId);
   $('#answers-table-rows').append('<tr id="answer-row-' + myId + '"><td>'
-                         + label + '</td><td>' + value + '</td></tr>');
+				  + label + '</td><td align="right">' + value
+				  + '</td></tr>');
 };
 
 Answers.removeAnswer = function (myId) {
