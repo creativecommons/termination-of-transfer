@@ -61,7 +61,6 @@ Rules.is304 = function () {
   return (['A.i', 'A.ii', 'A.i-ii'].indexOf(Values.conclusion) > -1);
 };
 
-
 Rules.hasPublicDomainFlags = function () {
   var result = false;
   for (var i = 0; i < Values.flags.length; i++) {

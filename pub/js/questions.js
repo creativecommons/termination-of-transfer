@@ -225,11 +225,11 @@ Questions.s2q2f =  {
   input: 'radio'
 };
 
-// s2q2ei is part of the rule for s2q2e
+// s2q2fii is part of the rule for s2q2f
 
 // Was the agreement or transfer made by a member of...
 
-Questions.s2q2eii =  {
+Questions.s2q2fii =  {
   // Last question in section 2, so set section if we're going back
   section: 2,
   question: 'Was the agreement or transfer made by a member of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">author or artists\'s</a> immediate family, or by the executors?<br><i>For more information about which family members qualify, check out the FAQ.</i>',
