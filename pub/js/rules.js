@@ -287,7 +287,7 @@ Rules.s1q1d = function () {
   }
   if ((Values.user_inputted_k_year < 1978)
       && ((Values.pub_year == undefined)
-      && (Values.contract_year == undefined))) {
+      && (Values.reg_year == undefined))) {
       result = Rules.conclusion('B.vii');
   } else {
     // Intercept the result so we can add encouragement if things look good
