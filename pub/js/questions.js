@@ -222,7 +222,7 @@ Questions.s2q2e = {
 
 // Did one or more of the authors or artists enter into the agreement...
 
-Questions.s2q2f =  {
+Questions.s2q2fi =  {
   question: 'Did one or more of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">authors or artists</a> enter into the agreement or transfer?',
   variable: 'authors_entered_agreement',
   input: 'radio'
