@@ -65,7 +65,7 @@ Questions.s1q1bi = {
   input: 'year',
   validate: function () {
     return Validation.validDate()
-      || ((parseInt($('.text-question').val()) < Values.creation_year)
+      || ((parseInt(jQuery('.text-question').val()) < Values.creation_year)
           ? 'The publication year cannot be earlier than the creation year.'
           : false);
   }
@@ -112,10 +112,10 @@ Questions.s1q1d = {
     var errors = Validation.validDate();
     if (errors == false) {
         // Stash the user-entered agreement year
-        Values.user_inputted_k_year = parseInt($('.text-question').val());
+        Values.user_inputted_k_year = parseInt(jQuery('.text-question').val());
         // If date is before the creation year, use the creation year instead
         if (Values.user_inputted_k_year < Values.creation_year) {
-	  $('.text-question').val(Values.creation_year);
+	  jQuery('.text-question').val(Values.creation_year);
 	}
     }
     return errors;
@@ -300,7 +300,7 @@ Questions.validateAnswer = function () {
     result = Validation.validDate();
   } else if (question.type == 'text') {
     // If the text has a minimum length, check it
-    if ($('.text-question').val().length < question.min_chars) {
+    if (jQuery('.text-question').val().length < question.min_chars) {
       result = 'Answer is too short, it must be at least '
         + question.min_chars + 'characters';
     }
@@ -314,23 +314,24 @@ Questions.getAnswer = function () {
   var answer = undefined;
   switch (question.input) {
   case 'radio':
-    answer = $(':input[type="radio"]:checked').val();
+    answer = jQuery(':input[type="radio"]:checked').val();
     break;
   case 'year':
     if ((question.optional != true)
-        || ((question.optional == true) && $('.text-question').val() != '')) {
-      answer = parseInt($('.text-question').val());
+        || ((question.optional == true)
+	    && jQuery('.text-question').val() != '')) {
+      answer = parseInt(jQuery('.text-question').val());
     }
     break;
   case 'year_or_empty':
-    if ($('.text-question').val() != '') {
-      answer = parseInt($('.text-question').val());
+    if (jQuery('.text-question').val() != '') {
+      answer = parseInt(jQuery('.text-question').val());
     }
     break;
   case 'text':
     // Fall through to default
   default:
-    answer = $('.text-question').val();
+    answer = jQuery('.text-question').val();
     break;
   }
   return answer;
@@ -366,7 +367,10 @@ Questions.processAnswer = function () {
 Questions.resultMap = undefined;
 // Asynchronous fetch of data that is accessed synchronously.
 // This data won't be used until after several questions, so this is tolerable.
-$.getJSON("js/results.json")
+
+jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/js/questions.js']")
+	       .attr('src').replace(/questions\.js.*$/, '')
+	       + 'results.json')
     .done(function (result) {
         resultMap = result;
     })
@@ -391,8 +395,9 @@ Questions.last_question = 's3q3e';
 Questions.progress_stack = [];
 
 Questions.start = function () {
-  $('.questionnaire-section, .question-progress-buttons').removeClass('hidden');
-  $('.no-javascript-alert').addClass('hidden');
+  jQuery('.questionnaire-section, .question-progress-buttons')
+	.removeClass('hidden');
+  jQuery('.no-javascript-alert').addClass('hidden');
   //Navigation.disablePrevious();
   Rendering.transitionTo(Questions.first_question);
 };
@@ -437,8 +442,8 @@ Questions.nextQuestion = function () {
     } else {
       Questions.transitionQuestion(id);
       // Scroll down to make sure the input UI is visible
-      $('html,body').animate({
-        scrollTop: $('#button-question-next').offset().top}, 'slow');
+      jQuery('html,body').animate({
+        scrollTop: jQuery('#button-question-next').offset().top}, 'slow');
     }
   }
 };
@@ -462,8 +467,8 @@ Questions.previousQuestion = function () {
     Questions.progress_stack.pop();
     Notifications.clearAlerts();
     // Scroll down to make sure the input UI is visible
-    $('html,body').animate({
-      scrollTop: $('#button-question-next').offset().top}, 'slow');
+    jQuery('html,body').animate({
+      scrollTop: jQuery('#button-question-next').offset().top}, 'slow');
   }
 };
 
@@ -482,12 +487,12 @@ Questions.start = function () {
   Navigation.showQuestions();
   Navigation.showAnswersTable();
   Navigation.showNextPrevious();
-  $('#button-question-next').click(Questions.nextQuestion);
-  //$('#button-question-back').click(Questions.previousQuestion);
+  jQuery('#button-question-next').click(Questions.nextQuestion);
+  //jQuery('#button-question-back').click(Questions.previousQuestion);
   // When the user presses "return" in a text area, move to next question
-  $('#question-rendering-area').on('submit', function () {
-    if ($('#button-question-next').is(':enabled')) {
-      $('#button-question-next').click();
+  jQuery('#question-rendering-area').on('submit', function () {
+    if (jQuery('#button-question-next').is(':enabled')) {
+      jQuery('#button-question-next').click();
     }
     return false;
   });

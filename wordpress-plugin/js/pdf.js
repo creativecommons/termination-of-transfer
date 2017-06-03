@@ -23,7 +23,9 @@
 
 var PDF = {};
 
-PDF.url = 'result-pdf.php';
+PDF.url = jQuery("script[src*='/termination-of-transfer/js/pdf.js']")
+	       .attr('src').replace(/js\/pdf\.js.*$/, '')
+	       + 'result-pdf.php';
 
 PDF.appendProperty = function (details, key, value) {
   var mapping = {key: key,
@@ -110,6 +112,6 @@ PDF.request = function () {
   data_field.setAttribute("name", "data");
   data_field.setAttribute("value", JSON.stringify(data));
   totform.appendChild(data_field);
-  $('body').append(totform);
+  jQuery('body').append(totform);
   totform.submit();
 };

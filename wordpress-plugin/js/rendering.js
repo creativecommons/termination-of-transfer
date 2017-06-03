@@ -48,7 +48,7 @@ Rendering.questionTemplate = '\
 </form>';
 
 Rendering.createQuestion = function () {
-  return $(Rendering.questionTemplate);
+  return jQuery(Rendering.questionTemplate);
 };
 
 Rendering.common = function (config) {
@@ -57,7 +57,7 @@ Rendering.common = function (config) {
   // Section is 1-based, so we can use a simple logical and here.
   if (config.section
       && (config.section != Rendering.currentSection)) {
-    $('#section-title').html(Rendering.sections[config.section]).fadeIn();
+    jQuery('#section-title').html(Rendering.sections[config.section]).fadeIn();
   }
   question.find('.question-label').html(config.question);
   if (config.explanation) {
@@ -93,12 +93,12 @@ Rendering.radio = function (config) {
       radio_button += ' checked="checked"';
     }
     radio_button += '>' + value +'</label>';
-    form_group.append($(radio_button));
+    form_group.append(jQuery(radio_button));
   });
   // When the user makes a choice, go straight to the next question
   form_group.find(':input[type="radio"]').click(function () {
     Navigation.enableNext();
-    $('#button-question-next').click();
+    jQuery('#button-question-next').click();
   });
   return question;
 };
@@ -123,7 +123,7 @@ Rendering.text = function (config) {
   var question = Rendering.common(config);
   var form_group = question.find('.form-group');
   var name = 'input-' + config.variable;
-  var text_field = $('<input type="text" class="form-control text-question" id="'
+  var text_field = jQuery('<input type="text" class="form-control text-question" id="'
                      + config.variable +
                      '" placeholder="'
                      + (config.placeholder || '')
@@ -187,10 +187,10 @@ Rendering.render = function (config) {
 
 Rendering.transitionTo = function (config) {
   var question = Rendering.render(config);
-  $('.question-form').slideUp("fast",
+  jQuery('.question-form').slideUp("fast",
                               function () {
-                                $(this).remove();
+                                jQuery(this).remove();
                               });
-  $('#question-rendering-area').append(question);
+  jQuery('#question-rendering-area').append(question);
   question.slideDown("fast");
 };

@@ -29,22 +29,22 @@ var Widgets = {};
 var Answers = {};
 
 Answers.resetAnswers = function () {
-  $('#answers-table-rows').empty();
+  jQuery('#answers-table-rows').empty();
 };
 
 Answers.appendAnswer = function (myId, label, value) {
   if (! label) {
-    label = $('#' + myId + '> label').first().text();
+    label = jQuery('#' + myId + '> label').first().text();
   }
   // If the user has gone back and is changing the answer, first remove it
   Answers.removeAnswer(myId);
-  $('#answers-table-rows').append('<tr id="answer-row-' + myId + '"><td>'
-				  + label + '</td><td align="right">' + value
-				  + '</td></tr>');
+  jQuery('#answers-table-rows').append('<tr id="answer-row-' + myId + '"><td>'
+				       + label + '</td><td align="right">'
+				       + value  + '</td></tr>');
 };
 
 Answers.removeAnswer = function (myId) {
-  $('#answer-row-' + myId).remove();
+  jQuery('#answer-row-' + myId).remove();
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -54,43 +54,43 @@ Answers.removeAnswer = function (myId) {
 var Notifications = {};
 
 Notifications.clearAlerts = function () {
-  $('#alert-area').empty();
+  jQuery('#alert-area').empty();
 };
 
 Notifications.setAlert = function (message) {
   Notifications.clearAlerts();
-  $('#alert-area').append('<div class="alert alert-warning" role="alert">'
-                          + message
-                          + '</div>');
+  jQuery('#alert-area').append('<div class="alert alert-warning" role="alert">'
+                               + message
+                               + '</div>');
 };
 
 Notifications.setEncouragement = function (message) {
   Notifications.clearAlerts();
-  $('#alert-area').append('<div class="alert alert-success" role="alert">'
-                          + message
-                          + '</div>');
+  jQuery('#alert-area').append('<div class="alert alert-success" role="alert">'
+                               + message
+                               + '</div>');
 };
 
 Notifications.displayAnswersHint = function () {
-  $('#answers-table-rows').append('<tr id="answers-table-row-placeholder"><td>As you respond to the questions we\'ll save the answers here.</td></tr>');
+  jQuery('#answers-table-rows').append('<tr id="answers-table-row-placeholder"><td>As you respond to the questions we\'ll save the answers here.</td></tr>');
 };
 
 Notifications.removeAnswersHint = function () {
-  $('#answers-table-row-placeholder').remove();
+  jQuery('#answers-table-row-placeholder').remove();
 };
 
 Notifications.displayResultArea = function () {
-  $('#result-area').removeClass('hidden');
+  jQuery('#result-area').removeClass('hidden');
 };
 
 Notifications.hideResultArea = function () {
-  $('#result-area').addClass('hidden');
+  jQuery('#result-area').addClass('hidden');
 };
 
 Notifications.setResultAreaMessage = function (obj, panelClass) {
-  $('#result-area').addClass(panelClass);
-  $('#result-area-title').html(obj.title);
-  $('#result-area-message').html(obj.description);
+  jQuery('#result-area').addClass(panelClass);
+  jQuery('#result-area-title').html(obj.title);
+  jQuery('#result-area-message').html(obj.description);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -104,44 +104,44 @@ Navigation.progressStack = [];
 // These return true so we can use them as "handlers" in simpleNextQuestion
 
 Navigation.disableNext = function () {
-  $('#button-question-next').prop("disabled", true);
+  jQuery('#button-question-next').prop("disabled", true);
   return true;
 };
 
 Navigation.disablePrevious = function () {
-  $('#button-question-back').prop("disabled", true);
+  jQuery('#button-question-back').prop("disabled", true);
   return true;
 };
 
 Navigation.enableNext = function () {
-  $('#button-question-next').prop("disabled", false);
+  jQuery('#button-question-next').prop("disabled", false);
   return true;
 };
 
 Navigation.enablePrevious = function () {
-  $('#button-question-back').prop("disabled", false);
+  jQuery('#button-question-back').prop("disabled", false);
   return true;
 };
 
 Navigation.showNextPrevious = function () {
-  $("#question-progress-buttons").removeClass('hidden');
+  jQuery("#question-progress-buttons").removeClass('hidden');
 };
 
 Navigation.hideQuestions = function () {
-  $('#questionnaire-section').addClass('hidden');
-  $('.form-group').addClass('hidden');
+  jQuery('#questionnaire-section').addClass('hidden');
+  jQuery('.form-group').addClass('hidden');
 };
 
 Navigation.showQuestions = function () {
-  $('#questionnaire-section').removeClass('hidden');
-  $('.form-group').removeClass('hidden');
+  jQuery('#questionnaire-section').removeClass('hidden');
+  jQuery('.form-group').removeClass('hidden');
 };
 
 Navigation.hideNoJSWarning = function () {
 };
 
 Navigation.showAnswersTable = function () {
-  $("#answers-table").removeClass('hidden');
+  jQuery("#answers-table").removeClass('hidden');
 };
 
 // After this, do not restart the questionnaire, reload the page to restart
@@ -150,11 +150,11 @@ Navigation.finishQuestions = function () {
   Navigation.hideQuestions();
   Notifications.displayResultArea();
   Navigation.disableNext();
-  $("#button-restart").removeClass('hidden');
+  jQuery("#button-restart").removeClass('hidden');
 };
 
 Navigation.unfinishQuestions = function () {
   Navigation.showQuestions();
   Notifications.hideResultArea();
-  $("#button-restart").addClass('hidden');
+  jQuery("#button-restart").addClass('hidden');
 };

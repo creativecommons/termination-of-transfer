@@ -32,7 +32,7 @@ Validation.allowOnlyNumbers = function (element) {
   // http://stackoverflow.com/a/995193
   element.keydown(function (e) {
     // Allow: backspace, delete, tab, escape, enter and .
-    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+    if (jQuery.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
         // Allow: Ctrl+A, Command+A
         (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) ||
         // Allow: home, end, left, right, down, up
@@ -51,7 +51,7 @@ Validation.allowOnlyNumbers = function (element) {
 // false here means no errors, a string means errors
 
 Validation.validDate = function () {
-  var text_field = $('.text-question');
+  var text_field = jQuery('.text-question');
   var date = text_field.val();
   var result = false;
   var errors = [];
