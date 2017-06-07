@@ -90,7 +90,7 @@ Rules.section304Analysis = function () {
   if (Values.k_year < 1978) {
     result = 's2q2a';
     Rules.addFlag('F.i');
-    if ((Values.pub_year == undefined) && (Values.reg_year == undefined)) {
+    if ((Values.pub_year > 1977) && (Values.reg_year > 1977)) {
       result = Rules.conclusion('B.vii');
     } else {
       // Under the 1909 Act, copyright term begins at the earlier of
