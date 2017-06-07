@@ -72,11 +72,11 @@ Questions.s1q1bi = {
 
 };
 
-// Works from 1989 and earlier usually display a copyright notice...
+// Works from 1989 and earlier usually display a copyright notice. Did the work have a copyright notice?
 
 Questions.s1q1bi2 = {
   question: 'Published works from 1989 and earlier usually display a copyright notice. Did the work have a copyright notice?',
-  explanation:'For U.S. works published in certain years, U.S. law required that they feature a "copyright notice" in order to receive copyright. Whether or not the published version featured a copyright notice can affect the copyright status of these works.',	
+  explanation:'For U.S. works published in certain years, U.S. law required that they feature a "copyright notice" in order to receive federal copyright protection. Whether or not the published version featured a copyright notice can affect the copyright status of these works.',	
   variable: 'copyright_notice',
   input: 'radio',
   values: ['yes', 'no', 'maybe']
@@ -86,7 +86,7 @@ Questions.s1q1bi2 = {
 
 Questions.s1q1c = {
   question: 'Has the work been registered with the United State Copyright Office?',
-  explanation:'Before 1989, registration was one of the ways authors could secure copyright in their work. Whether a work was reigstered can affect copyright status and the timing of termination right.',  
+  explanation:'Before 1989, registration was one of the ways authors could secure federal copyright in their work. Whether a work was registered can affect copyright status and the timing of termination right.',  
   variable: 'work_registered',
   input: 'radio',
   values: ['yes', 'no'] //, "don't know"] GitHub issue #33
@@ -96,7 +96,7 @@ Questions.s1q1c = {
 
 Questions.s1q1ci = {
   question: 'When was the work registered with the United States Copyright Office?)',
-  explanation:'Before 1989, registration was one of the ways authors could secure copyright in their work. When a work was reigstered can affect copyright status and the timing of termination right.',  
+  explanation:'Before 1989, registration was one of the ways authors could secure federal copyright in their work. When a work was registered can affect copyright status and the timing of termination right.',  
   variable: 'reg_year',
   input: 'year'
 };
@@ -105,7 +105,7 @@ Questions.s1q1ci = {
 
 Questions.s1q1d = {
   question: 'What is the year of the agreement or transfer?',
-  explanation:'When a transfer took place determines the particular set of termination rules that will be applicable. The timing of a transfer is also needed to in order to know when an author might be able to exercise their termination rights.',
+  explanation:'When a transfer took place determines the particular set of termination rules that will be applicable. The timing of a transfer is also needed to know when a work's copyright transfer may be eligible for termination.',
   variable: 'k_year',
   input: 'year',
   validate: function () {
@@ -147,7 +147,7 @@ Questions.s1q1f =  {
 Questions.s2q2a =  {
   // First question in section 2
   section: 2,
-  question: 'Is the agreement or transfer you want to terminate part of a <a href="./glossary.php#will" target="_blank" title="Termination of Transfer: Glossary">last will and testament</a>?',
+  question: 'Is the agreement or transfer in question part of a <a href="./glossary.php#will" target="_blank" title="Termination of Transfer: Glossary">last will and testament</a>?',
   variable: 'last_will',
   input: 'radio'
 };
@@ -178,10 +178,10 @@ Questions.s2q2c =  {
   input: 'radio'
 };
 
-// Was there an express agreement between you...
+// Was there an express agreement between the author and the author's employer to not treat the work as a work made for hire?
 
 Questions.s2q2ci =  {
-  question: 'Was there an express agreement between you, the author or artist, and your, or his or her, employer to not treat the work as a <a href="./glossary.php#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
+  question: 'Was there an express agreement the author and the author's employer to not treat the work as a <a href="./glossary.php#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
   variable: 'express_agreement',
   input: 'radio'
 };
@@ -223,7 +223,7 @@ Questions.s2q2e = {
 // Did one or more of the authors or artists enter into the agreement...
 
 Questions.s2q2f =  {
-  question: 'Did one or more of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">authors or artists</a> enter into the agreement or transfer?',
+  question: 'Did one or more of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">authors</a> enter into the agreement or transfer?',
   variable: 'authors_entered_agreement',
   input: 'radio'
 };
@@ -235,57 +235,11 @@ Questions.s2q2f =  {
 Questions.s2q2fii =  {
   // Last question in section 2, so set section if we're going back
   section: 2,
-  question: 'Was the agreement or transfer made by a member of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">author or artists\'s</a> immediate family, or by the executors?<br><i>For more information about which family members qualify, check out the FAQ.</i>',
+  question: 'Was the agreement or transfer made by a member of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">author\'s</a> immediate family, or by the executors?<br><i>For more information about which family members qualify, check out the FAQ.</i>',
   variable: 'agreement_by_family_or_executor',
   input: 'radio'
 };
 
-////////////////////////////////////////////////////////////////////////////////
-// Section Three
-////////////////////////////////////////////////////////////////////////////////
-
-// Title of Work...
-
-Questions.s3q3a = {
-  // First question in section 3
-  section: 3,
-  question: 'Title of Work [optional]',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not affect the outcome of the tool',
-  variable: 'work_title',
-  placeholder: 'Work Title',
-  optional: true
-};
-
-// Copyright Registration Number
-
-Questions.s3q3b = {
-  question: 'Copyright Registration Number [optional]',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',
-  variable: 'work_copyright_reg_num',
-  placeholder: 'TX0000124166',
-  optional: true
-};
-
-// Description of the Agreement or Transfer...
-
-Questions.s3q3d = {
-  question: 'Description of the Agreement or Transfer [optional]',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',
-  variable: 'work_agreement_desc',
-  placeholder: 'About the agreement',
-  optional: true
-};
-
-// Please list all authors or artists of the work
-
-Questions.s3q3e = {
-  question: 'Please list all authors or artists of the work',
-  explanation: 'This optional information entry is provided for your records only; we do not monitor or collect it and it does not effect the outcome of the tool',
-  variable: 'work_authors',
-  placeholder: 'A. N. Other',
-  min_length: 1,
-  optional: true
-};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Storing answers
