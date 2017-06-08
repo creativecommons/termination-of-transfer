@@ -105,7 +105,7 @@ Questions.s1q1ci = {
 
 Questions.s1q1d = {
   question: 'What is the year of the agreement or transfer?',
-  explanation:'When a transfer took place determines the particular set of termination rules that will be applicable. The timing of a transfer is also needed to know when a work's copyright transfer may be eligible for termination.',
+  explanation:'When a transfer took place determines the particular set of termination rules that will be applicable. The timing of a transfer is also needed to know when a work\'s copyright transfer may be eligible for termination.',
   variable: 'k_year',
   input: 'year',
   validate: function () {
@@ -181,7 +181,7 @@ Questions.s2q2c =  {
 // Was there an express agreement between the author and the author's employer to not treat the work as a work made for hire?
 
 Questions.s2q2ci =  {
-  question: 'Was there an express agreement the author and the author's employer to not treat the work as a <a href="./glossary.php#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
+  question: 'Was there an express agreement the author and the author\'s employer to not treat the work as a <a href="./glossary.php#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
   variable: 'express_agreement',
   input: 'radio'
 };
@@ -344,7 +344,7 @@ Questions.getResultDetails = function (specifier) {
 ////////////////////////////////////////////////////////////////////////////////
 
 Questions.first_question = 's1q1a';
-Questions.last_question = 's3q3e';
+Questions.last_question = 's2q2fii';
 
 Questions.progress_stack = [];
 
@@ -363,7 +363,7 @@ Questions.transitionQuestion = function (next_question) {
       previous_question.post();
     }
   }
-  if (next_question == 'FINISH') {
+  if (next_question == 'finish') {
     Questions.finish();
   } else {
     Questions.current_question = next_question;
