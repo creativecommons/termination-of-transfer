@@ -333,7 +333,7 @@ jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/js/questions.js']")
 	console.log("Request Failed: " + err);
     });
 
-Questions.getResultDetails = function (specifier) {
+Questions.getConclusionDetails = function (specifier) {
   var path = specifier.split('.');
   var result = resultMap['Conclusion'][path[0]][path[1]];
   return result;
@@ -427,7 +427,7 @@ Questions.previousQuestion = function () {
 };
 
 Questions.finish = function () {
-  var obj = Questions.getResultDetails(Values.conclusion);
+  var obj = Questions.getConclusionDetails(Values.conclusion);
   Values.termination_type = obj.title;
   Notifications.setResultAreaMessage(obj, 'panel-success');
   Navigation.finishQuestions();
