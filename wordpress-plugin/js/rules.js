@@ -31,7 +31,6 @@ Rules.simpleYesNoRule = function (variable_id, yesValue, noValue) {
   };
 };
 
-Rules.jumpToSectionThree = 's3q3a';
 Rules.jumpToFinish = 'finish';
 
 Rules.conclusion = function (conclusion) {
@@ -42,7 +41,7 @@ Rules.conclusion = function (conclusion) {
 Rules.conclusionPDF = function (conclusion) {
   Rules.conclusion(conclusion);
   Values.conclusion_generate_pdf = true;
-  return Rules.jumpToSectionThree;
+  return Rules.jumpToFinish;
 };
 
 Rules.addFlag = function(flag) {
@@ -495,28 +494,3 @@ Rules.s2q2fii = function () {
   }
   return result
  };
-
-
-// Title of Work
-
-Rules.s3q3a = function () {
-  var result = undefined;
-  if (Values.work_registered == 'yes') {
-    result = 's3q3b';
-  } else {
-    result = 's3q3d';
-  }
-  return result
-};
-
-// Copyright Registration Number
-// Note that 3c was deleted, so we go to 3d (renumber?)
-Rules.s3q3b = 's3q3d';
-
-// Description of the Agreement or Transfer
-
-Rules.s3q3d = 's3q3e';
-
-// Please list all authors or artists of the work
-
-Rules.s3q3e = 'finish';
