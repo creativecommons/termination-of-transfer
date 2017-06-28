@@ -34,7 +34,7 @@
 
       <p><b>Information Sheet Date:</b> {$date}</p>
 
-      <h3>Conclusion</h3>
+      <h3>Results</h3>
       <h4>{$conclusion_title}<br>
         {$conclusion_subtitle}</h4>
       <p>{$conclusion_description}</p>
