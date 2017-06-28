@@ -30,7 +30,7 @@
 
       <p>If you believe that you may have a right to terminate a transfer of copyright, you should consult a licensed attorney to confirm and evaluate whether and how to proceed. Neither Authors Alliance nor Creative Commons provide legal advice, and your use of the Termination of Transfer Tool does not create an attorney-client relationship.</p>
 
-      <p>For more information, check out the FAQ at <a href="https://labs.creativecommons.org/demos/termination-of-transfer">https://labs.creativecommons.org/demos/termination-of-transfer/</a> .</p>
+      <p>For more information, check out the FAQ at <a href="https://rightsback.org/faq/">https://rightsback.org/faq/</a> .</p>
 
       <p><b>Information Sheet Date:</b> {$date}</p>
 

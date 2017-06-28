@@ -51,27 +51,27 @@ PDF.append203Windows = function (details) {
     termination += Values.p_term_begin + '-' + Values.p_term_end;
   }
 
-  PDF.appendProperty(details, '&sect; 203 <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#notice_window" target="_blank">notice window</a>', notice);
-  PDF.appendProperty(details, '&sect; 203 <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#termination_window" target="_blank">termination window</a>', termination);
+  PDF.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a>', notice);
+  PDF.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a>', termination);
 };
 
 PDF.append304Windows = function (details) {
-  PDF.appendProperty(details, '&sect; 304(c) <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#notice_window" target="_blank">notice window</a> begins',
+  PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
                      Values.notice_begin);
-  PDF.appendProperty(details, '&sect; 304(c) <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#notice_window" target="_blank">notice window</a> ends',
+  PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
                      Values.notice_end);
-  PDF.appendProperty(details, '&sect; 304(c) <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#termination_window" target="_blank">termination window</a> begins',
+  PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
                      Values.term_begin);
-  PDF.appendProperty(details, '&sect; 304(c) <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#termination_window" target="_blank">termination window</a> ends',
+  PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
                      Values.term_end);
   if (Values.d_notice_begin != undefined) {
-    PDF.appendProperty(details, '&sect; 304(d) <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#notice_window" target="_blank">notice window</a> begins',
+    PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
                        Values.d_notice_begin);
-    PDF.appendProperty(details, '&sect; 304(d) <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#notice_window" target="_blank">notice window</a> ends',
+    PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
                        Values.d_notice_end);
-    PDF.appendProperty(details, '&sect; 304(d) <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#termination_window" target="_blank">termination window</a> begins',
+    PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
                        Values.d_term_begin);
-    PDF.appendProperty(details, '&sect; 304(d) <a href="https://labs.creativecommons.org/demos/termination-of-transfer/glossary.php#termination_window" target="_blank">termination window</a> ends',
+    PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
                        Values.d_term_end);
   }
 };
