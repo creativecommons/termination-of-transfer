@@ -1,7 +1,7 @@
 <?php
 /*
     Termination of Transfer - tool to help in returning authors rights.
-    Copyright (C) 2016  Creative Commons Corporation.
+    Copyright (C) 2016, 2017 Creative Commons Corporation.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -67,11 +67,11 @@ function flag_title_and_description ($spec)
     // A, B, C, D
     $section = $results_strings['Flag'][$path[0]];
     // i, ii, iii
-    $subsection = $results_strings['Flag'][$path[0]][$path[1]];
+    $subsection = $section[$path[1]];
     // For historical reasons, some flags take their section title and have
-    // their description under 'b', and others have their own title and thei
+    // their description under 'b', and others have their own title and their
     // description under 'description'
-    if (array_key_exists('title', $subsection)) {
+    if (array_key_exists('description', $subsection)) {
         $title = $subsection['title'];
         $description = $subsection['description'];
     } else {
