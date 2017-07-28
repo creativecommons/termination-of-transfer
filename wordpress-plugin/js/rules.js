@@ -119,7 +119,7 @@ Rules.section304Analysis = function () {
           Values.d_term_end = Values.d_term_begin + 5;
           Values.d_notice_begin = Values.d_term_begin - 10;
           Values.d_notice_end = Values.d_term_end - 2;
-          if (Values.cright_year > 1937) {
+          if (Values.cright_year > 1936) {
             Rules.addFlag('G.i');
           }
           if (Values.cright_year == 1939) {
