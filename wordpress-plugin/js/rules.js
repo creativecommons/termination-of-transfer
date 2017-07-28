@@ -105,9 +105,6 @@ Rules.section304Analysis = function () {
         Values.cright_year = Values.reg_year || Values.pub_year;
       }
       Values.cright_year = Math.min(Values.cright_year, 1978);
-      if (Values.cright_year < 1950) {
-        Rules.addFlag('B.iv');
-      }
       Values.term_begin = Values.cright_year + 56;
       Values.term_begin = Math.max(Values.term_begin, 1978);
       Values.term_end = Values.term_begin + 5;
