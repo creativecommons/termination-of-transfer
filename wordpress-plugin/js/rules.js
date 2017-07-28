@@ -113,7 +113,8 @@ Rules.section304Analysis = function () {
       Values.term_end = Values.term_begin + 5;
       Values.notice_begin = Values.term_begin - 10;
       Values.notice_end = Values.term_end - 2;
-      if (Values.notice_begin > Values.current_year) {
+      // If the we're presently before the 304(c) window, then we don't have to worry about 304(d)
+	if (Values.notice_begin > Values.current_year) {
         Rules.addFlag('A.i.a');
        // Following Copyright Office guidance, works copyrighted before 1940 may also be eligible for termination under 304d
        } else if (Values.cright_year < 1940) {
@@ -132,12 +133,13 @@ Rules.section304Analysis = function () {
 	    // time traveler flag -- applies where the present day is between
             // the 304(c) and 304(d) notice windows
             Rules.addFlag('A.iii.a');
-          } else if (Values.notice_end < Values.current_year) {
+          } else if (Values.d_notice_end < Values.current_year) {
             Rules.addFlag('A.ii.a');
-          } else {
-            result = Rules.conclusion('B.ii');
-	  }
-        } else {
+          } 
+        } 
+	else if (Values.notice_end < Values.current_year) {
+         Rules.addFlag('A.ii.a');    
+	else {
         // Here for clarity / to reflect decision tree structure
         // But note that we set it as the result above.
         result = 's2q2a';
