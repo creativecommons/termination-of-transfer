@@ -283,7 +283,7 @@ Rules.s1q1d = function () {
   if (Values.user_inputted_k_year != Values.k_year) {
     Rules.addFlag('H.i');
   }
-  if ((Values.user_inputted_k_year < 1978)
+  if ((Values.k_year < 1978)
       && ((Values.pub_year == undefined)
       && (Values.reg_year == undefined))) {
       result = Rules.conclusion('B.vii');
