@@ -127,20 +127,19 @@ Rules.section304Analysis = function () {
             Rules.addFlag('G.ii.a');
           }
           if (Values.d_notice_begin > Values.current_year) {
-	    // time traveler flag -- applies where the present day is between
+            // time traveler flag -- applies where the present day is between
             // the 304(c) and 304(d) notice windows
             Rules.addFlag('A.iii.a');
           } else if (Values.d_notice_end < Values.current_year) {
             Rules.addFlag('A.ii.a');
-          } 
-        } 
-	else if (Values.notice_end < Values.current_year) {
-         Rules.addFlag('A.ii.a');    
-	else {
-        // Here for clarity / to reflect decision tree structure
-        // But note that we set it as the result above.
-        result = 's2q2a';
-      }
+          }
+       } else if (Values.notice_end < Values.current_year) {
+         Rules.addFlag('A.ii.a');
+       } else {
+         // Here for clarity / to reflect decision tree structure
+         // But note that we set it as the result above.
+         result = 's2q2a';
+       }
     }
     if ((Values.d_term_begin != undefined)
         && (Values.term_begin != undefined)) {
