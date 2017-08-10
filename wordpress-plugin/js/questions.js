@@ -95,7 +95,7 @@ Questions.s1q1c = {
 // When was the work registered with the United States Copyright Office?
 
 Questions.s1q1ci = {
-  question: 'When was the work registered with the United States Copyright Office?)',
+  question: 'When was the work registered with the United States Copyright Office?',
   explanation:'Before 1989, registration was one of the ways authors could secure federal copyright in their work. When a work was registered can affect copyright status and the timing of termination right.',  
   variable: 'reg_year',
   input: 'year'
