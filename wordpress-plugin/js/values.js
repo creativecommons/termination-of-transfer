@@ -49,3 +49,21 @@ var varsToTitles = {
   work_agreement_desc: 'Agreement or Transfer Description',
   //'': 'Grantor',
 };
+
+var ValuesStack = {};
+
+ValuesStack._stack = [];
+
+ValuesStack.height = function () {
+  return this._stack.length;
+};
+
+ValuesStack.push = function () {
+  this._stack.push(Values);
+  // Deep clone
+  Values = JSON.parse(JSON.stringify(Values));
+};
+
+ValuesStack.pop = function () {
+  Values = this._stack.pop();
+};

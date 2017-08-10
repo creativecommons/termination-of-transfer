@@ -60,7 +60,7 @@ $tot_tool_html = <<<'EOD'
       </div>
 
       <div class="hidden" id="question-progress-buttons">
-        <!-- <button class="btn btn-default" id="button-question-back">Back</button> -->
+        <button class="btn btn-default" id="button-question-back">Back</button>
         <button class="btn btn-default" id="button-question-next">Next</button>
         <a href="."
            class="btn btn-default hidden"

@@ -163,30 +163,29 @@ Rules.section203Analysis = function () {
            || (Values.pub_right == 'no'))  {
       Values.term_begin = Values.k_year + 35;
     }
-    console.log(Values.term_begin);
     if (Values.term_begin != undefined) {
       Values.term_end = Values.term_begin + 5;
       Values.notice_begin = Values.term_begin - 10;
       Values.notice_end = Values.term_end - 2;
       if (Values.notice_begin > Values.current_year) {
-    Rules.addFlag('A.i.a');
+        Rules.addFlag('A.i.a');
       } else if (Values.notice_end < Values.current_year) {
-    Rules.addFlag('A.ii.a');
+        Rules.addFlag('A.ii.a');
       }
     }
     if (Values.pub_right == 'maybe') {
       Values.p_term_begin = Values.k_year + 40;
       if (Values.pub_year != undefined) {
-    Values.p_term_begin = Math.min(Values.pub_year + 35,
-                       Values.p_term_begin);
+        Values.p_term_begin = Math.min(Values.pub_year + 35,
+                                       Values.p_term_begin);
       }
       Values.p_term_end = Values.p_term_begin  + 5;
       Values.p_notice_begin = Values.p_term_begin - 10;
       Values.p_notice_end = Values.p_term_end - 2;
       if (Values.p_notice_begin > Values.current_year) {
-    Rules.addFlag('A.i.a');
+        Rules.addFlag('A.i.a');
       } else if (Values.p_notice_end < Values.current_year) {
-    Rules.addFlag('A.ii.a');
+        Rules.addFlag('A.ii.a');
       }
     }
   }

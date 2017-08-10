@@ -323,14 +323,14 @@ Questions.resultMap = undefined;
 // This data won't be used until after several questions, so this is tolerable.
 
 jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/js/questions.js']")
-	       .attr('src').replace(/questions\.js.*$/, '')
-	       + 'results.json')
+               .attr('src').replace(/questions\.js.*$/, '')
+               + 'results.json')
     .done(function (result) {
         resultMap = result;
     })
     .fail(function (jqxhr, textStatus, error) {
-	var err = textStatus + ", " + error;
-	console.log("Request Failed: " + err);
+      var err = textStatus + ", " + error;
+      console.log("Request Failed: " + err);
     });
 
 Questions.getConclusionDetails = function (specifier) {
@@ -346,11 +346,9 @@ Questions.getConclusionDetails = function (specifier) {
 Questions.first_question = 's1q1a';
 Questions.last_question = 's2q2fii';
 
-Questions.progress_stack = [];
-
 Questions.start = function () {
   jQuery('.questionnaire-section, .question-progress-buttons')
-	.removeClass('hidden');
+    .removeClass('hidden');
   jQuery('.no-javascript-alert').addClass('hidden');
   //Navigation.disablePrevious();
   Rendering.transitionTo(Questions.first_question);
@@ -389,12 +387,13 @@ Questions.nextQuestionID = function () {
 Questions.nextQuestion = function () {
   // If the answer was OK, move on
   if (Questions.processAnswer()) {
+    ValuesStack.push();
     var id = Questions.nextQuestionID();
-    Questions.progress_stack.push(id);
+    Values.question_id = id;
     if (id == 'finish') {
       Questions.finish();
     } else {
-      Questions.transitionQuestion(id);
+      Questions.transitionQuestion(Values.question_id);
       // Scroll down to make sure the input UI is visible
       jQuery('html,body').animate({
         scrollTop: jQuery('#button-question-next').offset().top}, 'slow');
@@ -404,22 +403,18 @@ Questions.nextQuestion = function () {
 
 Questions.previousQuestion = function () {
   // If we are going back from *after* the last question, re-enable UI
-  if (Questions.progress_stack[Questions.progress_stack.length - 1]
-      == 'finish') {
+  if (Values.question_id == 'finish') {
     Navigation.unfinishQuestions();
   }
   // Don't pop past the very first item
-  if (Questions.progress_stack.length > 0) {
-    // Clear current answer
-    var current_question = Questions[Questions.current_question];
-    delete Values[current_question.variable];
-    Answers.removeAnswer(current_question.variable);
+  if (ValuesStack.height() > 0) {
     // Go back
-    var previous_question =
-        Questions.progress_stack[Questions.progress_stack.length - 2];
-    Questions.transitionQuestion(previous_question);
-    Questions.progress_stack.pop();
+    ValuesStack.pop();
+    Questions.transitionQuestion(Values.question_id);
     Notifications.clearAlerts();
+    // Clear previous answer
+    var previous_question = Questions[Values.question_id];
+    Answers.removeAnswer(previous_question.variable);
     // Scroll down to make sure the input UI is visible
     jQuery('html,body').animate({
       scrollTop: jQuery('#button-question-next').offset().top}, 'slow');
@@ -442,7 +437,7 @@ Questions.start = function () {
   Navigation.showAnswersTable();
   Navigation.showNextPrevious();
   jQuery('#button-question-next').click(Questions.nextQuestion);
-  //jQuery('#button-question-back').click(Questions.previousQuestion);
+  jQuery('#button-question-back').click(Questions.previousQuestion);
   // When the user presses "return" in a text area, move to next question
   jQuery('#question-rendering-area').on('submit', function () {
     if (jQuery('#button-question-next').is(':enabled')) {
@@ -451,5 +446,5 @@ Questions.start = function () {
     return false;
   });
   Questions.transitionQuestion(Questions.first_question);
-  Questions.progress_stack.push(Questions.first_question);
+  Values.question_id = Questions.first_question;
 };
