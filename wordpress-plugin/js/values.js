@@ -59,9 +59,12 @@ ValuesStack.height = function () {
 };
 
 ValuesStack.push = function () {
+  // Handle the date not liking being serialized.
+  var now = Values.current_date;
   this._stack.push(Values);
   // Deep clone
   Values = JSON.parse(JSON.stringify(Values));
+  Values.current_date = now;
 };
 
 ValuesStack.pop = function () {
