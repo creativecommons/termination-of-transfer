@@ -48,7 +48,7 @@ Questions.s1q1a = {
 
 Questions.s1q1b = {
   question: 'Has the work been published?',
-  explanation:'Whether a work has been published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="./glossary.php#publication_date" target="_blank" title="Termination of Transfer: Glossary">glossary</a>.',
+  explanation:'Whether a work has been published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date" target="_blank" title="Termination of Transfer: Glossary">glossary</a>.',
   variable: 'work_published',
   input: 'radio',
   pre: function () {
@@ -61,7 +61,7 @@ Questions.s1q1b = {
 Questions.s1q1bi = {
   variable: 'pub_year',
   question: 'When was the work first published?',
-  explanation:'When a work was published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="./glossary.php#publication_date" target="_blank" title="Termination of Transfer: Glossary">glossary</a>.',
+  explanation:'When a work was published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date" target="_blank" title="Termination of Transfer: Glossary">glossary</a>.',
   input: 'year',
   validate: function () {
     return Validation.validDate()
@@ -132,7 +132,7 @@ Questions.s1q1f =  {
   // Last question in section 1, so set this if we've arrived via back button
   section: 1,
   question: 'Did the agreement or transfer include the right of publication?',
-  explanation:'If a <a href="./glossary.php/#agreement" target="_blank" title="Termination of Transfer: Glossary">transfer</a> from 1978 or later includes the right of <a href="./glossary.php#publication_date" target="_blank" title="Termination of Transfer: Glossary">publication</a>, there is a different set of rules for determining when the transfer is eligible for termination.',	
+  explanation:'If a <a href="/glossary/#agreement" target="_blank" title="Termination of Transfer: Glossary">transfer</a> from 1978 or later includes the right of <a href="/glossary/#publication_date" target="_blank" title="Termination of Transfer: Glossary">publication</a>, there is a different set of rules for determining when the transfer is eligible for termination.',	
   variable: 'pub_right',
   input: 'radio',
   values: ['yes', 'no', 'maybe']
@@ -147,7 +147,7 @@ Questions.s1q1f =  {
 Questions.s2q2a =  {
   // First question in section 2
   section: 2,
-  question: 'Is the agreement or transfer in question part of a <a href="./glossary.php#will" target="_blank" title="Termination of Transfer: Glossary">last will and testament</a>?',
+  question: 'Is the agreement or transfer in question part of a <a href="/glossary/#will" target="_blank" title="Termination of Transfer: Glossary">last will and testament</a>?',
   variable: 'last_will',
   input: 'radio'
 };
@@ -155,7 +155,7 @@ Questions.s2q2a =  {
 // Are any of the authors still alive?
 
 Questions.s2q2bi = {
-  question: 'Are <i>any</i> of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">authors or artists</a> still alive?',
+  question: 'Are <i>any</i> of the <a href="/glossary/#author" target="_blank" title="Termination of Transfer: Glossary">authors or artists</a> still alive?',
   explanation:'The copyright term for many works is based on the life of the author.',
   variable: 'any_authors_alive',
   input: 'radio'
@@ -164,7 +164,7 @@ Questions.s2q2bi = {
 // What is the year the last surviving author died?
 
 Questions.s2q2bi2 = {
-  question: 'What is the year the last surviving <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">author or artist</a> died?',
+  question: 'What is the year the last surviving <a href="/glossary/#author" target="_blank" title="Termination of Transfer: Glossary">author or artist</a> died?',
   explanation:'The copyright term for many works is based on the life of the author.',
   variable: 'death',
   input: 'year'
@@ -173,7 +173,7 @@ Questions.s2q2bi2 = {
 // Was the work created within the scope of the author’s employment?
 
 Questions.s2q2c =  {
-  question: 'Was the work created within the <a href="./glossary.php#scope_of_employment" target="_blank" title="Termination of Transfer: Glossary">scope of the author’s employment</a>?',
+  question: 'Was the work created within the <a href="/glossary/#scope_of_employment" target="_blank" title="Termination of Transfer: Glossary">scope of the author’s employment</a>?',
   variable: 'within_scope_of_employment',
   input: 'radio'
 };
@@ -181,7 +181,7 @@ Questions.s2q2c =  {
 // Was there an express agreement between the author and the author's employer to not treat the work as a work made for hire?
 
 Questions.s2q2ci =  {
-  question: 'Was there an express agreement the author and the author\'s employer to not treat the work as a <a href="./glossary.php#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
+  question: 'Was there an express agreement the author and the author\'s employer to not treat the work as a <a href="/glossary/#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
   variable: 'express_agreement',
   input: 'radio'
 };
@@ -189,7 +189,7 @@ Questions.s2q2ci =  {
 // Was the work created in response to a special order or commission
 
 Questions.s2q2d =  {
-  question: 'Was the work created in response to a <a href="./glossary.php#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">special order or commission</a> by some other person or company?',
+  question: 'Was the work created in response to a <a href="/glossary/#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">special order or commission</a> by some other person or company?',
   variable: 'special_order',
   input: 'radio'
 };
@@ -197,7 +197,7 @@ Questions.s2q2d =  {
 // Was there a signed written agreement regarding the special order...
 
 Questions.s2q2di =  {
-  question: 'Was there a signed written agreement regarding the special order or commission which explicitly refers to the work as a <a href="./glossary.php#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
+  question: 'Was there a signed written agreement regarding the special order or commission which explicitly refers to the work as a <a href="/glossary/#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
   variable: 'signed_written_agreement',
   input: 'radio'
 };
@@ -205,7 +205,7 @@ Questions.s2q2di =  {
 // Was the work created for use as one of the following? ...
 
 Questions.s2q2dia = {
-  question: 'Was the work created for use as one of the following? — <ul><li>a contribution to a collective work; a part of a motion picture or other audiovisual work;</li> <li>a translation;</li> <li>a <a href="./glossary.php#supplementary_work" title="Termination of Transfer: Glossary">supplementary work</a> (such as a foreword, afterword, table, editorial note, musical arrangement, bibliography, appendix, or index);</li> <li>a <a href="./glossary.php#compilation" target="_blank" title="Termination of Transfer: Glossary">compilation</a>;</li> <li>an <a href="./glossary.php#instructional_text" target="_blank" title="Termination of Transfer: Glossary">instructional text (text and/or graphics)</a>;</li> <li>a test or answer material for a test;</li> <li>or as an atlas?</li></ul?>',
+  question: 'Was the work created for use as one of the following? — <ul><li>a contribution to a collective work; a part of a motion picture or other audiovisual work;</li> <li>a translation;</li> <li>a <a href="/glossary/#supplementary_work" title="Termination of Transfer: Glossary">supplementary work</a> (such as a foreword, afterword, table, editorial note, musical arrangement, bibliography, appendix, or index);</li> <li>a <a href="/glossary/#compilation" target="_blank" title="Termination of Transfer: Glossary">compilation</a>;</li> <li>an <a href="/glossary/#instructional_text" target="_blank" title="Termination of Transfer: Glossary">instructional text (text and/or graphics)</a>;</li> <li>a test or answer material for a test;</li> <li>or as an atlas?</li></ul?>',
   variable: 'created_as_part_of_motion_picture',
   input: 'radio',
   values: ["yes", "no", "don't know"]
@@ -223,7 +223,7 @@ Questions.s2q2e = {
 // Did one or more of the authors or artists enter into the agreement...
 
 Questions.s2q2f =  {
-  question: 'Did one or more of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">authors</a> enter into the agreement or transfer?',
+  question: 'Did one or more of the <a href="/glossary/#author" target="_blank" title="Termination of Transfer: Glossary">authors</a> enter into the agreement or transfer?',
   variable: 'authors_entered_agreement',
   input: 'radio'
 };
@@ -235,7 +235,7 @@ Questions.s2q2f =  {
 Questions.s2q2fii =  {
   // Last question in section 2, so set section if we're going back
   section: 2,
-  question: 'Was the agreement or transfer made by a member of the <a href="./glossary.php#author" target="_blank" title="Termination of Transfer: Glossary">author\'s</a> immediate family, or by the executors?<br><i>For more information about which family members qualify, check out the FAQ.</i>',
+  question: 'Was the agreement or transfer made by a member of the <a href="/glossary/#author" target="_blank" title="Termination of Transfer: Glossary">author\'s</a> immediate family, or by the executors?<br><i>For more information about which family members qualify, check out the FAQ.</i>',
   variable: 'agreement_by_family_or_executor',
   input: 'radio'
 };
