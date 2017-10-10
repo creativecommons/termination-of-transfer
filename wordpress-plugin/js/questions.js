@@ -72,6 +72,31 @@ Questions.s1q1bi = {
 
 };
 
+// When was the work first published under the grant?
+
+Questions.s1q1bii =  {
+  section: 1,
+  question: 'When was the work first published under the grant?',
+  explanation:'When a work was first published under the grant (which may be different than the the date the work was published for the first time) can factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date">glossary</a>.',
+  variable: 'grant_pub_year',
+  input: 'year',
+  validate: function () {
+    var errors = Validation.validDate();
+    if (errors == false) {
+      var year = parseInt(jQuery('.text-question').val());
+      if (year < Values.creation_year) {
+        errors = 'Year of publication under grant cannot be earlier than year of creation.';
+      } else if (year < Values.pub_year) {
+        errors = 'Year of publication under grant cannot be earlier than year of initial publication.';
+      } /* else if (year < Values.k_year) {
+        errors = 'Year of publication under grant cannot be earlier than year of grant.';
+      }*/
+    }
+    return errors;
+  }
+};
+
+
 // Works from 1989 and earlier usually display a copyright notice. Did the work have a copyright notice?
 
 Questions.s1q1bi2 = {
@@ -137,6 +162,7 @@ Questions.s1q1f =  {
   input: 'radio',
   values: ['yes', 'no', 'maybe']
 };
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Section Two

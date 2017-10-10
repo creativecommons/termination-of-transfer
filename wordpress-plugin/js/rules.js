@@ -151,15 +151,16 @@ Rules.section304Analysis = function () {
 
 Rules.section203Analysis = function () {
   var result = 's2q2a';
+  var year_to_use = Values.grant_pub_year || Values.pub_year;
   if (Values.k_year > 1977) {
     Rules.addFlag('F.iii');
     if (Values.pub_right == 'yes' ) {
-      if (Values.pub_year != undefined) {
-    Values.term_begin = Math.min(Values.pub_year + 35 , Values.k_year + 40);
+      if (year_to_use != undefined) {
+    Values.term_begin = Math.min(year_to_use + 35 , Values.k_year + 40);
       } else {
     Values.term_begin = Values.k_year + 40;
       }
-    } else if ((Values.pub_year != Values.k_year)
+    } else if ((year_to_use != Values.k_year)
            || (Values.pub_right == 'no'))  {
       Values.term_begin = Values.k_year + 35;
     }
@@ -175,8 +176,8 @@ Rules.section203Analysis = function () {
     }
     if (Values.pub_right == 'maybe') {
       Values.p_term_begin = Values.k_year + 40;
-      if (Values.pub_year != undefined) {
-        Values.p_term_begin = Math.min(Values.pub_year + 35,
+      if (year_to_use != undefined) {
+        Values.p_term_begin = Math.min(year_to_use + 35,
                                        Values.p_term_begin);
       }
       Values.p_term_end = Values.p_term_begin  + 5;
@@ -208,12 +209,19 @@ Rules.s1q1a = 's1q1b';
 // Has the work been published?
 
 Rules.s1q1b = Rules.simpleYesNoRule('work_published',
-                    's1q1bi',
-                    's1q1c');
+                                    's1q1bi',
+                                    's1q1c');
 
 // When was the work first published?
 
-Rules.s1q1bi = function () {
+Rules.s1q1bi = 's1q1bii';
+
+// When was the work first published under the grant?
+// Note that the condition is based on s1q1b, we are inserting this question
+// after 'When was the work first published?' and *then* going on to the
+// questions about registration/notices or not.
+
+Rules.s1q1bii = function () {
   var result = undefined;
   if (Values.pub_year < 1923) {
     result = Rules.conclusion('B.viii');
