@@ -40,6 +40,8 @@ var varsToTitles = {
   work_title: 'Title of Work',
   creation_year: 'Creation Year',
   pub_year: 'Publication Year',
+  grant_pub_year: 'Publication Year Under Grant',
+  triggering_pub_year: 'Triggering Publication Date',
   k_year: 'Effective Grant Year',
   user_inputted_k_year: 'User Entered Grant Year',
   reg_year: 'Copyright Registration Year',

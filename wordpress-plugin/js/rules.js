@@ -154,16 +154,17 @@ Rules.section203Analysis = function () {
   if (typeof Values.grant_pub_year !== 'undefined') {
     Rules.addFlag('F.iv');
   }
-  var year_to_use = Values.grant_pub_year || Values.pub_year;
+  Values.triggering_pub_year = Values.grant_pub_year || Values.pub_year;
   if (Values.k_year > 1977) {
     Rules.addFlag('F.iii');
     if (Values.pub_right == 'yes' ) {
-      if (year_to_use != undefined) {
-    Values.term_begin = Math.min(year_to_use + 35 , Values.k_year + 40);
+      if (Values.triggering_pub_year != undefined) {
+        Values.term_begin = Math.min(Values.triggering_pub_year + 35 ,
+                                     Values.k_year + 40);
       } else {
-    Values.term_begin = Values.k_year + 40;
+        Values.term_begin = Values.k_year + 40;
       }
-    } else if ((year_to_use != Values.k_year)
+    } else if ((Values.triggering_pub_year != Values.k_year)
            || (Values.pub_right == 'no'))  {
       Values.term_begin = Values.k_year + 35;
     }
@@ -179,8 +180,8 @@ Rules.section203Analysis = function () {
     }
     if (Values.pub_right == 'maybe') {
       Values.p_term_begin = Values.k_year + 40;
-      if (year_to_use != undefined) {
-        Values.p_term_begin = Math.min(year_to_use + 35,
+      if (Values.triggering_pub_year != undefined) {
+        Values.p_term_begin = Math.min(Values.triggering_pub_year + 35,
                                        Values.p_term_begin);
       }
       Values.p_term_end = Values.p_term_begin  + 5;
