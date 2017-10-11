@@ -151,6 +151,9 @@ Rules.section304Analysis = function () {
 
 Rules.section203Analysis = function () {
   var result = 's2q2a';
+  if (typeof Values.grant_pub_year !== 'undefined') {
+    Rules.addFlag('F.iv');
+  }
   var year_to_use = Values.grant_pub_year || Values.pub_year;
   if (Values.k_year > 1977) {
     Rules.addFlag('F.iii');
