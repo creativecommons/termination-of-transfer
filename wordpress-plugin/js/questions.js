@@ -474,3 +474,7 @@ Questions.start = function () {
   Questions.transitionQuestion(Questions.first_question);
   Values.question_id = Questions.first_question;
 };
+
+jQuery( document ).ready(function () {
+  Questions.start();
+});

@@ -66,12 +66,6 @@ $tot_tool_html = <<<'EOD'
            class="btn btn-default hidden"
            id="button-restart">Restart</a>
       </div>
-
-    <script>
-      jQuery( document ).ready(function () {
-        Questions.start();
-      });
-    </script>
 EOD;
 
 
