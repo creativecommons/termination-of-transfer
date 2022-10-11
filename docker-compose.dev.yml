@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+ tot-wp:
+  build:
+   context: .
+  restart: always
+  environment:
+    WORDPRESS_DB_PASSWORD: SqlNotTooMuch
+    WORDPRESS_DB_USER: codex
+  ports:
+   - 8080:80
+  networks:
+    tot-server:
+  volumes:
+   - tot-space:/etc/php
+
+ mariadb:
+  image: mariadb
+  restart: always
+  ports:
+   - 3006:3306
+  networks:
+    tot-server:
+  environment:
+    MARIADB_ROOT_PASSWORD: NotTooMuch
+    MARIADB_USER: codex
+    MARIADB_PASSWORD: SqlNotTooMuch
+  volumes:
+   #- ./my.cnf:/etc/mysql/my.cf
+   - tot-space:/var/lib/mysql
+  #entrypoint: mysqld_safe --skip-grant-tables --user=mysql
+volumes:
+ tot-space:
+networks:
+  tot-server:
