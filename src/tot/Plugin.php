@@ -8,7 +8,7 @@ class Plugin
 {
     public function run()
     {
-        
+        add_shortcode( 'termination-of-transfer-tool', [$this, 'handleShortcode'] );
     }
     /**
      * This will only work in 5.3 or later and WP 3.8 allows 2.4.2+ ... 
