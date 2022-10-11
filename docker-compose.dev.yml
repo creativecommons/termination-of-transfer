@@ -9,7 +9,7 @@ services:
     WORDPRESS_DB_PASSWORD: SqlNotTooMuch
     WORDPRESS_DB_USER: codex
   ports:
-   - 8080:80
+   - 3003:80
   networks:
     tot-server:
   volumes:
@@ -19,7 +19,7 @@ services:
   image: mariadb
   restart: always
   ports:
-   - 3006:3306
+   - 3306:3306
   networks:
     tot-server:
   environment:
