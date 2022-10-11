@@ -19,7 +19,7 @@ services:
   image: mariadb
   restart: always
   ports:
-   - 3306:3306
+   - 3006:3306
   networks:
     tot-server:
   environment:
