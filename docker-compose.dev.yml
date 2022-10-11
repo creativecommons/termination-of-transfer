@@ -9,7 +9,7 @@ services:
     WORDPRESS_DB_PASSWORD: SqlNotTooMuch
     WORDPRESS_DB_USER: codex
   ports:
-   - 3003:80
+   - 8701:80
   networks:
     tot-server:
   volumes:
@@ -28,9 +28,10 @@ services:
     MARIADB_PASSWORD: SqlNotTooMuch
   volumes:
    #- ./my.cnf:/etc/mysql/my.cf
-   - tot-space:/var/lib/mysql
+   - tot:/var/lib/mysql
   #entrypoint: mysqld_safe --skip-grant-tables --user=mysql
 volumes:
  tot-space:
+ tot:
 networks:
   tot-server:
