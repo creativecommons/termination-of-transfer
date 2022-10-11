@@ -26,4 +26,5 @@ Author: Creative Commons Corporation
 Author URI: https://github.com/creativecommons/
 Requires PHP: 5.4.0
 */
+
 ?>
