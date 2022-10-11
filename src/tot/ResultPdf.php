@@ -148,6 +148,10 @@ class ResultPdf
 
         $mpdf = new mPDF();
         $mpdf->WriteHTML($html);
-        $mpdf->Output('ToT.pdf', 'I');
+        return $mpdf->Output('ToT.pdf', 'I');
     }
 }
+
+$result = new ResultPdf();
+$result->init();
+return $result->generatePdf();
