@@ -1,14 +1,39 @@
 {
     "name": "creativecommons/termination-of-transfer",
-    "require": {
-        "mpdf/mpdf": "^6.0",
-        "smarty/smarty": "^3.1"
+    "type": "wordpress-plugin",
+    "description": "Termination of Transfer tool",
+    "keywords": ["WordPress", "plugins", "termination", "contract", "creativecommons", "php"],
+    "support": {
+        "issues": "https://github.com/creativecommons/termination-of-transfer/issues?state=open",
+        "source": "https://github.com/creativecommons/termination-of-transfer"
     },
     "license": "GNU AGPL v3+",
     "authors": [
         {
             "name": "Rob Myers",
             "email": "rob@robmyers.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.4",
+        "mpdf/mpdf": "^6.0",
+        "smarty/smarty": "^3.1"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "autoload": {
+        "psr-4": {"CreativeCommons_TOT\\": "src"}
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ]
 }
