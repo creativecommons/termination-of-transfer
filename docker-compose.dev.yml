@@ -7,7 +7,7 @@ services:
   restart: always
   environment:
     WORDPRESS_DEBUG: 1
-    WORDPRESS_DB_HOST: 172.19.0.1
+    WORDPRESS_DB_HOST: 172.21.0.3
     WORDPRESS_DB_NAME: cc_tot
     WORDPRESS_DB_PASSWORD: SqlNotTooMuch
     WORDPRESS_DB_USER: codex
@@ -36,7 +36,7 @@ services:
    - tot:/var/lib/mysql
   #entrypoint: mysqld_safe --skip-grant-tables --user=mysql
 
-  phpmyadmin:
+ phpmyadmin:
    image: phpmyadmin
    restart: always
    ports:
@@ -44,9 +44,9 @@ services:
    environment:
     - PMA_ARBITRARY=0
     - PMA_PORT=3006
-    - PMA_HOST=172.19.0.1
+    - PMA_HOST=172.21.0.3
    networks:
-    server:
+    tot-server:
    extra_hosts:
     - 'host.docker.internal:108.61.222.241'
 
