@@ -28,9 +28,9 @@ Author URI: https://github.com/creativecommons/
 Requires PHP: 5.4.0
 */
 
-add_action('plugins_loaded', 'termination_of_contract_tool_init');
+add_action('plugins_loaded', 'termination_of_transfer_tool_init');
 
-function termination_of_contract_tool_init()
+function termination_of_transfer_tool_init()
 {
     $toc = new Plugin();
     $toc['path'] = realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR;
