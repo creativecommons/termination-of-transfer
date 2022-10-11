@@ -20,7 +20,7 @@ abstract class WpPlugin
     /**
      * This will only work in 5.3 or later and WP 3.8 allows 2.4.2+ ... 
      */
-    protected function generateHtml()
+    public function generateHtml()
     {
         $tot_tool_html = <<<'EOD'
             <div class="panel panel-info hidden" id="answers-table">
