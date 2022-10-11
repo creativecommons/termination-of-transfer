@@ -34,17 +34,17 @@ add_action('plugins_loaded', 'termination_of_transfer_tool_init');
 
 function termination_of_transfer_tool_init()
 {
-    $toc = new Plugin();
+    $tot_plugin = new Plugin();
     // the instaled directory path
-    $toc['path'] = realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR;
+    $tot_plugin['path'] = realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR;
     // the instaled directory url
-    $toc['url'] = plugin_dir_url( __FILE__ );
+    $tot_plugin['url'] = plugin_dir_url( __FILE__ );
     // the current plugin version
-    $toc['version'] = '2.0.0';
+    $tot_plugin['version'] = '2.0.0';
     // the plugin name
-    $toc['name'] = 'Termination of Tranfer Tool';
+    $tot_plugin['name'] = 'Termination of Tranfer Tool';
     // the scripts to load, if prefixed with js/ then it's located in the plugin scripts folder
-    $toc['scripts'] = [
+    $tot_plugin['scripts'] = [
         'jquery',
         'js/values',
         'js/rules',
@@ -55,9 +55,9 @@ function termination_of_transfer_tool_init()
         'js/questions'
     ];
     // the styles to load, if prefixed with css/ then it's located in the plugin styles folder
-    $toc['styles'] = [];
+    $tot_plugin['styles'] = [];
     // termination of transfer main logics
-    $toc['tool'] = new TerminationOfTransfer($toc);
-    $toc->run();
+    $tot_plugin['tool'] = new TerminationOfTransfer($tot_plugin);
+    $tot_plugin->run();
 }
 ?>
