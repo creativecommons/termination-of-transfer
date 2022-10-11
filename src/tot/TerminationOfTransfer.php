@@ -52,9 +52,9 @@ class TerminationOfTransfer
 
     public function run()
     {
-        if ( ! version_compare( PHP_VERSION, '5.4', '>=' ) ) {
+        if ( ! version_compare( PHP_VERSION, '7.4', '>=' ) ) {
             add_action( 'admin_notices', 'fail_php_version' );
-        } elseif ( ! version_compare( get_bloginfo( 'version' ), '4.0', '>=' ) ) {
+        } elseif ( ! version_compare( get_bloginfo( 'version' ), '5.0', '>=' ) ) {
             add_action( 'admin_notices', 'fail_wp_version' );
         } else {
             add_shortcode( 'termination-of-transfer-tool', [$this, 'handleShortcode'] );

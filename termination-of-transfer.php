@@ -27,7 +27,7 @@ Plugin URI: https://github.com/creativecommons/termination-of-transfer
 Version: 1.0.0
 Author: Creative Commons Corporation
 Author URI: https://github.com/creativecommons/
-Requires PHP: 5.4.0
+Requires PHP: 7.4.0
 */
 
 add_action('plugins_loaded', 'termination_of_transfer_tool_init');
