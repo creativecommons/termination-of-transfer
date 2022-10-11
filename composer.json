@@ -17,7 +17,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.4",
+        "php": ">=5.4",
         "mpdf/mpdf": "^6.0",
         "smarty/smarty": "^3.1"
     },
