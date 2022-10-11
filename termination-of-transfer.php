@@ -1,4 +1,5 @@
 <?php
+use CreativeCommons_TOT\tot\Plugin;
 /*
     Termination of Transfer - tool to help in returning authors rights.
     Copyright (C) 2016, 2017  Creative Commons Corporation.
@@ -27,4 +28,14 @@ Author URI: https://github.com/creativecommons/
 Requires PHP: 5.4.0
 */
 
+add_action('plugins_loaded', 'termination_of_contract_tool_init');
+
+function termination_of_contract_tool_init()
+{
+    $toc = new Plugin();
+    $toc['path'] = realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR;
+    $toc['url'] = plugin_dir_url( __FILE__ );
+    $toc['version'] = '2.0.0';
+    $toc->run();
+}
 ?>
