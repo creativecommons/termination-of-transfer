@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+ tot:
+  build:
+  restart: always
+  ports:
+   - 3003:3003
+  environment:
+   - PORT=3003
+   - NODE_ENV=production
+  extra_hosts:
+   - 'host.docker.internal:108.61.222.241'
+ php:
+  image: php:5.4
+  restart: always
+  volumes:
+   - server:/data/php
+volumes:
+ server:
