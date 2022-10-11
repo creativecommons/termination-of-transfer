@@ -1,5 +1,7 @@
 <?php
 use CreativeCommons_TOT\tot\Plugin;
+use CreativeCommons_TOT\tot\TerminationOfTransfer;
+
 /*
     Termination of Transfer - tool to help in returning authors rights.
     Copyright (C) 2016, 2017  Creative Commons Corporation.
@@ -33,9 +35,29 @@ add_action('plugins_loaded', 'termination_of_transfer_tool_init');
 function termination_of_transfer_tool_init()
 {
     $toc = new Plugin();
+    // the instaled directory path
     $toc['path'] = realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR;
+    // the instaled directory url
     $toc['url'] = plugin_dir_url( __FILE__ );
+    // the current plugin version
     $toc['version'] = '2.0.0';
+    // the plugin name
+    $toc['name'] = 'Termination of Tranfer Tool';
+    // the scripts to load, if prefixed with js/ then it's located in the plugin scripts folder
+    $toc['scripts'] = [
+        'jquery',
+        'js/values',
+        'js/rules',
+        'js/validation',
+        'js/widgets',
+        'js/rendering',
+        'js/pdf',
+        'js/questions'
+    ];
+    // the styles to load, if prefixed with css/ then it's located in the plugin styles folder
+    $toc['styles'] = [];
+    // termination of transfer main logics
+    $toc['tool'] = new TerminationOfTransfer($toc);
     $toc->run();
 }
 ?>
