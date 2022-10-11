@@ -28,7 +28,7 @@
         }
     },
     "autoload": {
-        "psr-4": {"CreativeCommons_TOT\\": "src"}
+        "psr-4": {"CreativeCommons_TOC\\": "src"}
     },
     "repositories": [
         {
