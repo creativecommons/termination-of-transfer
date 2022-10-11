@@ -1,14 +1,9 @@
 # syntax=docker/dockerfile:experimental
 
-FROM nginx:alpine
+FROM wordpress:php7.4-fpm-alpine
 
-ENV NODE_ENV=production
-ENV PORT=3003
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-WORKDIR /app
-
-COPY ["composer.json", "composer.lock", "./"]
+COPY . /var/www/html/wp-content/plugins/termination-of-contract
 
 RUN composer install
-
-COPY . .
