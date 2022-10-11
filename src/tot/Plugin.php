@@ -1,10 +1,10 @@
 <?php
-namespace CreativeCommons_TOT;
+namespace CreativeCommons_TOT\tot;
 
 /**
  * Handles HTML generating nd shortcode logics
  */
-class Tool
+class Plugin
 {
     public function run()
     {
