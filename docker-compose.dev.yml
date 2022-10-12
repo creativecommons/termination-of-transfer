@@ -8,7 +8,7 @@ services:
   environment:
     WORDPRESS_DEBUG: 1
     WORDPRESS_DB_HOST: 172.25.0.3
-    WORDPRESS_DB_NAME: cc_tot
+    WORDPRESS_DB_NAME: wordpress
     WORDPRESS_DB_PASSWORD: SqlNotTooMuch
     WORDPRESS_DB_USER: codex
   extra_hosts:
