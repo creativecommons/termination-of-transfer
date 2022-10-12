@@ -1,8 +1,9 @@
 <?php
 require_once ABSPATH . 'vendor/autoload.php';
+include_once ABSPATH . 'autoload.php';
 
-use CreativeCommons_TOT\tot\Plugin;
-use CreativeCommons_TOT\tot\TerminationOfTransfer;
+use CreativeCommons_TOT\Plugin;
+use CreativeCommons_TOT\TerminationOfTransfer;
 
 /*
     Termination of Transfer - tool to help in returning authors rights.

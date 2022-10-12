@@ -1,5 +1,5 @@
 <?php
-namespace CreativeCommons_TOT\tot;
+namespace CreativeCommons_TOT;
 
 /**
  * Handles HTML generating nd shortcode logics

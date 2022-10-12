@@ -1,5 +1,5 @@
 <?php
-namespace CreativeCommons_TOT\tot;
+namespace CreativeCommons_TOT;
 
 /**
  * Serves as a container for the plugin

@@ -1,5 +1,5 @@
 <?php
-namespace CreativeCommons_TOT\tot;
+namespace CreativeCommons_TOT;
 
 abstract class WpPlugin
 {
