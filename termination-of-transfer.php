@@ -1,6 +1,5 @@
 <?php
-require_once ABSPATH . 'vendor/autoload.php';
-include_once ABSPATH . 'autoload.php';
+require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
 use CreativeCommons_TOT\Plugin;
 use CreativeCommons_TOT\TerminationOfTransfer;
