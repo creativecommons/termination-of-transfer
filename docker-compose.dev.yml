@@ -1,13 +1,13 @@
 version: '3.3'
 
 services:
- tot-wp:
+ wp:
   build:
    context: .
   restart: always
   environment:
     WORDPRESS_DEBUG: 1
-    WORDPRESS_DB_HOST: 172.21.0.3
+    WORDPRESS_DB_HOST: 172.25.0.3
     WORDPRESS_DB_NAME: cc_tot
     WORDPRESS_DB_PASSWORD: SqlNotTooMuch
     WORDPRESS_DB_USER: codex
@@ -23,8 +23,6 @@ services:
  mariadb:
   image: mariadb
   restart: always
-  ports:
-   - 3006:3306
   networks:
     tot-server:
   environment:
@@ -32,8 +30,8 @@ services:
     MARIADB_USER: codex
     MARIADB_PASSWORD: SqlNotTooMuch
   volumes:
-   #- ./my.cnf:/etc/mysql/my.cf
-   - tot:/var/lib/mysql
+   - ./my.cnf:/etc/mysql/my.cf
+   - tot-sql:/var/lib/mysql
   #entrypoint: mysqld_safe --skip-grant-tables --user=mysql
 
  phpmyadmin:
@@ -43,8 +41,8 @@ services:
     - 3010:80
    environment:
     - PMA_ARBITRARY=0
-    - PMA_PORT=3006
-    - PMA_HOST=172.21.0.3
+    #- PMA_PORT=3006
+    - PMA_HOST=172.25.0.3
    networks:
     tot-server:
    extra_hosts:
@@ -52,6 +50,6 @@ services:
 
 volumes:
  tot-space:
- tot:
+ tot-sql:
 networks:
   tot-server:
