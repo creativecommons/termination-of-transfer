@@ -7,7 +7,7 @@ services:
   restart: always
   environment:
     WORDPRESS_DEBUG: 1
-    WORDPRESS_DB_HOST: 172.25.0.3
+    WORDPRESS_DB_HOST: 172.25.0.2
     WORDPRESS_DB_NAME: wordpress
     WORDPRESS_DB_PASSWORD: SqlNotTooMuch
     WORDPRESS_DB_USER: codex
@@ -42,7 +42,7 @@ services:
    environment:
     - PMA_ARBITRARY=0
     #- PMA_PORT=3006
-    - PMA_HOST=172.25.0.3
+    - PMA_HOST=172.25.0.2
    networks:
     tot-server:
    extra_hosts:
