@@ -1,4 +1,6 @@
 <?php
+require_once ABSPATH . 'vendor/autoload.php';
+
 use CreativeCommons_TOT\tot\Plugin;
 use CreativeCommons_TOT\tot\TerminationOfTransfer;
 
