@@ -63,6 +63,7 @@ class TerminationOfTransfer
     
 
     /**
+     * Registers the assets then return the HTML code to display
      * 
      * @param $atts Array
      */
