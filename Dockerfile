@@ -4,7 +4,7 @@
 FROM wordpress
 
 # install unzip for composer
-RUN apt-get update && apt-get install apt-utils zip unzip
+RUN apt-get update && apt-get install apt-utils zip unzip -y
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

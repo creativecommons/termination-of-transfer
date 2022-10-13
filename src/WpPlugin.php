@@ -18,7 +18,9 @@ abstract class WpPlugin
     }
 
     /**
-     * This will only work in 5.3 or later and WP 3.8 allows 2.4.2+ ... 
+     * The HTML code to display
+     * 
+     * @return String The HTML string
      */
     public function generateHtml()
     {
