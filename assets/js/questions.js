@@ -348,7 +348,7 @@ Questions.resultMap = undefined;
 // Asynchronous fetch of data that is accessed synchronously.
 // This data won't be used until after several questions, so this is tolerable.
 
-jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/js/questions.js']")
+jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/assets/js/questions.js']")
                .attr('src').replace(/questions\.js.*$/, '')
                + 'results.json')
     .done(function (result) {
