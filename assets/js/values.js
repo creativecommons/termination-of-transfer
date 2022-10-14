@@ -22,11 +22,11 @@
 // Rules consult these values and add their own.
 ////////////////////////////////////////////////////////////////////////////////
 
-var Values = {};
+const TotValues = {};
 
-Values.reset = () =>  {
+TotValues.reset = () =>  {
   var now = new Date();
-  Values = {
+  TotValues = {
     current_date: now,
     current_year: now.getFullYear(),
     flags: []
@@ -62,13 +62,13 @@ ValuesStack.height = () =>  {
 
 ValuesStack.push = () =>  {
   // Handle the date not liking being serialized.
-  var now = Values.current_date;
-  this._stack.push(Values);
+  var now = TotValues.current_date;
+  this._stack.push(TotValues);
   // Deep clone
-  Values = JSON.parse(JSON.stringify(Values));
-  Values.current_date = now;
+  TotValues = JSON.parse(JSON.stringify(TotValues));
+  TotValues.current_date = now;
 };
 
 ValuesStack.pop = () =>  {
-  Values = this._stack.pop();
+  TotValues = this._stack.pop();
 };

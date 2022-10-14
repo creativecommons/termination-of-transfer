@@ -65,7 +65,7 @@ TotQuestions.s1q1bi = {
   input: 'year',
   validate: () =>  {
     return Validation.validDate()
-      || ((parseInt(jQuery('.text-question').val()) < Values.creation_year)
+      || ((parseInt(jQuery('.text-question').val()) < TotValues.creation_year)
           ? 'The publication year cannot be earlier than the creation year.'
           : false);
   }
@@ -84,11 +84,11 @@ TotQuestions.s1q1bii =  {
     var errors = Validation.validDate();
     if (errors == false) {
       var year = parseInt(jQuery('.text-question').val());
-      if (year < Values.creation_year) {
+      if (year < TotValues.creation_year) {
         errors = 'Year of publication under grant cannot be earlier than year of creation.';
-      } else if (year < Values.pub_year) {
+      } else if (year < TotValues.pub_year) {
         errors = 'Year of publication under grant cannot be earlier than year of initial publication.';
-      } /* else if (year < Values.k_year) {
+      } /* else if (year < TotValues.k_year) {
         errors = 'Year of publication under grant cannot be earlier than year of grant.';
       }*/
     }
@@ -137,17 +137,17 @@ TotQuestions.s1q1d = {
     var errors = Validation.validDate();
     if (errors == false) {
         // Stash the user-entered agreement year
-        Values.user_inputted_k_year = parseInt(jQuery('.text-question').val());
+        TotValues.user_inputted_k_year = parseInt(jQuery('.text-question').val());
         // If date is before the creation year, use the creation year instead
-        if (Values.user_inputted_k_year < Values.creation_year) {
-	  jQuery('.text-question').val(Values.creation_year);
+        if (TotValues.user_inputted_k_year < TotValues.creation_year) {
+	  jQuery('.text-question').val(TotValues.creation_year);
 	}
     }
     return errors;
   },
   answerDisplayValue: () =>  {
-    return "Effective: " + Values.k_year + "<br/>User entered: "
-	   + Values.user_inputted_k_year;
+    return "Effective: " + TotValues.k_year + "<br/>User entered: "
+	   + TotValues.user_inputted_k_year;
   }
 };
 
@@ -323,7 +323,7 @@ TotQuestions.processAnswer = () =>  {
   if (warnings === false) {
     var question = TotQuestions[TotQuestions.current_question];
     var answer = TotQuestions.getAnswer();
-    Values[question.variable] = answer;
+    TotValues[question.variable] = answer;
     // FIXME: handle converting radio buttons to correct store values
     //        while recording their label in the answers table
     if (answer) {
@@ -415,11 +415,11 @@ TotQuestions.nextQuestion = () =>  {
   if (TotQuestions.processAnswer()) {
     ValuesStack.push();
     var id = TotQuestions.nextQuestionID();
-    Values.question_id = id;
+    TotValues.question_id = id;
     if (id == 'finish') {
       TotQuestions.finish();
     } else {
-      TotQuestions.transitionQuestion(Values.question_id);
+      TotQuestions.transitionQuestion(TotValues.question_id);
       // Scroll down to make sure the input UI is visible
       jQuery('html,body').animate({
         scrollTop: jQuery('#button-question-next').offset().top}, 'slow');
@@ -429,17 +429,17 @@ TotQuestions.nextQuestion = () =>  {
 
 TotQuestions.previousQuestion = () =>  {
   // If we are going back from *after* the last question, re-enable UI
-  if (Values.question_id == 'finish') {
+  if (TotValues.question_id == 'finish') {
     Navigation.unfinishQuestions();
   }
   // Don't pop past the very first item
   if (ValuesStack.height() > 0) {
     // Go back
     ValuesStack.pop();
-    TotQuestions.transitionQuestion(Values.question_id);
+    TotQuestions.transitionQuestion(TotValues.question_id);
     TotNotifications.clearAlerts();
     // Clear previous answer
-    var previous_question = TotQuestions[Values.question_id];
+    var previous_question = TotQuestions[TotValues.question_id];
     TotAnswers.removeAnswer(previous_question.variable);
     // Scroll down to make sure the input UI is visible
     jQuery('html,body').animate({
@@ -448,17 +448,17 @@ TotQuestions.previousQuestion = () =>  {
 };
 
 TotQuestions.finish = () =>  {
-  var obj = TotQuestions.getConclusionDetails(Values.conclusion);
-  Values.termination_type = obj.title;
+  var obj = TotQuestions.getConclusionDetails(TotValues.conclusion);
+  TotValues.termination_type = obj.title;
   TotNotifications.setResultAreaMessage(obj, 'panel-success');
   Navigation.finishQuestions();
-  if (Values.conclusion_generate_pdf) {
+  if (TotValues.conclusion_generate_pdf) {
     PDF.request();
   }
 };
 
 TotQuestions.start = () =>  {
-  Values.reset();
+  TotValues.reset();
   Navigation.showQuestions();
   Navigation.showAnswersTable();
   Navigation.showNextPrevious();
@@ -472,7 +472,7 @@ TotQuestions.start = () =>  {
     return false;
   });
   TotQuestions.transitionQuestion(TotQuestions.first_question);
-  Values.question_id = TotQuestions.first_question;
+  TotValues.question_id = TotQuestions.first_question;
 };
 
 jQuery( document ).ready(() =>  {

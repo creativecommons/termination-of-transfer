@@ -58,7 +58,7 @@ Validation.validDate = () => {
   if (! date.match(/[0-9]{4}/)) {
     errors.push("date must be four digits");
   }
-  if (parseInt(date) > Values.current_year) {
+  if (parseInt(date) > TotValues.current_year) {
     errors.push("date must be in the past");
   }
   if (errors.length != 0) {

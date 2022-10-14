@@ -37,18 +37,18 @@ PDF.append203Windows = (details)=> {
   var notice = '';
   var termination = '';
 
-  if (Values.notice_begin != undefined) {
-    notice += Values.notice_begin + '-' + Values.notice_end;
-    termination += Values.term_begin + '-' + Values.term_end
+  if (TotValues.notice_begin != undefined) {
+    notice += TotValues.notice_begin + '-' + TotValues.notice_end;
+    termination += TotValues.term_begin + '-' + TotValues.term_end
   }
 
-  if (Values.p_term_begin != undefined) {
+  if (TotValues.p_term_begin != undefined) {
     if (notice != '') {
       notice += ' or ';
       termination += ' or ';
     }
-    notice += Values.p_notice_begin + '-' + Values.p_notice_end;
-    termination += Values.p_term_begin + '-' + Values.p_term_end;
+    notice += TotValues.p_notice_begin + '-' + TotValues.p_notice_end;
+    termination += TotValues.p_term_begin + '-' + TotValues.p_term_end;
   }
 
   PDF.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a>', notice);
@@ -57,22 +57,22 @@ PDF.append203Windows = (details)=> {
 
 PDF.append304Windows = (details) => {
   PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
-                     Values.notice_begin);
+                     TotValues.notice_begin);
   PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
-                     Values.notice_end);
+                     TotValues.notice_end);
   PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
-                     Values.term_begin);
+                     TotValues.term_begin);
   PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
-                     Values.term_end);
-  if (Values.d_notice_begin != undefined) {
+                     TotValues.term_end);
+  if (TotValues.d_notice_begin != undefined) {
     PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
-                       Values.d_notice_begin);
+                       TotValues.d_notice_begin);
     PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
-                       Values.d_notice_end);
+                       TotValues.d_notice_end);
     PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
-                       Values.d_term_begin);
+                       TotValues.d_term_begin);
     PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
-                       Values.d_term_end);
+                       TotValues.d_term_end);
   }
 };
 
@@ -87,9 +87,9 @@ PDF.appendWindows = (details) => {
 PDF.details = () =>  {
   var details = [];
   Object.getOwnPropertyNames(varsToTitles).forEach( (key) => {
-    if ((Values[key] != undefined)
-        && (Values[key] != '')) {
-      PDF.appendProperty(details, varsToTitles[key], Values[key]);
+    if ((TotValues[key] != undefined)
+        && (TotValues[key] != '')) {
+      PDF.appendProperty(details, varsToTitles[key], TotValues[key]);
     }
   });
   PDF.appendWindows(details);
@@ -97,9 +97,9 @@ PDF.details = () =>  {
 };
 
 PDF.request = () =>  {
-  var data = {report_timestamp: Values.current_date.getTime()/1000,
-              flags: Values.flags.sort(), // Sorts inline & returns, so OK here
-              conclusion: Values.conclusion,
+  var data = {report_timestamp: TotValues.current_date.getTime()/1000,
+              flags: TotValues.flags.sort(), // Sorts inline & returns, so OK here
+              conclusion: TotValues.conclusion,
               details: PDF.details(),
              };
   var totform = document.createElement("FORM");

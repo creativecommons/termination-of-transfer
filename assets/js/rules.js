@@ -22,7 +22,7 @@ var Rules = {};
 Rules.simpleYesNoRule = (variable_id, yesValue, noValue) => {
   return () =>  {
     var result = undefined;
-    if (Values[variable_id] == 'yes') {
+    if (TotValues[variable_id] == 'yes') {
       result = yesValue;
     } else {
       result = noValue;
@@ -34,18 +34,18 @@ Rules.simpleYesNoRule = (variable_id, yesValue, noValue) => {
 Rules.jumpToFinish = 'finish';
 
 Rules.conclusion = (conclusion) => {
-  Values.conclusion = conclusion;
+  TotValues.conclusion = conclusion;
   return Rules.jumpToFinish;
 };
 
 Rules.conclusionPDF = (conclusion) => {
   Rules.conclusion(conclusion);
-  Values.conclusion_generate_pdf = true;
+  TotValues.conclusion_generate_pdf = true;
   return Rules.jumpToFinish;
 };
 
 Rules.addFlag = (flag) => {
-  Values.flags.push(flag);
+  TotValues.flags.push(flag);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -53,17 +53,17 @@ Rules.addFlag = (flag) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 Rules.is203 = () =>  {
-  return (Values.conclusion == "A.iii");
+  return (TotValues.conclusion == "A.iii");
 };
 
 Rules.is304 = () =>  {
-  return (['A.i', 'A.ii', 'A.i-ii'].indexOf(Values.conclusion) > -1);
+  return (['A.i', 'A.ii', 'A.i-ii'].indexOf(TotValues.conclusion) > -1);
 };
 
 Rules.hasPublicDomainFlags = () =>  {
   var result = false;
-  for (var i = 0; i < Values.flags.length; i++) {
-    if (Values.flags[i][0] == 'B') {
+  for (var i = 0; i < TotValues.flags.length; i++) {
+    if (TotValues.flags[i][0] == 'B') {
       result = true;
     }
   }
@@ -71,12 +71,12 @@ Rules.hasPublicDomainFlags = () =>  {
 };
 
 Rules.beforeEndOfNoticeWindow = () =>  {
-  return ((Values.notice_end != undefined)
-      && (Values.notice_end >= Values.current_year))
-    || ((Values.d_notice_end != undefined)
-    && (Values.d_notice_end >= Values.current_year))
-    || ((Values.p_notice_end != undefined)
-    && (Values.p_notice_end >= Values.current_year));
+  return ((TotValues.notice_end != undefined)
+      && (TotValues.notice_end >= TotValues.current_year))
+    || ((TotValues.d_notice_end != undefined)
+    && (TotValues.d_notice_end >= TotValues.current_year))
+    || ((TotValues.p_notice_end != undefined)
+    && (TotValues.p_notice_end >= TotValues.current_year));
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -86,54 +86,54 @@ Rules.beforeEndOfNoticeWindow = () =>  {
 Rules.section304Analysis = () =>  {
   // Note that this is part of the logic from the section 203 analysis
   var result = 's1q1f';
-  if (Values.k_year < 1978) {
+  if (TotValues.k_year < 1978) {
     result = 's2q2a';
     Rules.addFlag('F.i');
-    if ((Values.pub_year > 1977) && (Values.reg_year > 1977)) {
+    if ((TotValues.pub_year > 1977) && (TotValues.reg_year > 1977)) {
       result = Rules.conclusion('B.vii');
     } else {
       // Under the 1909 Act, copyright term begins at the earlier of
       // the registration date and the publication date.
       // If the work is both registered and published use the minimum of them.
-      if ((Values.reg_year != undefined)
-          && (Values.pub_year != undefined)) {
-            Values.cright_year = Math.min(Values.pub_year,
-                                          Values.reg_year);
+      if ((TotValues.reg_year != undefined)
+          && (TotValues.pub_year != undefined)) {
+            TotValues.cright_year = Math.min(TotValues.pub_year,
+                                          TotValues.reg_year);
       }
       // Otherwise use whichever value is set. One *will* be set here, see top.
       else {
-        Values.cright_year = Values.reg_year || Values.pub_year;
+        TotValues.cright_year = TotValues.reg_year || TotValues.pub_year;
       }
-      Values.cright_year = Math.min(Values.cright_year, 1978);
-      Values.term_begin = Values.cright_year + 56;
-      Values.term_begin = Math.max(Values.term_begin, 1978);
-      Values.term_end = Values.term_begin + 5;
-      Values.notice_begin = Values.term_begin - 10;
-      Values.notice_end = Values.term_end - 2;
+      TotValues.cright_year = Math.min(TotValues.cright_year, 1978);
+      TotValues.term_begin = TotValues.cright_year + 56;
+      TotValues.term_begin = Math.max(TotValues.term_begin, 1978);
+      TotValues.term_end = TotValues.term_begin + 5;
+      TotValues.notice_begin = TotValues.term_begin - 10;
+      TotValues.notice_end = TotValues.term_end - 2;
       // If the we're presently before the 304(c) window, then we don't have to worry about 304(d)
-	if (Values.notice_begin > Values.current_year) {
+	if (TotValues.notice_begin > TotValues.current_year) {
         Rules.addFlag('A.i.a');
        // Following Copyright Office guidance, works copyrighted before 1940 may also be eligible for termination under 304d
-       } else if (Values.cright_year < 1940) {
+       } else if (TotValues.cright_year < 1940) {
           Rules.addFlag('F.ii');
-          Values.d_term_begin = Values.term_begin + 19;
-          Values.d_term_end = Values.d_term_begin + 5;
-          Values.d_notice_begin = Values.d_term_begin - 10;
-          Values.d_notice_end = Values.d_term_end - 2;
-          if (Values.cright_year > 1936) {
+          TotValues.d_term_begin = TotValues.term_begin + 19;
+          TotValues.d_term_end = TotValues.d_term_begin + 5;
+          TotValues.d_notice_begin = TotValues.d_term_begin - 10;
+          TotValues.d_notice_end = TotValues.d_term_end - 2;
+          if (TotValues.cright_year > 1936) {
             Rules.addFlag('G.i');
           }
-          if (Values.cright_year == 1939) {
+          if (TotValues.cright_year == 1939) {
             Rules.addFlag('G.ii.a');
           }
-          if (Values.d_notice_begin > Values.current_year) {
+          if (TotValues.d_notice_begin > TotValues.current_year) {
             // time traveler flag -- applies where the present day is between
             // the 304(c) and 304(d) notice windows
             Rules.addFlag('A.iii.a');
-          } else if (Values.d_notice_end < Values.current_year) {
+          } else if (TotValues.d_notice_end < TotValues.current_year) {
             Rules.addFlag('A.ii.a');
           }
-       } else if (Values.notice_end < Values.current_year) {
+       } else if (TotValues.notice_end < TotValues.current_year) {
          Rules.addFlag('A.ii.a');
        } else {
          // Here for clarity / to reflect decision tree structure
@@ -141,8 +141,8 @@ Rules.section304Analysis = () =>  {
          result = 's2q2a';
        }
     }
-    if ((Values.d_term_begin != undefined)
-        && (Values.term_begin != undefined)) {
+    if ((TotValues.d_term_begin != undefined)
+        && (TotValues.term_begin != undefined)) {
       Rules.addFlag('E.i');
     }
   }
@@ -151,51 +151,51 @@ Rules.section304Analysis = () =>  {
 
 Rules.section203Analysis = () =>  {
   var result = 's2q2a';
-  if (typeof Values.grant_pub_year !== 'undefined') {
+  if (typeof TotValues.grant_pub_year !== 'undefined') {
     Rules.addFlag('F.iv');
   }
-  Values.triggering_pub_year = Values.grant_pub_year || Values.pub_year;
-  if (Values.k_year > 1977) {
+  TotValues.triggering_pub_year = TotValues.grant_pub_year || TotValues.pub_year;
+  if (TotValues.k_year > 1977) {
     Rules.addFlag('F.iii');
-    if (Values.pub_right == 'yes' ) {
-      if (Values.triggering_pub_year != undefined) {
-        Values.term_begin = Math.min(Values.triggering_pub_year + 35 ,
-                                     Values.k_year + 40);
+    if (TotValues.pub_right == 'yes' ) {
+      if (TotValues.triggering_pub_year != undefined) {
+        TotValues.term_begin = Math.min(TotValues.triggering_pub_year + 35 ,
+                                     TotValues.k_year + 40);
       } else {
-        Values.term_begin = Values.k_year + 40;
+        TotValues.term_begin = TotValues.k_year + 40;
       }
-    } else if ((Values.triggering_pub_year != Values.k_year)
-           || (Values.pub_right == 'no'))  {
-      Values.term_begin = Values.k_year + 35;
+    } else if ((TotValues.triggering_pub_year != TotValues.k_year)
+           || (TotValues.pub_right == 'no'))  {
+      TotValues.term_begin = TotValues.k_year + 35;
     }
-    if (Values.term_begin != undefined) {
-      Values.term_end = Values.term_begin + 5;
-      Values.notice_begin = Values.term_begin - 10;
-      Values.notice_end = Values.term_end - 2;
-      if (Values.notice_begin > Values.current_year) {
+    if (TotValues.term_begin != undefined) {
+      TotValues.term_end = TotValues.term_begin + 5;
+      TotValues.notice_begin = TotValues.term_begin - 10;
+      TotValues.notice_end = TotValues.term_end - 2;
+      if (TotValues.notice_begin > TotValues.current_year) {
         Rules.addFlag('A.i.a');
-      } else if (Values.notice_end < Values.current_year) {
+      } else if (TotValues.notice_end < TotValues.current_year) {
         Rules.addFlag('A.ii.a');
       }
     }
-    if (Values.pub_right == 'maybe') {
-      Values.p_term_begin = Values.k_year + 40;
-      if (Values.triggering_pub_year != undefined) {
-        Values.p_term_begin = Math.min(Values.triggering_pub_year + 35,
-                                       Values.p_term_begin);
+    if (TotValues.pub_right == 'maybe') {
+      TotValues.p_term_begin = TotValues.k_year + 40;
+      if (TotValues.triggering_pub_year != undefined) {
+        TotValues.p_term_begin = Math.min(TotValues.triggering_pub_year + 35,
+                                       TotValues.p_term_begin);
       }
-      Values.p_term_end = Values.p_term_begin  + 5;
-      Values.p_notice_begin = Values.p_term_begin - 10;
-      Values.p_notice_end = Values.p_term_end - 2;
-      if (Values.p_notice_begin > Values.current_year) {
+      TotValues.p_term_end = TotValues.p_term_begin  + 5;
+      TotValues.p_notice_begin = TotValues.p_term_begin - 10;
+      TotValues.p_notice_end = TotValues.p_term_end - 2;
+      if (TotValues.p_notice_begin > TotValues.current_year) {
         Rules.addFlag('A.i.a');
-      } else if (Values.p_notice_end < Values.current_year) {
+      } else if (TotValues.p_notice_end < TotValues.current_year) {
         Rules.addFlag('A.ii.a');
       }
     }
   }
-  if ((Values.p_term_begin != undefined)
-      && (Values.term_begin != undefined)) {
+  if ((TotValues.p_term_begin != undefined)
+      && (TotValues.term_begin != undefined)) {
       Rules.addFlag('E.ii');
   }
   return result;
@@ -227,9 +227,9 @@ Rules.s1q1bi = 's1q1bii';
 
 Rules.s1q1bii = () =>  {
   var result = undefined;
-  if (Values.pub_year < 1923) {
+  if (TotValues.pub_year < 1923) {
     result = Rules.conclusion('B.viii');
-  } else if (Values.pub_year < 1990)
+  } else if (TotValues.pub_year < 1990)
     result = 's1q1bi2';
   else {
     result = 's1q1d';
@@ -241,12 +241,12 @@ Rules.s1q1bii = () =>  {
 
 Rules.s1q1bi2 = () =>  {
   var result = undefined;
-  if (Values.copyright_notice == 'yes') {
+  if (TotValues.copyright_notice == 'yes') {
     result = 's1q1c';
-  } else if (Values.copyright_notice == 'no') {
+  } else if (TotValues.copyright_notice == 'no') {
     // The same
     result = 's1q1c';
-    if (Values.pub_year < 1989) {
+    if (TotValues.pub_year < 1989) {
       Rules.addFlag('B.i');
     } else {
       Rules.addFlag('B.ii');
@@ -262,9 +262,9 @@ Rules.s1q1bi2 = () =>  {
 
 Rules.s1q1c = () =>  {
   var result = undefined;
-  if (Values.work_registered == 'yes') {
+  if (TotValues.work_registered == 'yes') {
     result = 's1q1ci';
-  } else if (Values.work_registered == 'no') {
+  } else if (TotValues.work_registered == 'no') {
     result = 's1q1d';
   } else /* don't know */ {
     // If someone doesn't know, continue without asking for registration number
@@ -277,7 +277,7 @@ Rules.s1q1c = () =>  {
 
 Rules.s1q1ci = () =>  {
   var result = undefined;
-  if (Values.reg_year < 1923) {
+  if (TotValues.reg_year < 1923) {
     result = Rules.conclusion('B.viii');
   } else {
     result = 's1q1d';
@@ -290,12 +290,12 @@ Rules.s1q1ci = () =>  {
 
 Rules.s1q1d = () =>  {
   var result = undefined;
-  if (Values.user_inputted_k_year != Values.k_year) {
+  if (TotValues.user_inputted_k_year != TotValues.k_year) {
     Rules.addFlag('H.i');
   }
-  if ((Values.k_year < 1978)
-      && ((Values.pub_year == undefined)
-      && (Values.reg_year == undefined))) {
+  if ((TotValues.k_year < 1978)
+      && ((TotValues.pub_year == undefined)
+      && (TotValues.reg_year == undefined))) {
       result = Rules.conclusion('B.vii');
   } else {
     // Intercept the result so we can add encouragement if things look good
@@ -333,12 +333,12 @@ Rules.section203Analysis;
 
 Rules.s2q2a = () =>  {
   var result = undefined;
-  if (Values.last_will == 'yes') {
+  if (TotValues.last_will == 'yes') {
     result = Rules.conclusion('B.iv');
   } else {
-    if ((Values.creation_year > 1977)
-    || (((Values.pub_year == undefined) || (Values.pub_year > 1977))
-        && ((Values.reg_year == undefined) || (Values.reg_year > 1977)))) {
+    if ((TotValues.creation_year > 1977)
+    || (((TotValues.pub_year == undefined) || (TotValues.pub_year > 1977))
+        && ((TotValues.reg_year == undefined) || (TotValues.reg_year > 1977)))) {
       result = 's2q2bi';
     } else {
       result = 's2q2c';
@@ -352,7 +352,7 @@ Rules.s2q2a = () =>  {
 
 Rules.s2q2bi = () =>  {
   var result = undefined;
-  if (Values.any_authors_alive == 'yes') {
+  if (TotValues.any_authors_alive == 'yes') {
     result = 's2q2c'
   } else {
     result = 's2q2bi2';
@@ -365,16 +365,16 @@ Rules.s2q2bi = () =>  {
 Rules.s2q2bi2 = () =>  {
   var result = undefined;
   // creation_year is always set, pub_year may not be, death will be here
-  if (Values.creation_year > 1977) {
-    Values.pd = Values.death + 71;
-  } else if ((Values.pub_year != undefined)
-     && (Values.pub_year < 2003)) {
-    Values.pd = Math.max((Values.death + 71), 2048);
+  if (TotValues.creation_year > 1977) {
+    TotValues.pd = TotValues.death + 71;
+  } else if ((TotValues.pub_year != undefined)
+     && (TotValues.pub_year < 2003)) {
+    TotValues.pd = Math.max((TotValues.death + 71), 2048);
   } else {
-    Values.pd = Math.max((Values.death + 71), 2003);
+    TotValues.pd = Math.max((TotValues.death + 71), 2003);
   }
   // pd *will* have been set in the if/else block
-  if (Values.current_year > Values.pd) {
+  if (TotValues.current_year > TotValues.pd) {
     result = Rules.conclusion('B.viii');
   } else {
     result = 's2q2c';
@@ -386,8 +386,8 @@ Rules.s2q2bi2 = () =>  {
 
 Rules.s2q2c = () =>  {
   var result = undefined;
-  if (Values.within_scope_of_employment == 'yes') {
-    if (Values.creation_year > 1977) {
+  if (TotValues.within_scope_of_employment == 'yes') {
+    if (TotValues.creation_year > 1977) {
       result = 's2q2ci';
     } else {
       result = Rules.conclusion('B.i');
@@ -402,7 +402,7 @@ Rules.s2q2c = () =>  {
 
 Rules.s2q2ci = () =>  {
   var result = undefined;
-   if (Values.express_agreement == 'yes') {
+   if (TotValues.express_agreement == 'yes') {
     result = 's2q2d';
    } else {
      result = Rules.conclusion('B.i');
@@ -414,8 +414,8 @@ Rules.s2q2ci = () =>  {
 
 Rules.s2q2d = () =>  {
   var result = undefined;
-  if (Values.special_order == 'yes') {
-    if (Values.creation_year < 1978) {
+  if (TotValues.special_order == 'yes') {
+    if (TotValues.creation_year < 1978) {
       Rules.addFlag('D.i');
       result = 's2q2e';
     } else {
@@ -431,8 +431,8 @@ Rules.s2q2d = () =>  {
 
 Rules.s2q2di = () =>  {
   var result = undefined;
-  if (Values.signed_written_agreement == 'yes') {
-    if (Values.creation_year < 1978) {
+  if (TotValues.signed_written_agreement == 'yes') {
+    if (TotValues.creation_year < 1978) {
       result = Rules.conclusion('B.iii');
     } else {
       result = 's2q2dia';
@@ -447,9 +447,9 @@ Rules.s2q2di = () =>  {
 
 Rules.s2q2dia = () =>  {
   var result = undefined;
-  if (Values.created_as_part_of_motion_picture == 'yes') {
+  if (TotValues.created_as_part_of_motion_picture == 'yes') {
     result = Rules.conclusion('C.ii');
-  } else if (Values.created_as_part_of_motion_picture == 'no') {
+  } else if (TotValues.created_as_part_of_motion_picture == 'no') {
     result = 's2q2e';
   } else /* don't know */ {
     Rules.addFlag('D.ii');
@@ -462,9 +462,9 @@ Rules.s2q2dia = () =>  {
 
 Rules.s2q2e = () =>  {
   var result = 's2q2f';
-  if (Values.renego == 'yes') {
+  if (TotValues.renego == 'yes') {
     Rules.addFlag('C.i');
-  } else if (Values.renego == 'no') {
+  } else if (TotValues.renego == 'no') {
     // Continue
   } else /* don't know */ {
     Rules.addFlag('C.ii');
@@ -476,16 +476,16 @@ Rules.s2q2e = () =>  {
 
 Rules.s2q2f = () =>  {
   var result = undefined;
-  if (Values.authors_entered_agreement == 'yes') {
-    if (Values.k_year < 1978) {
+  if (TotValues.authors_entered_agreement == 'yes') {
+    if (TotValues.k_year < 1978) {
       result = Rules.conclusionPDF('A.i-ii');
     } else /*if (k_year > 1977)*/ {
       result = Rules.conclusionPDF('A.iii');
     }
   } else {
-    if (Values.k_year < 1978) {
+    if (TotValues.k_year < 1978) {
       result = 's2q2fii';
-    } else /*if (Values.k_year > 1977)*/ {
+    } else /*if (TotValues.k_year > 1977)*/ {
       result = Rules.conclusion('B.vi');
     }
   }
@@ -496,7 +496,7 @@ Rules.s2q2f = () =>  {
 
 Rules.s2q2fii = () =>  {
   var result = undefined;
-  if (Values.agreement_by_family_or_executor) {
+  if (TotValues.agreement_by_family_or_executor) {
     result = Rules.conclusionPDF('A.i-ii');
   } else {
     result = Rules.conclusion('B.v');

@@ -67,7 +67,7 @@ Rendering.common = (config) => {
   // If we're entering this value for the first time (not via the back button)
   // and this isn't an optional value
   // don't let the user continue until they enter a value here.
-  if((Values[config.variable] === undefined)
+  if((TotValues[config.variable] === undefined)
      && (! config.optional)) {
     Navigation.disableNext();
   } else {
@@ -85,7 +85,7 @@ Rendering.radio = (config) => {
   var form_group = question.find('.form-group');
   var name = 'input-' + config.variable;
   // If we are returning to this via the back button, get the previous value
-  var existing_value = Values[config.variable];
+  var existing_value = TotValues[config.variable];
   var radio_button_values = config.values || ['yes', 'no'];
   radio_button_values.forEach( (value) => {
     var radio_button = '<label class="radio-inline"><input type="radio" name=' + name + '" value="' + value  +'"';
@@ -131,10 +131,10 @@ Rendering.text = (config) => {
   form_group.append(text_field);
   // Set the label
   var label = question.find('.question-label').prop('for', name);
-  if (Values[config.variable]) {
-    form_group.find('text-question').val(Values[config.variable]);
+  if (TotValues[config.variable]) {
+    form_group.find('text-question').val(TotValues[config.variable]);
   }
-  var existing_value = Values[config.variable];
+  var existing_value = TotValues[config.variable];
   // Ensure next isn't enabled until enough characters are entered
   var min_length = config.min_length || 4;
   var text_field_element = question.find('.text-question');
@@ -145,7 +145,7 @@ Rendering.text = (config) => {
   text_field_element.on('change', validator);
   // If we are returning to the field and the value has already been set, use it
   if (existing_value !== undefined) {
-    text_field.val(Values[config.variable]);
+    text_field.val(TotValues[config.variable]);
   }
   return question;
 };
