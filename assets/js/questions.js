@@ -35,11 +35,11 @@ TotQuestions.s1q1a = {
   explanation:'The year in which a work was created can affect its copyright status and its treatment under U.S. copyright law. Most importantly, the tool is concerned with whether a worked was made before or after January 1, 1978, when the most recent overhaul of U.S. copyright went into effect.',   
   variable: 'creation_year',
   input: 'year',
-  pre: function () {
+  pre: () =>  {
     Navigation.disablePrevious();
     TotNotifications.displayAnswersHint();
   },
-  post: function () {
+  post: () =>  {
     TotNotifications.removeAnswersHint();
   }
 };
@@ -51,7 +51,7 @@ TotQuestions.s1q1b = {
   explanation:'Whether a work has been published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date" target="_blank" title="Termination of Transfer: Glossary">glossary</a>.',
   variable: 'work_published',
   input: 'radio',
-  pre: function () {
+  pre: () =>  {
     Navigation.enablePrevious();
   }
 };
@@ -63,7 +63,7 @@ TotQuestions.s1q1bi = {
   question: 'When was the work first published?',
   explanation:'When a work was published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date" target="_blank" title="Termination of Transfer: Glossary">glossary</a>.',
   input: 'year',
-  validate: function () {
+  validate: () =>  {
     return Validation.validDate()
       || ((parseInt(jQuery('.text-question').val()) < Values.creation_year)
           ? 'The publication year cannot be earlier than the creation year.'
@@ -80,7 +80,7 @@ TotQuestions.s1q1bii =  {
   explanation:'When a work was first published under the grant (which may be different than the the date the work was published for the first time) can factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date">glossary</a>.',
   variable: 'grant_pub_year',
   input: 'year',
-  validate: function () {
+  validate: () =>  {
     var errors = Validation.validDate();
     if (errors == false) {
       var year = parseInt(jQuery('.text-question').val());
@@ -133,7 +133,7 @@ TotQuestions.s1q1d = {
   explanation:'When a transfer took place determines the particular set of termination rules that will be applicable. The timing of a transfer is also needed to know when a work\'s copyright transfer may be eligible for termination.',
   variable: 'k_year',
   input: 'year',
-  validate: function () {
+  validate: () =>  {
     var errors = Validation.validDate();
     if (errors == false) {
         // Stash the user-entered agreement year
@@ -145,7 +145,7 @@ TotQuestions.s1q1d = {
     }
     return errors;
   },
-  answerDisplayValue: function () {
+  answerDisplayValue: () =>  {
     return "Effective: " + Values.k_year + "<br/>User entered: "
 	   + Values.user_inputted_k_year;
   }
@@ -271,7 +271,7 @@ TotQuestions.s2q2fii =  {
 // Storing answers
 ////////////////////////////////////////////////////////////////////////////////
 
-TotQuestions.validateAnswer = function () {
+TotQuestions.validateAnswer = () =>  {
   var result = false;
   var question = TotQuestions[TotQuestions.current_question];
   if (question['validate']) {
@@ -289,7 +289,7 @@ TotQuestions.validateAnswer = function () {
   return result
 };
 
-TotQuestions.getAnswer = function () {
+TotQuestions.getAnswer = () =>  {
   var question = TotQuestions[TotQuestions.current_question];
   var answer = undefined;
   switch (question.input) {
@@ -317,7 +317,7 @@ TotQuestions.getAnswer = function () {
   return answer;
 };
 
-TotQuestions.processAnswer = function () {
+TotQuestions.processAnswer = () =>  {
   var result = false;
   var warnings = TotQuestions.validateAnswer();
   if (warnings === false) {
@@ -351,15 +351,15 @@ TotQuestions.resultMap = undefined;
 jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/assets/js/questions.js']")
                .attr('src').replace(/questions\.js.*$/, '')
                + 'results.json')
-    .done(function (result) {
+    .done( (result) => {
         resultMap = result;
     })
-    .fail(function (jqxhr, textStatus, error) {
+    .fail( (jqxhr, textStatus, error) => {
       var err = textStatus + ", " + error;
       console.log("Request Failed: " + err);
     });
 
-TotQuestions.getConclusionDetails = function (specifier) {
+TotQuestions.getConclusionDetails = (specifier) => {
   var path = specifier.split('.');
   var result = resultMap['Conclusion'][path[0]][path[1]];
   return result;
@@ -372,7 +372,7 @@ TotQuestions.getConclusionDetails = function (specifier) {
 TotQuestions.first_question = 's1q1a';
 TotQuestions.last_question = 's2q2fii';
 
-TotQuestions.start = function () {
+TotQuestions.start = () =>  {
   jQuery('.questionnaire-section, .question-progress-buttons')
     .removeClass('hidden');
   jQuery('.no-javascript-alert').addClass('hidden');
@@ -380,7 +380,7 @@ TotQuestions.start = function () {
   Rendering.transitionTo(TotQuestions.first_question);
 };
 
-TotQuestions.transitionQuestion = function (next_question) {
+TotQuestions.transitionQuestion = (next_question) => {
   var previous_question = TotQuestions[TotQuestions.current_question];
   if (previous_question) {
     if(previous_question.post) {
@@ -399,7 +399,7 @@ TotQuestions.transitionQuestion = function (next_question) {
   }
 };
 
-TotQuestions.nextQuestionID = function () {
+TotQuestions.nextQuestionID = () =>  {
   var next_question = TotQuestions.current_question;
   var rule = Rules[TotQuestions.current_question];
   if (typeof rule == 'function') {
@@ -410,7 +410,7 @@ TotQuestions.nextQuestionID = function () {
   return next_question;
 };
 
-TotQuestions.nextQuestion = function () {
+TotQuestions.nextQuestion = () =>  {
   // If the answer was OK, move on
   if (TotQuestions.processAnswer()) {
     ValuesStack.push();
@@ -427,7 +427,7 @@ TotQuestions.nextQuestion = function () {
   }
 };
 
-TotQuestions.previousQuestion = function () {
+TotQuestions.previousQuestion = () =>  {
   // If we are going back from *after* the last question, re-enable UI
   if (Values.question_id == 'finish') {
     Navigation.unfinishQuestions();
@@ -447,7 +447,7 @@ TotQuestions.previousQuestion = function () {
   }
 };
 
-TotQuestions.finish = function () {
+TotQuestions.finish = () =>  {
   var obj = TotQuestions.getConclusionDetails(Values.conclusion);
   Values.termination_type = obj.title;
   TotNotifications.setResultAreaMessage(obj, 'panel-success');
@@ -457,7 +457,7 @@ TotQuestions.finish = function () {
   }
 };
 
-TotQuestions.start = function () {
+TotQuestions.start = () =>  {
   Values.reset();
   Navigation.showQuestions();
   Navigation.showAnswersTable();
@@ -465,7 +465,7 @@ TotQuestions.start = function () {
   jQuery('#button-question-next').click(TotQuestions.nextQuestion);
   jQuery('#button-question-back').click(TotQuestions.previousQuestion);
   // When the user presses "return" in a text area, move to next question
-  jQuery('#question-rendering-area').on('submit', function () {
+  jQuery('#question-rendering-area').on('submit', () =>  {
     if (jQuery('#button-question-next').is(':enabled')) {
       jQuery('#button-question-next').click();
     }
@@ -475,6 +475,6 @@ TotQuestions.start = function () {
   Values.question_id = TotQuestions.first_question;
 };
 
-jQuery( document ).ready(function () {
+jQuery( document ).ready(() =>  {
   TotQuestions.start();
 });
