@@ -303,7 +303,7 @@ Rules.s1q1d = function () {
     if ((result != Rules.jumpToFinish)
     && Rules.beforeEndOfNoticeWindow()
     && (! Rules.hasPublicDomainFlags())) {
-    Notifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
+    TotNotifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
     }
   }
   return result;
@@ -317,7 +317,7 @@ Rules.s1q1f = function () {
   if ((result != Rules.jumpToFinish)
       && Rules.beforeEndOfNoticeWindow()
       && (! Rules.hasPublicDomainFlags())) {
-    Notifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
+    TotNotifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
   }
   return result;
 };
