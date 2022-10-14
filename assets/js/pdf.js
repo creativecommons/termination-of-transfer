@@ -23,55 +23,89 @@
 
 const TotPdf = {};
 
-TotPdf.url = `${jQuery("script[src*='/termination-of-transfer/assets/js/pdf.js']")
-.attr('src').replace(/assets\/js\/pdf\.js.*$/, '')}src/ResultPdf.php`;
+TotPdf.url = `${jQuery(
+  "script[src*='/termination-of-transfer/assets/js/pdf.js']"
+)
+  .attr("src")
+  .replace(/assets\/js\/pdf\.js.*$/, "")}src/ResultPdf.php`;
 
 TotPdf.appendProperty = (details, key, value) => {
-  let mapping = {key: key,
-                 value: value};
+  let mapping = { key: key, value: value };
   details.push(mapping);
 };
 
-TotPdf.append203Windows = (details)=> {
-  let notice = '';
-  let termination = '';
+TotPdf.append203Windows = (details) => {
+  let notice = "";
+  let termination = "";
 
   if (TotValues.notice_begin != undefined) {
     notice += `${TotValues.notice_begin}-${TotValues.notice_end}`;
-    termination += `${TotValues.term_begin}-${TotValues.term_end}`
+    termination += `${TotValues.term_begin}-${TotValues.term_end}`;
   }
 
   if (TotValues.p_term_begin != undefined) {
-    if (notice != '') {
-      notice += ' or ';
-      termination += ' or ';
+    if (notice != "") {
+      notice += " or ";
+      termination += " or ";
     }
     notice += `${TotValues.p_notice_begin}-${TotValues.p_notice_end}`;
     termination += `${TotValues.p_term_begin}-${TotValues.p_term_end}`;
   }
 
-  TotPdf.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a>', notice);
-  TotPdf.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a>', termination);
+  TotPdf.appendProperty(
+    details,
+    '&sect; 203 <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a>',
+    notice
+  );
+  TotPdf.appendProperty(
+    details,
+    '&sect; 203 <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a>',
+    termination
+  );
 };
 
 TotPdf.append304Windows = (details) => {
-  TotPdf.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
-                     TotValues.notice_begin);
-  TotPdf.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
-                     TotValues.notice_end);
-  TotPdf.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
-                     TotValues.term_begin);
-  TotPdf.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
-                     TotValues.term_end);
+  TotPdf.appendProperty(
+    details,
+    '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
+    TotValues.notice_begin
+  );
+  TotPdf.appendProperty(
+    details,
+    '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
+    TotValues.notice_end
+  );
+  TotPdf.appendProperty(
+    details,
+    '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
+    TotValues.term_begin
+  );
+  TotPdf.appendProperty(
+    details,
+    '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
+    TotValues.term_end
+  );
   if (TotValues.d_notice_begin != undefined) {
-    TotPdf.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
-                       TotValues.d_notice_begin);
-    TotPdf.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
-                       TotValues.d_notice_end);
-    TotPdf.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
-                       TotValues.d_term_begin);
-    TotPdf.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
-                       TotValues.d_term_end);
+    TotPdf.appendProperty(
+      details,
+      '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
+      TotValues.d_notice_begin
+    );
+    TotPdf.appendProperty(
+      details,
+      '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
+      TotValues.d_notice_end
+    );
+    TotPdf.appendProperty(
+      details,
+      '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
+      TotValues.d_term_begin
+    );
+    TotPdf.appendProperty(
+      details,
+      '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
+      TotValues.d_term_end
+    );
   }
 };
 
@@ -83,11 +117,10 @@ TotPdf.appendWindows = (details) => {
   }
 };
 
-TotPdf.details = () =>  {
+TotPdf.details = () => {
   let details = [];
-  Object.getOwnPropertyNames(totVarsToTitles).forEach( (key) => {
-    if ((TotValues[key] != undefined)
-        && (TotValues[key] != '')) {
+  Object.getOwnPropertyNames(totVarsToTitles).forEach((key) => {
+    if (TotValues[key] != undefined && TotValues[key] != "") {
       TotPdf.appendProperty(details, totVarsToTitles[key], TotValues[key]);
     }
   });
@@ -95,12 +128,13 @@ TotPdf.details = () =>  {
   return details;
 };
 
-TotPdf.request = () =>  {
-  let data = {report_timestamp: TotValues.current_date.getTime()/1000,
-              flags: TotValues.flags.sort(), // Sorts inline & returns, so OK here
-              conclusion: TotValues.conclusion,
-              details: TotPdf.details(),
-             };
+TotPdf.request = () => {
+  let data = {
+    report_timestamp: TotValues.current_date.getTime() / 1000,
+    flags: TotValues.flags.sort(), // Sorts inline & returns, so OK here
+    conclusion: TotValues.conclusion,
+    details: TotPdf.details(),
+  };
   let totform = document.createElement("FORM");
   totform.setAttribute("action", TotPdf.url);
   totform.setAttribute("method", "post");
@@ -111,6 +145,6 @@ TotPdf.request = () =>  {
   data_field.setAttribute("name", "data");
   data_field.setAttribute("value", JSON.stringify(data));
   totform.appendChild(data_field);
-  jQuery('body').append(totform);
+  jQuery("body").append(totform);
   totform.submit();
 };
