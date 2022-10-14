@@ -21,7 +21,7 @@
 // (This is slightly overloaded)
 ////////////////////////////////////////////////////////////////////////////////
 
-var Questions = {};
+const TotQuestions = {};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Section One
@@ -29,7 +29,7 @@ var Questions = {};
 
 // When was the work created?
 
-Questions.s1q1a = {
+TotQuestions.s1q1a = {
   section: 1,
   question: 'When was the work created?',
   explanation:'The year in which a work was created can affect its copyright status and its treatment under U.S. copyright law. Most importantly, the tool is concerned with whether a worked was made before or after January 1, 1978, when the most recent overhaul of U.S. copyright went into effect.',   
@@ -46,7 +46,7 @@ Questions.s1q1a = {
 
 // Has the work been published?
 
-Questions.s1q1b = {
+TotQuestions.s1q1b = {
   question: 'Has the work been published?',
   explanation:'Whether a work has been published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date" target="_blank" title="Termination of Transfer: Glossary">glossary</a>.',
   variable: 'work_published',
@@ -58,7 +58,7 @@ Questions.s1q1b = {
 
 // When was the work first published?
 
-Questions.s1q1bi = {
+TotQuestions.s1q1bi = {
   variable: 'pub_year',
   question: 'When was the work first published?',
   explanation:'When a work was published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date" target="_blank" title="Termination of Transfer: Glossary">glossary</a>.',
@@ -74,7 +74,7 @@ Questions.s1q1bi = {
 
 // When was the work first published under the grant?
 
-Questions.s1q1bii =  {
+TotQuestions.s1q1bii =  {
   section: 1,
   question: 'When was the work first published under the grant?',
   explanation:'When a work was first published under the grant (which may be different than the the date the work was published for the first time) can factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date">glossary</a>.',
@@ -99,7 +99,7 @@ Questions.s1q1bii =  {
 
 // Works from 1989 and earlier usually display a copyright notice. Did the work have a copyright notice?
 
-Questions.s1q1bi2 = {
+TotQuestions.s1q1bi2 = {
   question: 'Published works from 1989 and earlier usually display a copyright notice. Did the work have a copyright notice?',
   explanation:'For U.S. works published in certain years, U.S. law required that they feature a "copyright notice" in order to receive federal copyright protection. Whether or not the published version featured a copyright notice can affect the copyright status of these works.',	
   variable: 'copyright_notice',
@@ -109,7 +109,7 @@ Questions.s1q1bi2 = {
 
 // Has the work been registered with the United State Copyright Office?
 
-Questions.s1q1c = {
+TotQuestions.s1q1c = {
   question: 'Has the work been registered with the United State Copyright Office?',
   explanation:'Before 1989, registration was one of the ways authors could secure federal copyright in their work. Whether a work was registered can affect copyright status and the timing of termination right.',  
   variable: 'work_registered',
@@ -119,7 +119,7 @@ Questions.s1q1c = {
 
 // When was the work registered with the United States Copyright Office?
 
-Questions.s1q1ci = {
+TotQuestions.s1q1ci = {
   question: 'When was the work registered with the United States Copyright Office?',
   explanation:'Before 1989, registration was one of the ways authors could secure federal copyright in their work. When a work was registered can affect copyright status and the timing of termination right.',  
   variable: 'reg_year',
@@ -128,7 +128,7 @@ Questions.s1q1ci = {
 
 // What is the date of the agreement or transfer? ...
 
-Questions.s1q1d = {
+TotQuestions.s1q1d = {
   question: 'What is the year of the agreement or transfer?',
   explanation:'When a transfer took place determines the particular set of termination rules that will be applicable. The timing of a transfer is also needed to know when a work\'s copyright transfer may be eligible for termination.',
   variable: 'k_year',
@@ -153,7 +153,7 @@ Questions.s1q1d = {
 
 // Did the agreement or transfer include the right of publication?
 
-Questions.s1q1f =  {
+TotQuestions.s1q1f =  {
   // Last question in section 1, so set this if we've arrived via back button
   section: 1,
   question: 'Did the agreement or transfer include the right of publication?',
@@ -170,7 +170,7 @@ Questions.s1q1f =  {
 
 // Is the agreement or transfer you want to terminate part of a last will...
 
-Questions.s2q2a =  {
+TotQuestions.s2q2a =  {
   // First question in section 2
   section: 2,
   question: 'Is the agreement or transfer in question part of a <a href="/glossary/#will" target="_blank" title="Termination of Transfer: Glossary">last will and testament</a>?',
@@ -180,7 +180,7 @@ Questions.s2q2a =  {
 
 // Are any of the authors still alive?
 
-Questions.s2q2bi = {
+TotQuestions.s2q2bi = {
   question: 'Are <i>any</i> of the <a href="/glossary/#author" target="_blank" title="Termination of Transfer: Glossary">authors or artists</a> still alive?',
   explanation:'The copyright term for many works is based on the life of the author.',
   variable: 'any_authors_alive',
@@ -189,7 +189,7 @@ Questions.s2q2bi = {
 
 // What is the year the last surviving author died?
 
-Questions.s2q2bi2 = {
+TotQuestions.s2q2bi2 = {
   question: 'What is the year the last surviving <a href="/glossary/#author" target="_blank" title="Termination of Transfer: Glossary">author or artist</a> died?',
   explanation:'The copyright term for many works is based on the life of the author.',
   variable: 'death',
@@ -198,7 +198,7 @@ Questions.s2q2bi2 = {
 
 // Was the work created within the scope of the author’s employment?
 
-Questions.s2q2c =  {
+TotQuestions.s2q2c =  {
   question: 'Was the work created within the <a href="/glossary/#scope_of_employment" target="_blank" title="Termination of Transfer: Glossary">scope of the author’s employment</a>?',
   variable: 'within_scope_of_employment',
   input: 'radio'
@@ -206,7 +206,7 @@ Questions.s2q2c =  {
 
 // Was there an express agreement between the author and the author's employer to not treat the work as a work made for hire?
 
-Questions.s2q2ci =  {
+TotQuestions.s2q2ci =  {
   question: 'Was there an express agreement the author and the author\'s employer to not treat the work as a <a href="/glossary/#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
   variable: 'express_agreement',
   input: 'radio'
@@ -214,7 +214,7 @@ Questions.s2q2ci =  {
 
 // Was the work created in response to a special order or commission
 
-Questions.s2q2d =  {
+TotQuestions.s2q2d =  {
   question: 'Was the work created in response to a <a href="/glossary/#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">special order or commission</a> by some other person or company?',
   variable: 'special_order',
   input: 'radio'
@@ -222,7 +222,7 @@ Questions.s2q2d =  {
 
 // Was there a signed written agreement regarding the special order...
 
-Questions.s2q2di =  {
+TotQuestions.s2q2di =  {
   question: 'Was there a signed written agreement regarding the special order or commission which explicitly refers to the work as a <a href="/glossary/#work_for_hire" target="_blank" title="Termination of Transfer: Glossary">work for hire</a>?',
   variable: 'signed_written_agreement',
   input: 'radio'
@@ -230,7 +230,7 @@ Questions.s2q2di =  {
 
 // Was the work created for use as one of the following? ...
 
-Questions.s2q2dia = {
+TotQuestions.s2q2dia = {
   question: 'Was the work created for use as one of the following? — <ul><li>a contribution to a collective work; a part of a motion picture or other audiovisual work;</li> <li>a translation;</li> <li>a <a href="/glossary/#supplementary_work" title="Termination of Transfer: Glossary">supplementary work</a> (such as a foreword, afterword, table, editorial note, musical arrangement, bibliography, appendix, or index);</li> <li>a <a href="/glossary/#compilation" target="_blank" title="Termination of Transfer: Glossary">compilation</a>;</li> <li>an <a href="/glossary/#instructional_text" target="_blank" title="Termination of Transfer: Glossary">instructional text (text and/or graphics)</a>;</li> <li>a test or answer material for a test;</li> <li>or as an atlas?</li></ul?>',
   variable: 'created_as_part_of_motion_picture',
   input: 'radio',
@@ -239,7 +239,7 @@ Questions.s2q2dia = {
 
 // Has the original transfer since been renegotiated or altered?
 
-Questions.s2q2e = {
+TotQuestions.s2q2e = {
   question: 'Has the original transfer since been renegotiated or altered?',
   variable: 'renego',
   input: 'radio',
@@ -248,7 +248,7 @@ Questions.s2q2e = {
 
 // Did one or more of the authors or artists enter into the agreement...
 
-Questions.s2q2f =  {
+TotQuestions.s2q2f =  {
   question: 'Did one or more of the <a href="/glossary/#author" target="_blank" title="Termination of Transfer: Glossary">authors</a> enter into the agreement or transfer?',
   variable: 'authors_entered_agreement',
   input: 'radio'
@@ -258,7 +258,7 @@ Questions.s2q2f =  {
 
 // Was the agreement or transfer made by a member of...
 
-Questions.s2q2fii =  {
+TotQuestions.s2q2fii =  {
   // Last question in section 2, so set section if we're going back
   section: 2,
   question: 'Was the agreement or transfer made by a member of the <a href="/glossary/#author" target="_blank" title="Termination of Transfer: Glossary">author\'s</a> immediate family, or by the executors?<br><i>For more information about which family members qualify, check out the FAQ.</i>',
@@ -271,9 +271,9 @@ Questions.s2q2fii =  {
 // Storing answers
 ////////////////////////////////////////////////////////////////////////////////
 
-Questions.validateAnswer = function () {
+TotQuestions.validateAnswer = function () {
   var result = false;
-  var question = Questions[Questions.current_question];
+  var question = TotQuestions[TotQuestions.current_question];
   if (question['validate']) {
     result = question.validate();
   } else if (question.type == 'year') {
@@ -289,8 +289,8 @@ Questions.validateAnswer = function () {
   return result
 };
 
-Questions.getAnswer = function () {
-  var question = Questions[Questions.current_question];
+TotQuestions.getAnswer = function () {
+  var question = TotQuestions[TotQuestions.current_question];
   var answer = undefined;
   switch (question.input) {
   case 'radio':
@@ -317,12 +317,12 @@ Questions.getAnswer = function () {
   return answer;
 };
 
-Questions.processAnswer = function () {
+TotQuestions.processAnswer = function () {
   var result = false;
-  var warnings = Questions.validateAnswer();
+  var warnings = TotQuestions.validateAnswer();
   if (warnings === false) {
-    var question = Questions[Questions.current_question];
-    var answer = Questions.getAnswer();
+    var question = TotQuestions[TotQuestions.current_question];
+    var answer = TotQuestions.getAnswer();
     Values[question.variable] = answer;
     // FIXME: handle converting radio buttons to correct store values
     //        while recording their label in the answers table
@@ -344,7 +344,7 @@ Questions.processAnswer = function () {
 // These messages are stored in a json file so we can also use them in the PDF
 ////////////////////////////////////////////////////////////////////////////////
 
-Questions.resultMap = undefined;
+TotQuestions.resultMap = undefined;
 // Asynchronous fetch of data that is accessed synchronously.
 // This data won't be used until after several questions, so this is tolerable.
 
@@ -359,7 +359,7 @@ jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/assets/js/questions
       console.log("Request Failed: " + err);
     });
 
-Questions.getConclusionDetails = function (specifier) {
+TotQuestions.getConclusionDetails = function (specifier) {
   var path = specifier.split('.');
   var result = resultMap['Conclusion'][path[0]][path[1]];
   return result;
@@ -369,29 +369,29 @@ Questions.getConclusionDetails = function (specifier) {
 // Flow of control
 ////////////////////////////////////////////////////////////////////////////////
 
-Questions.first_question = 's1q1a';
-Questions.last_question = 's2q2fii';
+TotQuestions.first_question = 's1q1a';
+TotQuestions.last_question = 's2q2fii';
 
-Questions.start = function () {
+TotQuestions.start = function () {
   jQuery('.questionnaire-section, .question-progress-buttons')
     .removeClass('hidden');
   jQuery('.no-javascript-alert').addClass('hidden');
   //Navigation.disablePrevious();
-  Rendering.transitionTo(Questions.first_question);
+  Rendering.transitionTo(TotQuestions.first_question);
 };
 
-Questions.transitionQuestion = function (next_question) {
-  var previous_question = Questions[Questions.current_question];
+TotQuestions.transitionQuestion = function (next_question) {
+  var previous_question = TotQuestions[TotQuestions.current_question];
   if (previous_question) {
     if(previous_question.post) {
       previous_question.post();
     }
   }
   if (next_question == 'finish') {
-    Questions.finish();
+    TotQuestions.finish();
   } else {
-    Questions.current_question = next_question;
-    var question = Questions[Questions.current_question];
+    TotQuestions.current_question = next_question;
+    var question = TotQuestions[TotQuestions.current_question];
     if (question['pre']) {
       question.pre();
     }
@@ -399,9 +399,9 @@ Questions.transitionQuestion = function (next_question) {
   }
 };
 
-Questions.nextQuestionID = function () {
-  var next_question = Questions.current_question;
-  var rule = Rules[Questions.current_question];
+TotQuestions.nextQuestionID = function () {
+  var next_question = TotQuestions.current_question;
+  var rule = Rules[TotQuestions.current_question];
   if (typeof rule == 'function') {
     next_question = rule();
   } else {
@@ -410,16 +410,16 @@ Questions.nextQuestionID = function () {
   return next_question;
 };
 
-Questions.nextQuestion = function () {
+TotQuestions.nextQuestion = function () {
   // If the answer was OK, move on
-  if (Questions.processAnswer()) {
+  if (TotQuestions.processAnswer()) {
     ValuesStack.push();
-    var id = Questions.nextQuestionID();
+    var id = TotQuestions.nextQuestionID();
     Values.question_id = id;
     if (id == 'finish') {
-      Questions.finish();
+      TotQuestions.finish();
     } else {
-      Questions.transitionQuestion(Values.question_id);
+      TotQuestions.transitionQuestion(Values.question_id);
       // Scroll down to make sure the input UI is visible
       jQuery('html,body').animate({
         scrollTop: jQuery('#button-question-next').offset().top}, 'slow');
@@ -427,7 +427,7 @@ Questions.nextQuestion = function () {
   }
 };
 
-Questions.previousQuestion = function () {
+TotQuestions.previousQuestion = function () {
   // If we are going back from *after* the last question, re-enable UI
   if (Values.question_id == 'finish') {
     Navigation.unfinishQuestions();
@@ -436,10 +436,10 @@ Questions.previousQuestion = function () {
   if (ValuesStack.height() > 0) {
     // Go back
     ValuesStack.pop();
-    Questions.transitionQuestion(Values.question_id);
+    TotQuestions.transitionQuestion(Values.question_id);
     TotNotifications.clearAlerts();
     // Clear previous answer
-    var previous_question = Questions[Values.question_id];
+    var previous_question = TotQuestions[Values.question_id];
     TotAnswers.removeAnswer(previous_question.variable);
     // Scroll down to make sure the input UI is visible
     jQuery('html,body').animate({
@@ -447,8 +447,8 @@ Questions.previousQuestion = function () {
   }
 };
 
-Questions.finish = function () {
-  var obj = Questions.getConclusionDetails(Values.conclusion);
+TotQuestions.finish = function () {
+  var obj = TotQuestions.getConclusionDetails(Values.conclusion);
   Values.termination_type = obj.title;
   TotNotifications.setResultAreaMessage(obj, 'panel-success');
   Navigation.finishQuestions();
@@ -457,13 +457,13 @@ Questions.finish = function () {
   }
 };
 
-Questions.start = function () {
+TotQuestions.start = function () {
   Values.reset();
   Navigation.showQuestions();
   Navigation.showAnswersTable();
   Navigation.showNextPrevious();
-  jQuery('#button-question-next').click(Questions.nextQuestion);
-  jQuery('#button-question-back').click(Questions.previousQuestion);
+  jQuery('#button-question-next').click(TotQuestions.nextQuestion);
+  jQuery('#button-question-back').click(TotQuestions.previousQuestion);
   // When the user presses "return" in a text area, move to next question
   jQuery('#question-rendering-area').on('submit', function () {
     if (jQuery('#button-question-next').is(':enabled')) {
@@ -471,10 +471,10 @@ Questions.start = function () {
     }
     return false;
   });
-  Questions.transitionQuestion(Questions.first_question);
-  Values.question_id = Questions.first_question;
+  TotQuestions.transitionQuestion(TotQuestions.first_question);
+  Values.question_id = TotQuestions.first_question;
 };
 
 jQuery( document ).ready(function () {
-  Questions.start();
+  TotQuestions.start();
 });
