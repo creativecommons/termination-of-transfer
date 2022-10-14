@@ -11,8 +11,6 @@ services:
     WORDPRESS_DB_NAME: wordpress
     WORDPRESS_DB_PASSWORD: SqlNotTooMuch
     WORDPRESS_DB_USER: codex
-  extra_hosts:
-   - 'host.docker.internal:108.61.222.241'
   ports:
    - 8701:80
   networks:
@@ -45,8 +43,6 @@ services:
     - PMA_HOST=172.25.0.2
    networks:
     tot-server:
-   extra_hosts:
-    - 'host.docker.internal:108.61.222.241'
 
 volumes:
  tot-space:
