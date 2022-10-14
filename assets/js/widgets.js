@@ -26,24 +26,24 @@
 // Visual display of the user's responses
 ////////////////////////////////////////////////////////////////////////////////
 
-const Answers = {};
+const TotAnswers = {};
 
-Answers.resetAnswers = function () {
+TotAnswers.resetAnswers = () => {
   jQuery('#answers-table-rows').empty();
 };
 
-Answers.appendAnswer = function (myId, label, value) {
+TotAnswers.appendAnswer = (myId, label, value) => {
   if (! label) {
     label = jQuery('#' + myId + '> label').first().text();
   }
   // If the user has gone back and is changing the answer, first remove it
-  Answers.removeAnswer(myId);
+  TotAnswers.removeAnswer(myId);
   jQuery('#answers-table-rows').append('<tr id="answer-row-' + myId + '"><td>'
 				       + label + '</td><td align="right">'
 				       + value  + '</td></tr>');
 };
 
-Answers.removeAnswer = function (myId) {
+TotAnswers.removeAnswer = (myId) => {
   jQuery('#answer-row-' + myId).remove();
 };
 
@@ -53,37 +53,37 @@ Answers.removeAnswer = function (myId) {
 
 var Notifications = {};
 
-Notifications.clearAlerts = function () {
+Notifications.clearAlerts = () => {
   jQuery('#alert-area').empty();
 };
 
-Notifications.setAlert = function (message) {
+Notifications.setAlert = (message) => {
   Notifications.clearAlerts();
   jQuery('#alert-area').append('<div class="alert alert-warning" role="alert">'
                                + message
                                + '</div>');
 };
 
-Notifications.setEncouragement = function (message) {
+Notifications.setEncouragement = (message) => {
   Notifications.clearAlerts();
   jQuery('#alert-area').append('<div class="alert alert-success" role="alert">'
                                + message
                                + '</div>');
 };
 
-Notifications.displayAnswersHint = function () {
+Notifications.displayAnswersHint = () => {
   jQuery('#answers-table-rows').append('<tr id="answers-table-row-placeholder"><td>As you respond to the questions we\'ll save the answers here.</td></tr>');
 };
 
-Notifications.removeAnswersHint = function () {
+Notifications.removeAnswersHint = () => {
   jQuery('#answers-table-row-placeholder').remove();
 };
 
-Notifications.displayResultArea = function () {
+Notifications.displayResultArea = () => {
   jQuery('#result-area').removeClass('hidden');
 };
 
-Notifications.hideResultArea = function () {
+Notifications.hideResultArea = () => {
   jQuery('#result-area').addClass('hidden');
 };
 
@@ -103,57 +103,57 @@ Navigation.progressStack = [];
 
 // These return true so we can use them as "handlers" in simpleNextQuestion
 
-Navigation.disableNext = function () {
+Navigation.disableNext = () => {
   jQuery('#button-question-next').prop("disabled", true);
   return true;
 };
 
-Navigation.disablePrevious = function () {
+Navigation.disablePrevious = () => {
   jQuery('#button-question-back').prop("disabled", true);
   return true;
 };
 
-Navigation.enableNext = function () {
+Navigation.enableNext = () => {
   jQuery('#button-question-next').prop("disabled", false);
   return true;
 };
 
-Navigation.enablePrevious = function () {
+Navigation.enablePrevious = () => {
   jQuery('#button-question-back').prop("disabled", false);
   return true;
 };
 
-Navigation.showNextPrevious = function () {
+Navigation.showNextPrevious = () => {
   jQuery("#question-progress-buttons").removeClass('hidden');
 };
 
-Navigation.hideQuestions = function () {
+Navigation.hideQuestions = () => {
   jQuery('#questionnaire-section').addClass('hidden');
   jQuery('.form-group').addClass('hidden');
 };
 
-Navigation.showQuestions = function () {
+Navigation.showQuestions = () => {
   jQuery('#questionnaire-section').removeClass('hidden');
   jQuery('.form-group').removeClass('hidden');
 };
 
-Navigation.hideNoJSWarning = function () {
+Navigation.hideNoJSWarning = () => {
 };
 
-Navigation.showAnswersTable = function () {
+Navigation.showAnswersTable = () => {
   jQuery("#answers-table").removeClass('hidden');
 };
 
 // After this, do not restart the questionnaire, reload the page to restart
 
-Navigation.finishQuestions = function () {
+Navigation.finishQuestions = () => {
   Navigation.hideQuestions();
   Notifications.displayResultArea();
   Navigation.disableNext();
   jQuery("#button-restart").removeClass('hidden');
 };
 
-Navigation.unfinishQuestions = function () {
+Navigation.unfinishQuestions = () => {
   Navigation.showQuestions();
   Notifications.hideResultArea();
   jQuery("#button-restart").addClass('hidden');

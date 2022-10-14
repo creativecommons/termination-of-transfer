@@ -329,7 +329,7 @@ Questions.processAnswer = function () {
     if (answer) {
       answer = (question.answerDisplayValue && question.answerDisplayValue())
 	       || answer;
-      Answers.appendAnswer(question.variable, question.question, answer);
+      TotAnswers.appendAnswer(question.variable, question.question, answer);
     }
     Notifications.clearAlerts();
     result = true;
@@ -440,7 +440,7 @@ Questions.previousQuestion = function () {
     Notifications.clearAlerts();
     // Clear previous answer
     var previous_question = Questions[Values.question_id];
-    Answers.removeAnswer(previous_question.variable);
+    TotAnswers.removeAnswer(previous_question.variable);
     // Scroll down to make sure the input UI is visible
     jQuery('html,body').animate({
       scrollTop: jQuery('#button-question-next').offset().top}, 'slow');
