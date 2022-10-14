@@ -27,13 +27,13 @@ PDF.url = jQuery("script[src*='/termination-of-transfer/assets/js/pdf.js']")
 	       .attr('src').replace(/assets\/js\/pdf\.js.*$/, '')
 	       + 'src/ResultPdf.php';
 
-PDF.appendProperty = function (details, key, value) {
+PDF.appendProperty = (details, key, value) => {
   var mapping = {key: key,
                  value: value};
   details.push(mapping);
 };
 
-PDF.append203Windows = function (details) {
+PDF.append203Windows = (details)=> {
   var notice = '';
   var termination = '';
 
@@ -55,7 +55,7 @@ PDF.append203Windows = function (details) {
   PDF.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a>', termination);
 };
 
-PDF.append304Windows = function (details) {
+PDF.append304Windows = (details) => {
   PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
                      Values.notice_begin);
   PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
@@ -76,7 +76,7 @@ PDF.append304Windows = function (details) {
   }
 };
 
-PDF.appendWindows = function (details) {
+PDF.appendWindows = (details) => {
   if (Rules.is203()) {
     PDF.append203Windows(details);
   } else if (Rules.is304()) {
@@ -84,9 +84,9 @@ PDF.appendWindows = function (details) {
   }
 };
 
-PDF.details = function () {
+PDF.details = () =>  {
   var details = [];
-  Object.getOwnPropertyNames(varsToTitles).forEach(function (key) {
+  Object.getOwnPropertyNames(varsToTitles).forEach( (key) => {
     if ((Values[key] != undefined)
         && (Values[key] != '')) {
       PDF.appendProperty(details, varsToTitles[key], Values[key]);
@@ -96,7 +96,7 @@ PDF.details = function () {
   return details;
 };
 
-PDF.request = function () {
+PDF.request = () =>  {
   var data = {report_timestamp: Values.current_date.getTime()/1000,
               flags: Values.flags.sort(), // Sorts inline & returns, so OK here
               conclusion: Values.conclusion,

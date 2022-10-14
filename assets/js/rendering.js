@@ -80,14 +80,14 @@ Rendering.common = (config) => {
 // Multiple choice questions (radio buttons)
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.radio = function (config) {
+Rendering.radio = (config) => {
   var question = Rendering.common(config);
   var form_group = question.find('.form-group');
   var name = 'input-' + config.variable;
   // If we are returning to this via the back button, get the previous value
   var existing_value = Values[config.variable];
   var radio_button_values = config.values || ['yes', 'no'];
-  radio_button_values.forEach(function (value) {
+  radio_button_values.forEach( (value) => {
     var radio_button = '<label class="radio-inline"><input type="radio" name=' + name + '" value="' + value  +'"';
     if (value == existing_value) {
       radio_button += ' checked="checked"';
