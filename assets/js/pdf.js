@@ -23,9 +23,8 @@
 
 const TotPdf = {};
 
-TotPdf.url = jQuery("script[src*='/termination-of-transfer/assets/js/pdf.js']")
-	       .attr('src').replace(/assets\/js\/pdf\.js.*$/, '')
-	       + 'src/ResultPdf.php';
+TotPdf.url = `${jQuery("script[src*='/termination-of-transfer/assets/js/pdf.js']")
+.attr('src').replace(/assets\/js\/pdf\.js.*$/, '')}src/ResultPdf.php`;
 
 TotPdf.appendProperty = (details, key, value) => {
   var mapping = {key: key,
@@ -38,8 +37,8 @@ TotPdf.append203Windows = (details)=> {
   var termination = '';
 
   if (TotValues.notice_begin != undefined) {
-    notice += TotValues.notice_begin + '-' + TotValues.notice_end;
-    termination += TotValues.term_begin + '-' + TotValues.term_end
+    notice += `${TotValues.notice_begin}-${TotValues.notice_end}`;
+    termination += `${TotValues.term_begin}-${TotValues.term_end}`
   }
 
   if (TotValues.p_term_begin != undefined) {
@@ -47,8 +46,8 @@ TotPdf.append203Windows = (details)=> {
       notice += ' or ';
       termination += ' or ';
     }
-    notice += TotValues.p_notice_begin + '-' + TotValues.p_notice_end;
-    termination += TotValues.p_term_begin + '-' + TotValues.p_term_end;
+    notice += `${TotValues.p_notice_begin}-${TotValues.p_notice_end}`;
+    termination += `${TotValues.p_term_begin}-${TotValues.p_term_end}`;
   }
 
   TotPdf.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a>', notice);
