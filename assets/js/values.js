@@ -24,31 +24,31 @@
 
 const TotValues = {};
 
-TotValues.reset = () =>  {
+TotValues.reset = () => {
   var now = new Date();
   TotValues = {
     current_date: now,
     current_year: now.getFullYear(),
-    flags: []
+    flags: [],
   };
 };
 
 //FIXME: Hello namespace pollution
 
 var varsToTitles = {
-  work_authors: 'Author',
-  work_title: 'Title of Work',
-  creation_year: 'Creation Year',
-  pub_year: 'Publication Year',
-  grant_pub_year: 'Publication Year Under Grant',
-  triggering_pub_year: 'Triggering Publication Date',
-  k_year: 'Effective Grant Year',
-  user_inputted_k_year: 'User Entered Grant Year',
-  reg_year: 'Copyright Registration Year',
-  work_copyright_reg_num: 'Registration Number',
-  termination_type: 'Termination Type',
-  work_agreement_type: 'Agreement or Transfer Type',
-  work_agreement_desc: 'Agreement or Transfer Description',
+  work_authors: "Author",
+  work_title: "Title of Work",
+  creation_year: "Creation Year",
+  pub_year: "Publication Year",
+  grant_pub_year: "Publication Year Under Grant",
+  triggering_pub_year: "Triggering Publication Date",
+  k_year: "Effective Grant Year",
+  user_inputted_k_year: "User Entered Grant Year",
+  reg_year: "Copyright Registration Year",
+  work_copyright_reg_num: "Registration Number",
+  termination_type: "Termination Type",
+  work_agreement_type: "Agreement or Transfer Type",
+  work_agreement_desc: "Agreement or Transfer Description",
   //'': 'Grantor',
 };
 
@@ -56,11 +56,11 @@ var ValuesStack = {};
 
 ValuesStack._stack = [];
 
-ValuesStack.height = () =>  {
+ValuesStack.height = () => {
   return this._stack.length;
 };
 
-ValuesStack.push = () =>  {
+ValuesStack.push = () => {
   // Handle the date not liking being serialized.
   var now = TotValues.current_date;
   this._stack.push(TotValues);
@@ -69,6 +69,6 @@ ValuesStack.push = () =>  {
   TotValues.current_date = now;
 };
 
-ValuesStack.pop = () =>  {
+ValuesStack.pop = () => {
   TotValues = this._stack.pop();
 };
