@@ -17,9 +17,9 @@
 */
 
 
-var Rules = {};
+const TotRules = {};
 
-Rules.simpleYesNoRule = (variable_id, yesValue, noValue) => {
+TotRules.simpleYesNoRule = (variable_id, yesValue, noValue) => {
   return () =>  {
     var result = undefined;
     if (TotValues[variable_id] == 'yes') {
@@ -31,20 +31,20 @@ Rules.simpleYesNoRule = (variable_id, yesValue, noValue) => {
   };
 };
 
-Rules.jumpToFinish = 'finish';
+TotRules.jumpToFinish = 'finish';
 
-Rules.conclusion = (conclusion) => {
+TotRules.conclusion = (conclusion) => {
   TotValues.conclusion = conclusion;
-  return Rules.jumpToFinish;
+  return TotRules.jumpToFinish;
 };
 
-Rules.conclusionPDF = (conclusion) => {
-  Rules.conclusion(conclusion);
+TotRules.conclusionPDF = (conclusion) => {
+  TotRules.conclusion(conclusion);
   TotValues.conclusion_generate_pdf = true;
-  return Rules.jumpToFinish;
+  return TotRules.jumpToFinish;
 };
 
-Rules.addFlag = (flag) => {
+TotRules.addFlag = (flag) => {
   TotValues.flags.push(flag);
 };
 
@@ -52,15 +52,15 @@ Rules.addFlag = (flag) => {
 // Calculated/inferred properties
 ////////////////////////////////////////////////////////////////////////////////
 
-Rules.is203 = () =>  {
+TotRules.is203 = () =>  {
   return (TotValues.conclusion == "A.iii");
 };
 
-Rules.is304 = () =>  {
+TotRules.is304 = () =>  {
   return (['A.i', 'A.ii', 'A.i-ii'].indexOf(TotValues.conclusion) > -1);
 };
 
-Rules.hasPublicDomainFlags = () =>  {
+TotRules.hasPublicDomainFlags = () =>  {
   var result = false;
   for (var i = 0; i < TotValues.flags.length; i++) {
     if (TotValues.flags[i][0] == 'B') {
@@ -70,7 +70,7 @@ Rules.hasPublicDomainFlags = () =>  {
   return result;
 };
 
-Rules.beforeEndOfNoticeWindow = () =>  {
+TotRules.beforeEndOfNoticeWindow = () =>  {
   return ((TotValues.notice_end != undefined)
       && (TotValues.notice_end >= TotValues.current_year))
     || ((TotValues.d_notice_end != undefined)
@@ -83,14 +83,14 @@ Rules.beforeEndOfNoticeWindow = () =>  {
 // Section N Analyses
 ////////////////////////////////////////////////////////////////////////////////
 
-Rules.section304Analysis = () =>  {
+TotRules.section304Analysis = () =>  {
   // Note that this is part of the logic from the section 203 analysis
   var result = 's1q1f';
   if (TotValues.k_year < 1978) {
     result = 's2q2a';
-    Rules.addFlag('F.i');
+    TotRules.addFlag('F.i');
     if ((TotValues.pub_year > 1977) && (TotValues.reg_year > 1977)) {
-      result = Rules.conclusion('B.vii');
+      result = TotRules.conclusion('B.vii');
     } else {
       // Under the 1909 Act, copyright term begins at the earlier of
       // the registration date and the publication date.
@@ -112,29 +112,29 @@ Rules.section304Analysis = () =>  {
       TotValues.notice_end = TotValues.term_end - 2;
       // If the we're presently before the 304(c) window, then we don't have to worry about 304(d)
 	if (TotValues.notice_begin > TotValues.current_year) {
-        Rules.addFlag('A.i.a');
+        TotRules.addFlag('A.i.a');
        // Following Copyright Office guidance, works copyrighted before 1940 may also be eligible for termination under 304d
        } else if (TotValues.cright_year < 1940) {
-          Rules.addFlag('F.ii');
+          TotRules.addFlag('F.ii');
           TotValues.d_term_begin = TotValues.term_begin + 19;
           TotValues.d_term_end = TotValues.d_term_begin + 5;
           TotValues.d_notice_begin = TotValues.d_term_begin - 10;
           TotValues.d_notice_end = TotValues.d_term_end - 2;
           if (TotValues.cright_year > 1936) {
-            Rules.addFlag('G.i');
+            TotRules.addFlag('G.i');
           }
           if (TotValues.cright_year == 1939) {
-            Rules.addFlag('G.ii.a');
+            TotRules.addFlag('G.ii.a');
           }
           if (TotValues.d_notice_begin > TotValues.current_year) {
             // time traveler flag -- applies where the present day is between
             // the 304(c) and 304(d) notice windows
-            Rules.addFlag('A.iii.a');
+            TotRules.addFlag('A.iii.a');
           } else if (TotValues.d_notice_end < TotValues.current_year) {
-            Rules.addFlag('A.ii.a');
+            TotRules.addFlag('A.ii.a');
           }
        } else if (TotValues.notice_end < TotValues.current_year) {
-         Rules.addFlag('A.ii.a');
+         TotRules.addFlag('A.ii.a');
        } else {
          // Here for clarity / to reflect decision tree structure
          // But note that we set it as the result above.
@@ -143,20 +143,20 @@ Rules.section304Analysis = () =>  {
     }
     if ((TotValues.d_term_begin != undefined)
         && (TotValues.term_begin != undefined)) {
-      Rules.addFlag('E.i');
+      TotRules.addFlag('E.i');
     }
   }
   return result;
 };
 
-Rules.section203Analysis = () =>  {
+TotRules.section203Analysis = () =>  {
   var result = 's2q2a';
   if (typeof TotValues.grant_pub_year !== 'undefined') {
-    Rules.addFlag('F.iv');
+    TotRules.addFlag('F.iv');
   }
   TotValues.triggering_pub_year = TotValues.grant_pub_year || TotValues.pub_year;
   if (TotValues.k_year > 1977) {
-    Rules.addFlag('F.iii');
+    TotRules.addFlag('F.iii');
     if (TotValues.pub_right == 'yes' ) {
       if (TotValues.triggering_pub_year != undefined) {
         TotValues.term_begin = Math.min(TotValues.triggering_pub_year + 35 ,
@@ -173,9 +173,9 @@ Rules.section203Analysis = () =>  {
       TotValues.notice_begin = TotValues.term_begin - 10;
       TotValues.notice_end = TotValues.term_end - 2;
       if (TotValues.notice_begin > TotValues.current_year) {
-        Rules.addFlag('A.i.a');
+        TotRules.addFlag('A.i.a');
       } else if (TotValues.notice_end < TotValues.current_year) {
-        Rules.addFlag('A.ii.a');
+        TotRules.addFlag('A.ii.a');
       }
     }
     if (TotValues.pub_right == 'maybe') {
@@ -188,15 +188,15 @@ Rules.section203Analysis = () =>  {
       TotValues.p_notice_begin = TotValues.p_term_begin - 10;
       TotValues.p_notice_end = TotValues.p_term_end - 2;
       if (TotValues.p_notice_begin > TotValues.current_year) {
-        Rules.addFlag('A.i.a');
+        TotRules.addFlag('A.i.a');
       } else if (TotValues.p_notice_end < TotValues.current_year) {
-        Rules.addFlag('A.ii.a');
+        TotRules.addFlag('A.ii.a');
       }
     }
   }
   if ((TotValues.p_term_begin != undefined)
       && (TotValues.term_begin != undefined)) {
-      Rules.addFlag('E.ii');
+      TotRules.addFlag('E.ii');
   }
   return result;
 };
@@ -208,27 +208,27 @@ Rules.section203Analysis = () =>  {
 
 // When was the work created?
 
-Rules.s1q1a = 's1q1b';
+TotRules.s1q1a = 's1q1b';
 
 // Has the work been published?
 
-Rules.s1q1b = Rules.simpleYesNoRule('work_published',
+TotRules.s1q1b = TotRules.simpleYesNoRule('work_published',
                                     's1q1bi',
                                     's1q1c');
 
 // When was the work first published?
 
-Rules.s1q1bi = 's1q1bii';
+TotRules.s1q1bi = 's1q1bii';
 
 // When was the work first published under the grant?
 // Note that the condition is based on s1q1b, we are inserting this question
 // after 'When was the work first published?' and *then* going on to the
 // questions about registration/notices or not.
 
-Rules.s1q1bii = () =>  {
+TotRules.s1q1bii = () =>  {
   var result = undefined;
   if (TotValues.pub_year < 1923) {
-    result = Rules.conclusion('B.viii');
+    result = TotRules.conclusion('B.viii');
   } else if (TotValues.pub_year < 1990)
     result = 's1q1bi2';
   else {
@@ -239,7 +239,7 @@ Rules.s1q1bii = () =>  {
 
 // Works from 1989 and earlier usually display a copyright notice...
 
-Rules.s1q1bi2 = () =>  {
+TotRules.s1q1bi2 = () =>  {
   var result = undefined;
   if (TotValues.copyright_notice == 'yes') {
     result = 's1q1c';
@@ -247,20 +247,20 @@ Rules.s1q1bi2 = () =>  {
     // The same
     result = 's1q1c';
     if (TotValues.pub_year < 1989) {
-      Rules.addFlag('B.i');
+      TotRules.addFlag('B.i');
     } else {
-      Rules.addFlag('B.ii');
+      TotRules.addFlag('B.ii');
     }
   } else /* maybe */ {
     result = 's1q1c';
-    Rules.addFlag('B.iii');
+    TotRules.addFlag('B.iii');
   }
   return result;
 };
 
 // Has the work been registered with the United State Copyright Office?
 
-Rules.s1q1c = () =>  {
+TotRules.s1q1c = () =>  {
   var result = undefined;
   if (TotValues.work_registered == 'yes') {
     result = 's1q1ci';
@@ -275,10 +275,10 @@ Rules.s1q1c = () =>  {
 
 // When was the work registered with the United States Copyright Office?
 
-Rules.s1q1ci = () =>  {
+TotRules.s1q1ci = () =>  {
   var result = undefined;
   if (TotValues.reg_year < 1923) {
-    result = Rules.conclusion('B.viii');
+    result = TotRules.conclusion('B.viii');
   } else {
     result = 's1q1d';
   }
@@ -288,21 +288,21 @@ Rules.s1q1ci = () =>  {
 // For s1q1d,
 // What is the date of the agreement or transfer? ...
 
-Rules.s1q1d = () =>  {
+TotRules.s1q1d = () =>  {
   var result = undefined;
   if (TotValues.user_inputted_k_year != TotValues.k_year) {
-    Rules.addFlag('H.i');
+    TotRules.addFlag('H.i');
   }
   if ((TotValues.k_year < 1978)
       && ((TotValues.pub_year == undefined)
       && (TotValues.reg_year == undefined))) {
-      result = Rules.conclusion('B.vii');
+      result = TotRules.conclusion('B.vii');
   } else {
     // Intercept the result so we can add encouragement if things look good
-    result = Rules.section304Analysis();
-    if ((result != Rules.jumpToFinish)
-    && Rules.beforeEndOfNoticeWindow()
-    && (! Rules.hasPublicDomainFlags())) {
+    result = TotRules.section304Analysis();
+    if ((result != TotRules.jumpToFinish)
+    && TotRules.beforeEndOfNoticeWindow()
+    && (! TotRules.hasPublicDomainFlags())) {
     TotNotifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
     }
   }
@@ -311,19 +311,19 @@ Rules.s1q1d = () =>  {
 
 // Did the agreement or transfer include the right of publication?
 
-Rules.s1q1f = () =>  {
+TotRules.s1q1f = () =>  {
   // Intercept the result so we can add encouragement if things look good
-  var result = Rules.section203Analysis();
-  if ((result != Rules.jumpToFinish)
-      && Rules.beforeEndOfNoticeWindow()
-      && (! Rules.hasPublicDomainFlags())) {
+  var result = TotRules.section203Analysis();
+  if ((result != TotRules.jumpToFinish)
+      && TotRules.beforeEndOfNoticeWindow()
+      && (! TotRules.hasPublicDomainFlags())) {
     TotNotifications.setEncouragement("Both notice window and copyright status look good, let's get some more details!");
   }
   return result;
 };
 
 
-Rules.section203Analysis;
+TotRules.section203Analysis;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Section 2
@@ -331,10 +331,10 @@ Rules.section203Analysis;
 
 // Is the agreement or transfer you want to terminate part of a last will...
 
-Rules.s2q2a = () =>  {
+TotRules.s2q2a = () =>  {
   var result = undefined;
   if (TotValues.last_will == 'yes') {
-    result = Rules.conclusion('B.iv');
+    result = TotRules.conclusion('B.iv');
   } else {
     if ((TotValues.creation_year > 1977)
     || (((TotValues.pub_year == undefined) || (TotValues.pub_year > 1977))
@@ -350,7 +350,7 @@ Rules.s2q2a = () =>  {
 // Are any of the authors still alive?
 // It's i) because the conditional logic that starts b is included in a
 
-Rules.s2q2bi = () =>  {
+TotRules.s2q2bi = () =>  {
   var result = undefined;
   if (TotValues.any_authors_alive == 'yes') {
     result = 's2q2c'
@@ -362,7 +362,7 @@ Rules.s2q2bi = () =>  {
 
 // What is the year the last surviving author died?
 
-Rules.s2q2bi2 = () =>  {
+TotRules.s2q2bi2 = () =>  {
   var result = undefined;
   // creation_year is always set, pub_year may not be, death will be here
   if (TotValues.creation_year > 1977) {
@@ -375,7 +375,7 @@ Rules.s2q2bi2 = () =>  {
   }
   // pd *will* have been set in the if/else block
   if (TotValues.current_year > TotValues.pd) {
-    result = Rules.conclusion('B.viii');
+    result = TotRules.conclusion('B.viii');
   } else {
     result = 's2q2c';
   }
@@ -384,13 +384,13 @@ Rules.s2q2bi2 = () =>  {
 
 // Was the work created within the scope of the author’s employment?
 
-Rules.s2q2c = () =>  {
+TotRules.s2q2c = () =>  {
   var result = undefined;
   if (TotValues.within_scope_of_employment == 'yes') {
     if (TotValues.creation_year > 1977) {
       result = 's2q2ci';
     } else {
-      result = Rules.conclusion('B.i');
+      result = TotRules.conclusion('B.i');
     }
   } else {
     result = 's2q2d';
@@ -400,23 +400,23 @@ Rules.s2q2c = () =>  {
 
 // Was there an express agreement between you...
 
-Rules.s2q2ci = () =>  {
+TotRules.s2q2ci = () =>  {
   var result = undefined;
    if (TotValues.express_agreement == 'yes') {
     result = 's2q2d';
    } else {
-     result = Rules.conclusion('B.i');
+     result = TotRules.conclusion('B.i');
   }
   return result;
 };
 
 // Was the work created in response to a special order or commission?
 
-Rules.s2q2d = () =>  {
+TotRules.s2q2d = () =>  {
   var result = undefined;
   if (TotValues.special_order == 'yes') {
     if (TotValues.creation_year < 1978) {
-      Rules.addFlag('D.i');
+      TotRules.addFlag('D.i');
       result = 's2q2e';
     } else {
       result = 's2q2di';
@@ -429,11 +429,11 @@ Rules.s2q2d = () =>  {
 
 // Was there a signed written agreement regarding the special order...
 
-Rules.s2q2di = () =>  {
+TotRules.s2q2di = () =>  {
   var result = undefined;
   if (TotValues.signed_written_agreement == 'yes') {
     if (TotValues.creation_year < 1978) {
-      result = Rules.conclusion('B.iii');
+      result = TotRules.conclusion('B.iii');
     } else {
       result = 's2q2dia';
     }
@@ -445,14 +445,14 @@ Rules.s2q2di = () =>  {
 
 // Was the work created for use as one of the following? ...
 
-Rules.s2q2dia = () =>  {
+TotRules.s2q2dia = () =>  {
   var result = undefined;
   if (TotValues.created_as_part_of_motion_picture == 'yes') {
-    result = Rules.conclusion('C.ii');
+    result = TotRules.conclusion('C.ii');
   } else if (TotValues.created_as_part_of_motion_picture == 'no') {
     result = 's2q2e';
   } else /* don't know */ {
-    Rules.addFlag('D.ii');
+    TotRules.addFlag('D.ii');
     result = 's2q2e';
   }
   return result;
@@ -460,33 +460,33 @@ Rules.s2q2dia = () =>  {
 
 // Has the original transfer since been renegotiated or altered?
 
-Rules.s2q2e = () =>  {
+TotRules.s2q2e = () =>  {
   var result = 's2q2f';
   if (TotValues.renego == 'yes') {
-    Rules.addFlag('C.i');
+    TotRules.addFlag('C.i');
   } else if (TotValues.renego == 'no') {
     // Continue
   } else /* don't know */ {
-    Rules.addFlag('C.ii');
+    TotRules.addFlag('C.ii');
   }
   return result;
 };
 
 // Did one or more of the authors or artists enter into the agreement...
 
-Rules.s2q2f = () =>  {
+TotRules.s2q2f = () =>  {
   var result = undefined;
   if (TotValues.authors_entered_agreement == 'yes') {
     if (TotValues.k_year < 1978) {
-      result = Rules.conclusionPDF('A.i-ii');
+      result = TotRules.conclusionPDF('A.i-ii');
     } else /*if (k_year > 1977)*/ {
-      result = Rules.conclusionPDF('A.iii');
+      result = TotRules.conclusionPDF('A.iii');
     }
   } else {
     if (TotValues.k_year < 1978) {
       result = 's2q2fii';
     } else /*if (TotValues.k_year > 1977)*/ {
-      result = Rules.conclusion('B.vi');
+      result = TotRules.conclusion('B.vi');
     }
   }
   return result;
@@ -494,12 +494,12 @@ Rules.s2q2f = () =>  {
 
 // Was the agreement or transfer made by a member of...
 
-Rules.s2q2fii = () =>  {
+TotRules.s2q2fii = () =>  {
   var result = undefined;
   if (TotValues.agreement_by_family_or_executor) {
-    result = Rules.conclusionPDF('A.i-ii');
+    result = TotRules.conclusionPDF('A.i-ii');
   } else {
-    result = Rules.conclusion('B.v');
+    result = TotRules.conclusion('B.v');
   }
   return result
  };

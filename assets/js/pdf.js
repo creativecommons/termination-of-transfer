@@ -77,9 +77,9 @@ PDF.append304Windows = (details) => {
 };
 
 PDF.appendWindows = (details) => {
-  if (Rules.is203()) {
+  if (TotRules.is203()) {
     PDF.append203Windows(details);
-  } else if (Rules.is304()) {
+  } else if (TotRules.is304()) {
     PDF.append304Windows(details);
   }
 };

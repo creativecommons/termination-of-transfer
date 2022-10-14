@@ -401,7 +401,7 @@ TotQuestions.transitionQuestion = (next_question) => {
 
 TotQuestions.nextQuestionID = () =>  {
   var next_question = TotQuestions.current_question;
-  var rule = Rules[TotQuestions.current_question];
+  var rule = TotRules[TotQuestions.current_question];
   if (typeof rule == 'function') {
     next_question = rule();
   } else {
