@@ -26,7 +26,7 @@
 // Visual display of the user's responses
 ////////////////////////////////////////////////////////////////////////////////
 
-var Answers = {};
+const Answers = {};
 
 Answers.resetAnswers = function () {
   jQuery('#answers-table-rows').empty();
