@@ -20,26 +20,26 @@
 // Rendering UI elements for input
 ////////////////////////////////////////////////////////////////////////////////
 
-let Rendering = {};
+const TotRendering = {};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Sections
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.sections = [
+TotRendering.sections = [
   "",
   "First tell us a few things about the work",
   "Now, let’s find out whether the work is eligible for termination",
   "Information about the work",
 ];
 
-Rendering.currentSection = 0;
+TotRendering.currentSection = 0;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Template basics
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.questionTemplate =
+TotRendering.questionTemplate =
   '\
 <form class="question-form">\
   <div class="form-group">\
@@ -48,16 +48,16 @@ Rendering.questionTemplate =
   </div>\
 </form>';
 
-Rendering.createQuestion = () => {
-  return jQuery(Rendering.questionTemplate);
+TotRendering.createQuestion = () => {
+  return jQuery(TotRendering.questionTemplate);
 };
 
-Rendering.common = (config) => {
-  let question = Rendering.createQuestion();
+TotRendering.common = (config) => {
+  let question = TotRendering.createQuestion();
   // If this is a question in a different section, change the section header
   // Section is 1-based, so we can use a simple logical and here.
-  if (config.section && config.section != Rendering.currentSection) {
-    jQuery("#section-title").html(Rendering.sections[config.section]).fadeIn();
+  if (config.section && config.section != TotRendering.currentSection) {
+    jQuery("#section-title").html(TotRendering.sections[config.section]).fadeIn();
   }
   question.find(".question-label").html(config.question);
   if (config.explanation) {
@@ -79,8 +79,8 @@ Rendering.common = (config) => {
 // Multiple choice questions (radio buttons)
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.radio = (config) => {
-  let question = Rendering.common(config);
+TotRendering.radio = (config) => {
+  let question = TotRendering.common(config);
   let form_group = question.find(".form-group");
   let name = `input ${config.variable}`;
   // If we are returning to this via the back button, get the previous value
@@ -107,7 +107,7 @@ Rendering.radio = (config) => {
 // Text input
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.makeTextLengthHandler = (element, min_length, optional) => {
+TotRendering.makeTextLengthHandler = (element, min_length, optional) => {
   return () => {
     let length = element.val().length;
     if ((optional && length == 0) || length >= min_length) {
@@ -118,8 +118,8 @@ Rendering.makeTextLengthHandler = (element, min_length, optional) => {
   };
 };
 
-Rendering.text = (config) => {
-  let question = Rendering.common(config);
+TotRendering.text = (config) => {
+  let question = TotRendering.common(config);
   let form_group = question.find(".form-group");
   let name = "input-" + config.variable;
   let text_field = jQuery(`<input type="text" class="form-control text-question" id="${config.variable}" placeholder="${config.placeholder || ""}" >`
@@ -134,7 +134,7 @@ Rendering.text = (config) => {
   // Ensure next isn't enabled until enough characters are entered
   let min_length = config.min_length || 4;
   let text_field_element = question.find(".text-question");
-  let validator = Rendering.makeTextLengthHandler(
+  let validator = TotRendering.makeTextLengthHandler(
     text_field_element,
     min_length,
     config.optional
@@ -152,8 +152,8 @@ Rendering.text = (config) => {
 // Year input (text subtype)
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.year = (config) => {
-  let question = Rendering.text(config);
+TotRendering.year = (config) => {
+  let question = TotRendering.text(config);
   let text_field = question.find(".text-question");
   TotValidation.allowOnlyNumbers(text_field);
   text_field.prop("maxlength", 4);
@@ -165,26 +165,26 @@ Rendering.year = (config) => {
 // Render html UI from config specification
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.render = (config) => {
+TotRendering.render = (config) => {
   let result = undefined;
   switch (config.input) {
     case "radio":
-      result = Rendering.radio(config);
+      result = TotRendering.radio(config);
       break;
     case "year":
-      result = Rendering.year(config);
+      result = TotRendering.year(config);
       break;
     case "text":
     // Fall through to default
     default:
-      result = Rendering.text(config);
+      result = TotRendering.text(config);
       break;
   }
   return result;
 };
 
-Rendering.transitionTo = (config) => {
-  let question = Rendering.render(config);
+TotRendering.transitionTo = (config) => {
+  let question = TotRendering.render(config);
   jQuery(".question-form").slideUp("fast", () => {
     jQuery(this).remove();
   });

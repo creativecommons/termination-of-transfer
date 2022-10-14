@@ -377,7 +377,7 @@ TotQuestions.start = () =>  {
     .removeClass('hidden');
   jQuery('.no-javascript-alert').addClass('hidden');
   //Navigation.disablePrevious();
-  Rendering.transitionTo(TotQuestions.first_question);
+  TotRendering.transitionTo(TotQuestions.first_question);
 };
 
 TotQuestions.transitionQuestion = (next_question) => {
@@ -395,7 +395,7 @@ TotQuestions.transitionQuestion = (next_question) => {
     if (question['pre']) {
       question.pre();
     }
-    Rendering.transitionTo(question);
+    TotRendering.transitionTo(question);
   }
 };
 
