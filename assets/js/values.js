@@ -57,18 +57,18 @@ let ValuesStack = {};
 ValuesStack._stack = [];
 
 ValuesStack.height = () => {
-  return this._stack.length;
+  return ValuesStack._stack.length;
 };
 
 ValuesStack.push = () => {
   // Handle the date not liking being serialized.
   let now = TotValues.current_date;
-  this._stack.push(TotValues);
+  ValuesStack._stack.push(TotValues);
   // Deep clone
   TotValues = JSON.parse(JSON.stringify(TotValues));
   TotValues.current_date = now;
 };
 
 ValuesStack.pop = () => {
-  TotValues = this._stack.pop();
+  TotValues = ValuesStack._stack.pop();
 };
