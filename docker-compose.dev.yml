@@ -28,7 +28,6 @@ services:
     MARIADB_USER: codex
     MARIADB_PASSWORD: SqlNotTooMuch
   volumes:
-   - ./my.cnf:/etc/mysql/my.cf
    - sql:/var/lib/mysql
   #entrypoint: mysqld_safe --skip-grant-tables --user=mysql
 
