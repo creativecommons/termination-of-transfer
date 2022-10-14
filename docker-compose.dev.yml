@@ -16,7 +16,9 @@ services:
   networks:
     server:
   volumes:
+   - composer-fix.sh:/var/www/html/composer-fix.sh
    - ./:/var/www/html/wp-content/plugins/termination-of-transfer
+  entrypoint: chmod +x composer-fix.sh && ./composer-fix.sh
 
  mariadb:
   image: mariadb
