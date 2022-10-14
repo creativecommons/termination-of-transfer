@@ -34,17 +34,15 @@ TotAnswers.resetAnswers = () => {
 
 TotAnswers.appendAnswer = (myId, label, value) => {
   if (! label) {
-    label = jQuery('#' + myId + '> label').first().text();
+    label = jQuery(`#${myId} > label`).first().text();
   }
   // If the user has gone back and is changing the answer, first remove it
   TotAnswers.removeAnswer(myId);
-  jQuery('#answers-table-rows').append('<tr id="answer-row-' + myId + '"><td>'
-				       + label + '</td><td align="right">'
-				       + value  + '</td></tr>');
+  jQuery('#answers-table-rows').append(`<tr id="answer-row-${myId}><td>${label}</td><td align="right">${label}</td></tr>`);
 };
 
 TotAnswers.removeAnswer = (myId) => {
-  jQuery('#answer-row-' + myId).remove();
+  jQuery(`#answer-row-${myId}`).remove();
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -59,16 +57,12 @@ Notifications.clearAlerts = () => {
 
 Notifications.setAlert = (message) => {
   Notifications.clearAlerts();
-  jQuery('#alert-area').append('<div class="alert alert-warning" role="alert">'
-                               + message
-                               + '</div>');
+  jQuery('#alert-area').append(`<div class="alert alert-warning" role="alert">${message}</div>`);
 };
 
 Notifications.setEncouragement = (message) => {
   Notifications.clearAlerts();
-  jQuery('#alert-area').append('<div class="alert alert-success" role="alert">'
-                               + message
-                               + '</div>');
+  jQuery('#alert-area').append(`<div class="alert alert-success" role="alert">${message}</div>`);
 };
 
 Notifications.displayAnswersHint = () => {
