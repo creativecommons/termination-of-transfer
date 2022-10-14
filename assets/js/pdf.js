@@ -25,7 +25,7 @@ var PDF = {};
 
 PDF.url = jQuery("script[src*='/termination-of-transfer/assets/js/pdf.js']")
 	       .attr('src').replace(/js\/pdf\.js.*$/, '')
-	       + 'ResultPdf.php';
+	       + 'src/ResultPdf.php';
 
 PDF.appendProperty = function (details, key, value) {
   var mapping = {key: key,
