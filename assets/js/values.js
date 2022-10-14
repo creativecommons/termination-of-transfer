@@ -22,7 +22,7 @@
 // Rules consult these values and add their own.
 ////////////////////////////////////////////////////////////////////////////////
 
-const TotValues = {};
+let TotValues = {};
 
 TotValues.reset = () => {
   let now = new Date();
