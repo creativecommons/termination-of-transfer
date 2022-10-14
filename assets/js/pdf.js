@@ -27,7 +27,7 @@ TotPdf.url = `${jQuery(
   "script[src*='/termination-of-transfer/assets/js/pdf.js']"
 )
   .attr("src")
-  .replace(/assets\/js\/pdf\.js.*$/, "")}src/ResultPdf.php`;
+  .replace(/assets\/js\/pdf\.js.*$/, "")}pdf-result.php`;
 
 TotPdf.appendProperty = (details, key, value) => {
   let mapping = { key: key, value: value };
