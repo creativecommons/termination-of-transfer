@@ -27,14 +27,14 @@ TotPdf.url = `${jQuery("script[src*='/termination-of-transfer/assets/js/pdf.js']
 .attr('src').replace(/assets\/js\/pdf\.js.*$/, '')}src/ResultPdf.php`;
 
 TotPdf.appendProperty = (details, key, value) => {
-  var mapping = {key: key,
+  let mapping = {key: key,
                  value: value};
   details.push(mapping);
 };
 
 TotPdf.append203Windows = (details)=> {
-  var notice = '';
-  var termination = '';
+  let notice = '';
+  let termination = '';
 
   if (TotValues.notice_begin != undefined) {
     notice += `${TotValues.notice_begin}-${TotValues.notice_end}`;
@@ -84,7 +84,7 @@ TotPdf.appendWindows = (details) => {
 };
 
 TotPdf.details = () =>  {
-  var details = [];
+  let details = [];
   Object.getOwnPropertyNames(totVarsToTitles).forEach( (key) => {
     if ((TotValues[key] != undefined)
         && (TotValues[key] != '')) {
@@ -96,17 +96,17 @@ TotPdf.details = () =>  {
 };
 
 TotPdf.request = () =>  {
-  var data = {report_timestamp: TotValues.current_date.getTime()/1000,
+  let data = {report_timestamp: TotValues.current_date.getTime()/1000,
               flags: TotValues.flags.sort(), // Sorts inline & returns, so OK here
               conclusion: TotValues.conclusion,
               details: TotPdf.details(),
              };
-  var totform = document.createElement("FORM");
+  let totform = document.createElement("FORM");
   totform.setAttribute("action", TotPdf.url);
   totform.setAttribute("method", "post");
   totform.setAttribute("enctype", "multipart/form-data");
   totform.setAttribute("target", "_blank");
-  var data_field = document.createElement("INPUT");
+  let data_field = document.createElement("INPUT");
   data_field.setAttribute("type", "hidden");
   data_field.setAttribute("name", "data");
   data_field.setAttribute("value", JSON.stringify(data));
