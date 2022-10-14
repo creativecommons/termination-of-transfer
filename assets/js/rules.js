@@ -20,7 +20,7 @@ const TotRules = {};
 
 TotRules.simpleYesNoRule = (variable_id, yesValue, noValue) => {
   return () => {
-    var result = undefined;
+    let result = undefined;
     if (TotValues[variable_id] == "yes") {
       result = yesValue;
     } else {
@@ -60,8 +60,8 @@ TotRules.is304 = () => {
 };
 
 TotRules.hasPublicDomainFlags = () => {
-  var result = false;
-  for (var i = 0; i < TotValues.flags.length; i++) {
+  let result = false;
+  for (let i = 0; i < TotValues.flags.length; i++) {
     if (TotValues.flags[i][0] == "B") {
       result = true;
     }
@@ -86,7 +86,7 @@ TotRules.beforeEndOfNoticeWindow = () => {
 
 TotRules.section304Analysis = () => {
   // Note that this is part of the logic from the section 203 analysis
-  var result = "s1q1f";
+  let result = "s1q1f";
   if (TotValues.k_year < 1978) {
     result = "s2q2a";
     TotRules.addFlag("F.i");
@@ -154,7 +154,7 @@ TotRules.section304Analysis = () => {
 };
 
 TotRules.section203Analysis = () => {
-  var result = "s2q2a";
+  let result = "s2q2a";
   if (typeof TotValues.grant_pub_year !== "undefined") {
     TotRules.addFlag("F.iv");
   }
@@ -236,7 +236,7 @@ TotRules.s1q1bi = "s1q1bii";
 // questions about registration/notices or not.
 
 TotRules.s1q1bii = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.pub_year < 1923) {
     result = TotRules.conclusion("B.viii");
   } else if (TotValues.pub_year < 1990) result = "s1q1bi2";
@@ -249,7 +249,7 @@ TotRules.s1q1bii = () => {
 // Works from 1989 and earlier usually display a copyright notice...
 
 TotRules.s1q1bi2 = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.copyright_notice == "yes") {
     result = "s1q1c";
   } else if (TotValues.copyright_notice == "no") {
@@ -270,7 +270,7 @@ TotRules.s1q1bi2 = () => {
 // Has the work been registered with the United State Copyright Office?
 
 TotRules.s1q1c = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.work_registered == "yes") {
     result = "s1q1ci";
   } else if (TotValues.work_registered == "no") {
@@ -285,7 +285,7 @@ TotRules.s1q1c = () => {
 // When was the work registered with the United States Copyright Office?
 
 TotRules.s1q1ci = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.reg_year < 1923) {
     result = TotRules.conclusion("B.viii");
   } else {
@@ -298,7 +298,7 @@ TotRules.s1q1ci = () => {
 // What is the date of the agreement or transfer? ...
 
 TotRules.s1q1d = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.user_inputted_k_year != TotValues.k_year) {
     TotRules.addFlag("H.i");
   }
@@ -328,7 +328,7 @@ TotRules.s1q1d = () => {
 
 TotRules.s1q1f = () => {
   // Intercept the result so we can add encouragement if things look good
-  var result = TotRules.section203Analysis();
+  let result = TotRules.section203Analysis();
   if (
     result != TotRules.jumpToFinish &&
     TotRules.beforeEndOfNoticeWindow() &&
@@ -350,7 +350,7 @@ TotRules.section203Analysis;
 // Is the agreement or transfer you want to terminate part of a last will...
 
 TotRules.s2q2a = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.last_will == "yes") {
     result = TotRules.conclusion("B.iv");
   } else {
@@ -371,7 +371,7 @@ TotRules.s2q2a = () => {
 // It's i) because the conditional logic that starts b is included in a
 
 TotRules.s2q2bi = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.any_authors_alive == "yes") {
     result = "s2q2c";
   } else {
@@ -383,7 +383,7 @@ TotRules.s2q2bi = () => {
 // What is the year the last surviving author died?
 
 TotRules.s2q2bi2 = () => {
-  var result = undefined;
+  let result = undefined;
   // creation_year is always set, pub_year may not be, death will be here
   if (TotValues.creation_year > 1977) {
     TotValues.pd = TotValues.death + 71;
@@ -404,7 +404,7 @@ TotRules.s2q2bi2 = () => {
 // Was the work created within the scope of the author’s employment?
 
 TotRules.s2q2c = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.within_scope_of_employment == "yes") {
     if (TotValues.creation_year > 1977) {
       result = "s2q2ci";
@@ -420,7 +420,7 @@ TotRules.s2q2c = () => {
 // Was there an express agreement between you...
 
 TotRules.s2q2ci = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.express_agreement == "yes") {
     result = "s2q2d";
   } else {
@@ -432,7 +432,7 @@ TotRules.s2q2ci = () => {
 // Was the work created in response to a special order or commission?
 
 TotRules.s2q2d = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.special_order == "yes") {
     if (TotValues.creation_year < 1978) {
       TotRules.addFlag("D.i");
@@ -449,7 +449,7 @@ TotRules.s2q2d = () => {
 // Was there a signed written agreement regarding the special order...
 
 TotRules.s2q2di = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.signed_written_agreement == "yes") {
     if (TotValues.creation_year < 1978) {
       result = TotRules.conclusion("B.iii");
@@ -465,7 +465,7 @@ TotRules.s2q2di = () => {
 // Was the work created for use as one of the following? ...
 
 TotRules.s2q2dia = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.created_as_part_of_motion_picture == "yes") {
     result = TotRules.conclusion("C.ii");
   } else if (TotValues.created_as_part_of_motion_picture == "no") {
@@ -480,7 +480,7 @@ TotRules.s2q2dia = () => {
 // Has the original transfer since been renegotiated or altered?
 
 TotRules.s2q2e = () => {
-  var result = "s2q2f";
+  let result = "s2q2f";
   if (TotValues.renego == "yes") {
     TotRules.addFlag("C.i");
   } else if (TotValues.renego == "no") {
@@ -494,7 +494,7 @@ TotRules.s2q2e = () => {
 // Did one or more of the authors or artists enter into the agreement...
 
 TotRules.s2q2f = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.authors_entered_agreement == "yes") {
     if (TotValues.k_year < 1978) {
       result = TotRules.conclusionPDF("A.i-ii");
@@ -514,7 +514,7 @@ TotRules.s2q2f = () => {
 // Was the agreement or transfer made by a member of...
 
 TotRules.s2q2fii = () => {
-  var result = undefined;
+  let result = undefined;
   if (TotValues.agreement_by_family_or_executor) {
     result = TotRules.conclusionPDF("A.i-ii");
   } else {
