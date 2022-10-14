@@ -89,7 +89,7 @@ TotRendering.radio = (config) => {
   radio_button_values.forEach((value) => {
     let radio_button = `<label class="radio-inline"><input type="radio" name=${name} value="${value}">${value}</label>`
     if (value == existing_value) {
-      radio_button = `<label class="radio-inline"><input type="radio" name=${name} checked="${checked}" value="${value}">${value}</label>`
+      radio_button = `<label class="radio-inline"><input type="radio" name=${name} checked="checked" value="${value}">${value}</label>`
     }
 
     form_group.append(jQuery(radio_button));
