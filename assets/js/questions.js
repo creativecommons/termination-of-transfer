@@ -146,8 +146,7 @@ TotQuestions.s1q1d = {
     return errors;
   },
   answerDisplayValue: () =>  {
-    return "Effective: " + TotValues.k_year + "<br/>User entered: "
-	   + TotValues.user_inputted_k_year;
+    return `Effective: ${TotValues.k_year} <br/>User entered:  ${TotValues.user_inputted_k_year}`;
   }
 };
 
@@ -281,8 +280,7 @@ TotQuestions.validateAnswer = () =>  {
   } else if (question.type == 'text') {
     // If the text has a minimum length, check it
     if (jQuery('.text-question').val().length < question.min_chars) {
-      result = 'Answer is too short, it must be at least '
-        + question.min_chars + 'characters';
+      result = `Answer is too short, it must be at least ${question.min_chars} characters`;
     }
   }
   // We don't worry about radio buttons
