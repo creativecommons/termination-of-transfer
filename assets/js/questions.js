@@ -64,7 +64,7 @@ TotQuestions.s1q1bi = {
   explanation:'When a work was published can affect its copyright status and factor into the timing of a termination right. Note that "publication" has a particular meaning in U.S. copyright law, as discussed in our <a href="/glossary/#publication_date" target="_blank" title="Termination of Transfer: Glossary">glossary</a>.',
   input: 'year',
   validate: () =>  {
-    return Validation.validDate()
+    return TotValidation.validDate()
       || ((parseInt(jQuery('.text-question').val()) < TotValues.creation_year)
           ? 'The publication year cannot be earlier than the creation year.'
           : false);
@@ -81,7 +81,7 @@ TotQuestions.s1q1bii =  {
   variable: 'grant_pub_year',
   input: 'year',
   validate: () =>  {
-    var errors = Validation.validDate();
+    var errors = TotValidation.validDate();
     if (errors == false) {
       var year = parseInt(jQuery('.text-question').val());
       if (year < TotValues.creation_year) {
@@ -134,7 +134,7 @@ TotQuestions.s1q1d = {
   variable: 'k_year',
   input: 'year',
   validate: () =>  {
-    var errors = Validation.validDate();
+    var errors = TotValidation.validDate();
     if (errors == false) {
         // Stash the user-entered agreement year
         TotValues.user_inputted_k_year = parseInt(jQuery('.text-question').val());
@@ -277,7 +277,7 @@ TotQuestions.validateAnswer = () =>  {
   if (question['validate']) {
     result = question.validate();
   } else if (question.type == 'year') {
-    result = Validation.validDate();
+    result = TotValidation.validDate();
   } else if (question.type == 'text') {
     // If the text has a minimum length, check it
     if (jQuery('.text-question').val().length < question.min_chars) {

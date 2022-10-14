@@ -17,10 +17,10 @@
 */
 
 ////////////////////////////////////////////////////////////////////////////////
-// Validation of values and of UI state
+// TotValidation of values and of UI state
 ////////////////////////////////////////////////////////////////////////////////
 
-var Validation = {};
+const TotValidation = {};
 
 // Naughty. If we're going to monkeypatch we should have a file for these
 
@@ -28,7 +28,7 @@ String.prototype.capitalizeFirstLetter = () => {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-Validation.allowOnlyNumbers = (element) => {
+TotValidation.allowOnlyNumbers = (element) => {
   // http://stackoverflow.com/a/995193
   element.keydown( (e) => {
     // Allow: backspace, delete, tab, escape, enter and .
@@ -50,7 +50,7 @@ Validation.allowOnlyNumbers = (element) => {
 
 // false here means no errors, a string means errors
 
-Validation.validDate = () => {
+TotValidation.validDate = () => {
   var text_field = jQuery('.text-question');
   var date = text_field.val();
   var result = false;

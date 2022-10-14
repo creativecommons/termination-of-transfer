@@ -157,7 +157,7 @@ Rendering.text = (config) => {
 Rendering.year = (config) => {
   var question = Rendering.text(config);
   var text_field = question.find('.text-question');
-  Validation.allowOnlyNumbers(text_field);
+  TotValidation.allowOnlyNumbers(text_field);
   text_field.prop('maxlength', 4);
   text_field.prop('placeholder', '1977');
   return question;
