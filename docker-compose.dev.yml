@@ -7,29 +7,29 @@ services:
   restart: always
   environment:
     WORDPRESS_DEBUG: 1
-    WORDPRESS_DB_HOST: 172.25.0.2
+    WORDPRESS_DB_HOST: 192.168.128.2
     WORDPRESS_DB_NAME: wordpress
     WORDPRESS_DB_PASSWORD: SqlNotTooMuch
     WORDPRESS_DB_USER: codex
   ports:
    - 8701:80
   networks:
-    tot-server:
+    server:
   volumes:
-   - tot-space:/etc/php
+   - ./:/var/www/html/wp-content/plugins/termination-of-transfer
 
  mariadb:
   image: mariadb
   restart: always
   networks:
-    tot-server:
+    server:
   environment:
     MARIADB_ROOT_PASSWORD: NotTooMuch
     MARIADB_USER: codex
     MARIADB_PASSWORD: SqlNotTooMuch
   volumes:
    - ./my.cnf:/etc/mysql/my.cf
-   - tot-sql:/var/lib/mysql
+   - sql:/var/lib/mysql
   #entrypoint: mysqld_safe --skip-grant-tables --user=mysql
 
  phpmyadmin:
@@ -40,12 +40,11 @@ services:
    environment:
     - PMA_ARBITRARY=0
     #- PMA_PORT=3006
-    - PMA_HOST=172.25.0.2
+    - PMA_HOST=192.168.128.2
    networks:
-    tot-server:
+    server:
 
 volumes:
- tot-space:
- tot-sql:
+ sql:
 networks:
-  tot-server:
+  server:
