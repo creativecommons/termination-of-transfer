@@ -37,10 +37,10 @@ Questions.s1q1a = {
   input: 'year',
   pre: function () {
     Navigation.disablePrevious();
-    Notifications.displayAnswersHint();
+    TotNotifications.displayAnswersHint();
   },
   post: function () {
-    Notifications.removeAnswersHint();
+    TotNotifications.removeAnswersHint();
   }
 };
 
@@ -331,10 +331,10 @@ Questions.processAnswer = function () {
 	       || answer;
       TotAnswers.appendAnswer(question.variable, question.question, answer);
     }
-    Notifications.clearAlerts();
+    TotNotifications.clearAlerts();
     result = true;
   } else {
-    Notifications.setAlert(warnings);
+    TotNotifications.setAlert(warnings);
   }
   return result;
 };
@@ -437,7 +437,7 @@ Questions.previousQuestion = function () {
     // Go back
     ValuesStack.pop();
     Questions.transitionQuestion(Values.question_id);
-    Notifications.clearAlerts();
+    TotNotifications.clearAlerts();
     // Clear previous answer
     var previous_question = Questions[Values.question_id];
     TotAnswers.removeAnswer(previous_question.variable);
@@ -450,7 +450,7 @@ Questions.previousQuestion = function () {
 Questions.finish = function () {
   var obj = Questions.getConclusionDetails(Values.conclusion);
   Values.termination_type = obj.title;
-  Notifications.setResultAreaMessage(obj, 'panel-success');
+  TotNotifications.setResultAreaMessage(obj, 'panel-success');
   Navigation.finishQuestions();
   if (Values.conclusion_generate_pdf) {
     PDF.request();

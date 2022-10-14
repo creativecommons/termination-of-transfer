@@ -49,39 +49,39 @@ TotAnswers.removeAnswer = (myId) => {
 // Notifications and other notices
 ////////////////////////////////////////////////////////////////////////////////
 
-var Notifications = {};
+const TotNotifications = {};
 
-Notifications.clearAlerts = () => {
+TotNotifications.clearAlerts = () => {
   jQuery('#alert-area').empty();
 };
 
-Notifications.setAlert = (message) => {
-  Notifications.clearAlerts();
+TotNotifications.setAlert = (message) => {
+  TotNotifications.clearAlerts();
   jQuery('#alert-area').append(`<div class="alert alert-warning" role="alert">${message}</div>`);
 };
 
-Notifications.setEncouragement = (message) => {
-  Notifications.clearAlerts();
+TotNotifications.setEncouragement = (message) => {
+  TotNotifications.clearAlerts();
   jQuery('#alert-area').append(`<div class="alert alert-success" role="alert">${message}</div>`);
 };
 
-Notifications.displayAnswersHint = () => {
+TotNotifications.displayAnswersHint = () => {
   jQuery('#answers-table-rows').append('<tr id="answers-table-row-placeholder"><td>As you respond to the questions we\'ll save the answers here.</td></tr>');
 };
 
-Notifications.removeAnswersHint = () => {
+TotNotifications.removeAnswersHint = () => {
   jQuery('#answers-table-row-placeholder').remove();
 };
 
-Notifications.displayResultArea = () => {
+TotNotifications.displayResultArea = () => {
   jQuery('#result-area').removeClass('hidden');
 };
 
-Notifications.hideResultArea = () => {
+TotNotifications.hideResultArea = () => {
   jQuery('#result-area').addClass('hidden');
 };
 
-Notifications.setResultAreaMessage = function (obj, panelClass) {
+TotNotifications.setResultAreaMessage = function (obj, panelClass) {
   jQuery('#result-area').addClass(panelClass);
   jQuery('#result-area-title').html(obj.title);
   jQuery('#result-area-message').html(obj.description);
@@ -142,13 +142,13 @@ Navigation.showAnswersTable = () => {
 
 Navigation.finishQuestions = () => {
   Navigation.hideQuestions();
-  Notifications.displayResultArea();
+  TotNotifications.displayResultArea();
   Navigation.disableNext();
   jQuery("#button-restart").removeClass('hidden');
 };
 
 Navigation.unfinishQuestions = () => {
   Navigation.showQuestions();
-  Notifications.hideResultArea();
+  TotNotifications.hideResultArea();
   jQuery("#button-restart").addClass('hidden');
 };
