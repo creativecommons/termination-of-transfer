@@ -99,63 +99,63 @@ TotNotifications.setResultAreaMessage = (obj, panelClass) => {
 // Navigation of questions
 ////////////////////////////////////////////////////////////////////////////////
 
-var Navigation = {};
+const TotNavigation = {};
 
-Navigation.progressStack = [];
+let.progressStack = [];
 
 // These return true so we can use them as "handlers" in simpleNextQuestion
 
-Navigation.disableNext = () => {
+let.disableNext = () => {
   jQuery("#button-question-next").prop("disabled", true);
   return true;
 };
 
-Navigation.disablePrevious = () => {
+TotNavigation.disablePrevious = () => {
   jQuery("#button-question-back").prop("disabled", true);
   return true;
 };
 
-Navigation.enableNext = () => {
+TotNavigation.enableNext = () => {
   jQuery("#button-question-next").prop("disabled", false);
   return true;
 };
 
-Navigation.enablePrevious = () => {
+TotNavigation.enablePrevious = () => {
   jQuery("#button-question-back").prop("disabled", false);
   return true;
 };
 
-Navigation.showNextPrevious = () => {
+TotNavigation.showNextPrevious = () => {
   jQuery("#question-progress-buttons").removeClass("hidden");
 };
 
-Navigation.hideQuestions = () => {
+TotNavigation.hideQuestions = () => {
   jQuery("#questionnaire-section").addClass("hidden");
   jQuery(".form-group").addClass("hidden");
 };
 
-Navigation.showQuestions = () => {
+TotNavigation.showQuestions = () => {
   jQuery("#questionnaire-section").removeClass("hidden");
   jQuery(".form-group").removeClass("hidden");
 };
 
-Navigation.hideNoJSWarning = () => {};
+TotNavigation.hideNoJSWarning = () => {};
 
-Navigation.showAnswersTable = () => {
+TotNavigation.showAnswersTable = () => {
   jQuery("#answers-table").removeClass("hidden");
 };
 
 // After this, do not restart the questionnaire, reload the page to restart
 
-Navigation.finishQuestions = () => {
-  Navigation.hideQuestions();
+TotNavigation.finishQuestions = () => {
+  TotNavigation.hideQuestions();
   TotNotifications.displayResultArea();
-  Navigation.disableNext();
+  TotNavigation.disableNext();
   jQuery("#button-restart").removeClass("hidden");
 };
 
-Navigation.unfinishQuestions = () => {
-  Navigation.showQuestions();
+TotNavigation.unfinishQuestions = () => {
+  TotNavigation.showQuestions();
   TotNotifications.hideResultArea();
   jQuery("#button-restart").addClass("hidden");
 };

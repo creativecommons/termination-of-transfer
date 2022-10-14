@@ -37,7 +37,7 @@ TotQuestions.s1q1a = {
   variable: "creation_year",
   input: "year",
   pre: () => {
-    Navigation.disablePrevious();
+    TotNavigation.disablePrevious();
     TotNotifications.displayAnswersHint();
   },
   post: () => {
@@ -54,7 +54,7 @@ TotQuestions.s1q1b = {
   variable: "work_published",
   input: "radio",
   pre: () => {
-    Navigation.enablePrevious();
+    TotNavigation.enablePrevious();
   },
 };
 
@@ -404,7 +404,7 @@ TotQuestions.start = () => {
     "hidden"
   );
   jQuery(".no-javascript-alert").addClass("hidden");
-  //Navigation.disablePrevious();
+  //TotNavigation.disablePrevious();
   TotRendering.transitionTo(TotQuestions.first_question);
 };
 
@@ -462,7 +462,7 @@ TotQuestions.nextQuestion = () => {
 TotQuestions.previousQuestion = () => {
   // If we are going back from *after* the last question, re-enable UI
   if (TotValues.question_id == "finish") {
-    Navigation.unfinishQuestions();
+    TotNavigation.unfinishQuestions();
   }
   // Don't pop past the very first item
   if (ValuesStack.height() > 0) {
@@ -487,7 +487,7 @@ TotQuestions.finish = () => {
   var obj = TotQuestions.getConclusionDetails(TotValues.conclusion);
   TotValues.termination_type = obj.title;
   TotNotifications.setResultAreaMessage(obj, "panel-success");
-  Navigation.finishQuestions();
+  TotNavigation.finishQuestions();
   if (TotValues.conclusion_generate_pdf) {
     TotPdf.request();
   }
@@ -495,9 +495,9 @@ TotQuestions.finish = () => {
 
 TotQuestions.start = () => {
   TotValues.reset();
-  Navigation.showQuestions();
-  Navigation.showAnswersTable();
-  Navigation.showNextPrevious();
+  TotNavigation.showQuestions();
+  TotNavigation.showAnswersTable();
+  TotNavigation.showNextPrevious();
   jQuery("#button-question-next").click(TotQuestions.nextQuestion);
   jQuery("#button-question-back").click(TotQuestions.previousQuestion);
   // When the user presses "return" in a text area, move to next question

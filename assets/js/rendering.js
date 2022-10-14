@@ -68,9 +68,9 @@ TotRendering.common = (config) => {
   // and this isn't an optional value
   // don't let the user continue until they enter a value here.
   if (TotValues[config.variable] === undefined && !config.optional) {
-    Navigation.disableNext();
+    TotNavigation.disableNext();
   } else {
-    Navigation.enableNext();
+    TotNavigation.enableNext();
   }
   return question;
 };
@@ -96,7 +96,7 @@ TotRendering.radio = (config) => {
   });
   // When the user makes a choice, go straight to the next question
   form_group.find(':input[type="radio"]').click(() => {
-    Navigation.enableNext();
+    TotNavigation.enableNext();
     jQuery("#button-question-next").click();
   });
   return question;
@@ -110,9 +110,9 @@ TotRendering.makeTextLengthHandler = (element, min_length, optional) => {
   return () => {
     let length = element.val().length;
     if ((optional && length == 0) || length >= min_length) {
-      Navigation.enableNext();
+      TotNavigation.enableNext();
     } else {
-      Navigation.disableNext();
+      TotNavigation.disableNext();
     }
   };
 };
