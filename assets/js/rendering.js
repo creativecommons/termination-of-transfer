@@ -82,21 +82,17 @@ Rendering.common = (config) => {
 Rendering.radio = (config) => {
   let question = Rendering.common(config);
   let form_group = question.find(".form-group");
-  let name = "input-" + config.variable;
+  let name = `input ${config.variable}`;
   // If we are returning to this via the back button, get the previous value
   let existing_value = TotValues[config.variable];
   let radio_button_values = config.values || ["yes", "no"];
   radio_button_values.forEach((value) => {
-    let radio_button =
-      '<label class="radio-inline"><input type="radio" name=' +
-      name +
-      '" value="' +
-      value +
-      '"';
+    let checked = false
     if (value == existing_value) {
-      radio_button += ' checked="checked"';
+      checked = 'checked';
     }
-    radio_button += ">" + value + "</label>";
+    let radio_button = `<label class="radio-inline"><input type="radio" name=${name} checked="${checked}" value="${value}">${value}</label>`
+
     form_group.append(jQuery(radio_button));
   });
   // When the user makes a choice, go straight to the next question
@@ -126,12 +122,7 @@ Rendering.text = (config) => {
   let question = Rendering.common(config);
   let form_group = question.find(".form-group");
   let name = "input-" + config.variable;
-  let text_field = jQuery(
-    '<input type="text" class="form-control text-question" id="' +
-      config.variable +
-      '" placeholder="' +
-      (config.placeholder || "") +
-      '">'
+  let text_field = jQuery(`<input type="text" class="form-control text-question" id="${config.variable}" placeholder="${config.placeholder || ""}" >`
   );
   form_group.append(text_field);
   // Set the label
