@@ -62,7 +62,7 @@ TotValidation.validDate = () => {
     errors.push("date must be in the past");
   }
   if (errors.length != 0) {
-    result = errors.join().capitalizeFirstLetter() + '.';
+    result =  `${errors.join().capitalizeFirstLetter()}.`;
   }
   return result;
 };
