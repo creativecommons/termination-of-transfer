@@ -86,10 +86,10 @@ PDF.appendWindows = (details) => {
 
 PDF.details = () =>  {
   var details = [];
-  Object.getOwnPropertyNames(varsToTitles).forEach( (key) => {
+  Object.getOwnPropertyNames(totVarsToTitles).forEach( (key) => {
     if ((TotValues[key] != undefined)
         && (TotValues[key] != '')) {
-      PDF.appendProperty(details, varsToTitles[key], TotValues[key]);
+      PDF.appendProperty(details, totVarsToTitles[key], TotValues[key]);
     }
   });
   PDF.appendWindows(details);

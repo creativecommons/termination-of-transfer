@@ -35,7 +35,7 @@ TotValues.reset = () => {
 
 //FIXME: Hello namespace pollution
 
-var varsToTitles = {
+const totVarsToTitles = {
   work_authors: "Author",
   work_title: "Title of Work",
   creation_year: "Creation Year",
