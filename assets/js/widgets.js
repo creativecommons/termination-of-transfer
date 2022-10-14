@@ -81,7 +81,7 @@ TotNotifications.hideResultArea = () => {
   jQuery('#result-area').addClass('hidden');
 };
 
-TotNotifications.setResultAreaMessage = function (obj, panelClass) {
+TotNotifications.setResultAreaMessage = (obj, panelClass) => {
   jQuery('#result-area').addClass(panelClass);
   jQuery('#result-area-title').html(obj.title);
   jQuery('#result-area-message').html(obj.description);
