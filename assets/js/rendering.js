@@ -20,7 +20,7 @@
 // Rendering UI elements for input
 ////////////////////////////////////////////////////////////////////////////////
 
-var Rendering = {};
+let Rendering = {};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Sections
@@ -52,7 +52,7 @@ Rendering.createQuestion = () =>  {
 };
 
 Rendering.common = (config) => {
-  var question = Rendering.createQuestion();
+  let question = Rendering.createQuestion();
   // If this is a question in a different section, change the section header
   // Section is 1-based, so we can use a simple logical and here.
   if (config.section
@@ -81,14 +81,14 @@ Rendering.common = (config) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 Rendering.radio = (config) => {
-  var question = Rendering.common(config);
-  var form_group = question.find('.form-group');
-  var name = 'input-' + config.variable;
+  let question = Rendering.common(config);
+  let form_group = question.find('.form-group');
+  let name = 'input-' + config.variable;
   // If we are returning to this via the back button, get the previous value
-  var existing_value = TotValues[config.variable];
-  var radio_button_values = config.values || ['yes', 'no'];
+  let existing_value = TotValues[config.variable];
+  let radio_button_values = config.values || ['yes', 'no'];
   radio_button_values.forEach( (value) => {
-    var radio_button = '<label class="radio-inline"><input type="radio" name=' + name + '" value="' + value  +'"';
+    let radio_button = '<label class="radio-inline"><input type="radio" name=' + name + '" value="' + value  +'"';
     if (value == existing_value) {
       radio_button += ' checked="checked"';
     }
@@ -109,7 +109,7 @@ Rendering.radio = (config) => {
 
 Rendering.makeTextLengthHandler = (element, min_length, optional) => {
   return () =>  {
-    var length = element.val().length;
+    let length = element.val().length;
     if ((optional && (length == 0))
         || (length >= min_length)) {
       Navigation.enableNext();
@@ -120,25 +120,25 @@ Rendering.makeTextLengthHandler = (element, min_length, optional) => {
 };
 
 Rendering.text = (config) => {
-  var question = Rendering.common(config);
-  var form_group = question.find('.form-group');
-  var name = 'input-' + config.variable;
-  var text_field = jQuery('<input type="text" class="form-control text-question" id="'
+  let question = Rendering.common(config);
+  let form_group = question.find('.form-group');
+  let name = 'input-' + config.variable;
+  let text_field = jQuery('<input type="text" class="form-control text-question" id="'
                      + config.variable +
                      '" placeholder="'
                      + (config.placeholder || '')
                      + '">');
   form_group.append(text_field);
   // Set the label
-  var label = question.find('.question-label').prop('for', name);
+  let label = question.find('.question-label').prop('for', name);
   if (TotValues[config.variable]) {
     form_group.find('text-question').val(TotValues[config.variable]);
   }
-  var existing_value = TotValues[config.variable];
+  let existing_value = TotValues[config.variable];
   // Ensure next isn't enabled until enough characters are entered
-  var min_length = config.min_length || 4;
-  var text_field_element = question.find('.text-question');
-  var validator = Rendering.makeTextLengthHandler(text_field_element,
+  let min_length = config.min_length || 4;
+  let text_field_element = question.find('.text-question');
+  let validator = Rendering.makeTextLengthHandler(text_field_element,
                                                   min_length,
                                                   config.optional);
   text_field_element.on('keyup', validator);
@@ -155,8 +155,8 @@ Rendering.text = (config) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 Rendering.year = (config) => {
-  var question = Rendering.text(config);
-  var text_field = question.find('.text-question');
+  let question = Rendering.text(config);
+  let text_field = question.find('.text-question');
   TotValidation.allowOnlyNumbers(text_field);
   text_field.prop('maxlength', 4);
   text_field.prop('placeholder', '1977');
@@ -168,7 +168,7 @@ Rendering.year = (config) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 Rendering.render = (config) => {
-  var result = undefined;
+  let result = undefined;
   switch (config.input)  {
   case 'radio':
     result = Rendering.radio(config);
@@ -186,7 +186,7 @@ Rendering.render = (config) => {
 };
 
 Rendering.transitionTo = (config) => {
-  var question = Rendering.render(config);
+  let question = Rendering.render(config);
   jQuery('.question-form').slideUp("fast",
                               () =>  {
                                 jQuery(this).remove();
