@@ -21,6 +21,11 @@ use CreativeCommons_TOT\ResultPdf;
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$result = new ResultPdf();
-$result->init();
-return $result->generatePdf();
+function cc_tot_pdf_result() 
+{
+    $result = new ResultPdf();
+    $result->init();
+    return $result->generatePdf();
+}
+
+cc_tot_pdf_result();
