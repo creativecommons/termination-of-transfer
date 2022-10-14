@@ -47,11 +47,11 @@ Rendering.questionTemplate = '\
   </div>\
 </form>';
 
-Rendering.createQuestion = function () {
+Rendering.createQuestion = () =>  {
   return jQuery(Rendering.questionTemplate);
 };
 
-Rendering.common = function (config) {
+Rendering.common = (config) => {
   var question = Rendering.createQuestion();
   // If this is a question in a different section, change the section header
   // Section is 1-based, so we can use a simple logical and here.
@@ -96,7 +96,7 @@ Rendering.radio = function (config) {
     form_group.append(jQuery(radio_button));
   });
   // When the user makes a choice, go straight to the next question
-  form_group.find(':input[type="radio"]').click(function () {
+  form_group.find(':input[type="radio"]').click(() =>  {
     Navigation.enableNext();
     jQuery('#button-question-next').click();
   });
@@ -107,8 +107,8 @@ Rendering.radio = function (config) {
 // Text input
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.makeTextLengthHandler = function (element, min_length, optional) {
-  return function () {
+Rendering.makeTextLengthHandler = (element, min_length, optional) => {
+  return () =>  {
     var length = element.val().length;
     if ((optional && (length == 0))
         || (length >= min_length)) {
@@ -119,7 +119,7 @@ Rendering.makeTextLengthHandler = function (element, min_length, optional) {
   };
 };
 
-Rendering.text = function (config) {
+Rendering.text = (config) => {
   var question = Rendering.common(config);
   var form_group = question.find('.form-group');
   var name = 'input-' + config.variable;
@@ -154,7 +154,7 @@ Rendering.text = function (config) {
 // Year input (text subtype)
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.year = function (config) {
+Rendering.year = (config) => {
   var question = Rendering.text(config);
   var text_field = question.find('.text-question');
   Validation.allowOnlyNumbers(text_field);
@@ -167,7 +167,7 @@ Rendering.year = function (config) {
 // Render html UI from config specification
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.render = function (config) {
+Rendering.render = (config) => {
   var result = undefined;
   switch (config.input)  {
   case 'radio':
@@ -185,10 +185,10 @@ Rendering.render = function (config) {
   return result;
 };
 
-Rendering.transitionTo = function (config) {
+Rendering.transitionTo = (config) => {
   var question = Rendering.render(config);
   jQuery('.question-form').slideUp("fast",
-                              function () {
+                              () =>  {
                                 jQuery(this).remove();
                               });
   jQuery('#question-rendering-area').append(question);

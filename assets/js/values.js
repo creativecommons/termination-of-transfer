@@ -24,7 +24,7 @@
 
 var Values = {};
 
-Values.reset = function () {
+Values.reset = () =>  {
   var now = new Date();
   Values = {
     current_date: now,
@@ -56,11 +56,11 @@ var ValuesStack = {};
 
 ValuesStack._stack = [];
 
-ValuesStack.height = function () {
+ValuesStack.height = () =>  {
   return this._stack.length;
 };
 
-ValuesStack.push = function () {
+ValuesStack.push = () =>  {
   // Handle the date not liking being serialized.
   var now = Values.current_date;
   this._stack.push(Values);
@@ -69,6 +69,6 @@ ValuesStack.push = function () {
   Values.current_date = now;
 };
 
-ValuesStack.pop = function () {
+ValuesStack.pop = () =>  {
   Values = this._stack.pop();
 };

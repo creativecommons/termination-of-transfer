@@ -19,8 +19,8 @@
 
 var Rules = {};
 
-Rules.simpleYesNoRule = function (variable_id, yesValue, noValue) {
-  return function () {
+Rules.simpleYesNoRule = (variable_id, yesValue, noValue) => {
+  return () =>  {
     var result = undefined;
     if (Values[variable_id] == 'yes') {
       result = yesValue;
@@ -33,18 +33,18 @@ Rules.simpleYesNoRule = function (variable_id, yesValue, noValue) {
 
 Rules.jumpToFinish = 'finish';
 
-Rules.conclusion = function (conclusion) {
+Rules.conclusion = (conclusion) => {
   Values.conclusion = conclusion;
   return Rules.jumpToFinish;
 };
 
-Rules.conclusionPDF = function (conclusion) {
+Rules.conclusionPDF = (conclusion) => {
   Rules.conclusion(conclusion);
   Values.conclusion_generate_pdf = true;
   return Rules.jumpToFinish;
 };
 
-Rules.addFlag = function(flag) {
+Rules.addFlag = (flag) => {
   Values.flags.push(flag);
 };
 
@@ -52,15 +52,15 @@ Rules.addFlag = function(flag) {
 // Calculated/inferred properties
 ////////////////////////////////////////////////////////////////////////////////
 
-Rules.is203 = function () {
+Rules.is203 = () =>  {
   return (Values.conclusion == "A.iii");
 };
 
-Rules.is304 = function () {
+Rules.is304 = () =>  {
   return (['A.i', 'A.ii', 'A.i-ii'].indexOf(Values.conclusion) > -1);
 };
 
-Rules.hasPublicDomainFlags = function () {
+Rules.hasPublicDomainFlags = () =>  {
   var result = false;
   for (var i = 0; i < Values.flags.length; i++) {
     if (Values.flags[i][0] == 'B') {
@@ -70,7 +70,7 @@ Rules.hasPublicDomainFlags = function () {
   return result;
 };
 
-Rules.beforeEndOfNoticeWindow = function () {
+Rules.beforeEndOfNoticeWindow = () =>  {
   return ((Values.notice_end != undefined)
       && (Values.notice_end >= Values.current_year))
     || ((Values.d_notice_end != undefined)
@@ -83,7 +83,7 @@ Rules.beforeEndOfNoticeWindow = function () {
 // Section N Analyses
 ////////////////////////////////////////////////////////////////////////////////
 
-Rules.section304Analysis = function () {
+Rules.section304Analysis = () =>  {
   // Note that this is part of the logic from the section 203 analysis
   var result = 's1q1f';
   if (Values.k_year < 1978) {
@@ -149,7 +149,7 @@ Rules.section304Analysis = function () {
   return result;
 };
 
-Rules.section203Analysis = function () {
+Rules.section203Analysis = () =>  {
   var result = 's2q2a';
   if (typeof Values.grant_pub_year !== 'undefined') {
     Rules.addFlag('F.iv');
@@ -225,7 +225,7 @@ Rules.s1q1bi = 's1q1bii';
 // after 'When was the work first published?' and *then* going on to the
 // questions about registration/notices or not.
 
-Rules.s1q1bii = function () {
+Rules.s1q1bii = () =>  {
   var result = undefined;
   if (Values.pub_year < 1923) {
     result = Rules.conclusion('B.viii');
@@ -239,7 +239,7 @@ Rules.s1q1bii = function () {
 
 // Works from 1989 and earlier usually display a copyright notice...
 
-Rules.s1q1bi2 = function () {
+Rules.s1q1bi2 = () =>  {
   var result = undefined;
   if (Values.copyright_notice == 'yes') {
     result = 's1q1c';
@@ -260,7 +260,7 @@ Rules.s1q1bi2 = function () {
 
 // Has the work been registered with the United State Copyright Office?
 
-Rules.s1q1c = function () {
+Rules.s1q1c = () =>  {
   var result = undefined;
   if (Values.work_registered == 'yes') {
     result = 's1q1ci';
@@ -275,7 +275,7 @@ Rules.s1q1c = function () {
 
 // When was the work registered with the United States Copyright Office?
 
-Rules.s1q1ci = function () {
+Rules.s1q1ci = () =>  {
   var result = undefined;
   if (Values.reg_year < 1923) {
     result = Rules.conclusion('B.viii');
@@ -288,7 +288,7 @@ Rules.s1q1ci = function () {
 // For s1q1d,
 // What is the date of the agreement or transfer? ...
 
-Rules.s1q1d = function () {
+Rules.s1q1d = () =>  {
   var result = undefined;
   if (Values.user_inputted_k_year != Values.k_year) {
     Rules.addFlag('H.i');
@@ -311,7 +311,7 @@ Rules.s1q1d = function () {
 
 // Did the agreement or transfer include the right of publication?
 
-Rules.s1q1f = function () {
+Rules.s1q1f = () =>  {
   // Intercept the result so we can add encouragement if things look good
   var result = Rules.section203Analysis();
   if ((result != Rules.jumpToFinish)
@@ -331,7 +331,7 @@ Rules.section203Analysis;
 
 // Is the agreement or transfer you want to terminate part of a last will...
 
-Rules.s2q2a = function () {
+Rules.s2q2a = () =>  {
   var result = undefined;
   if (Values.last_will == 'yes') {
     result = Rules.conclusion('B.iv');
@@ -350,7 +350,7 @@ Rules.s2q2a = function () {
 // Are any of the authors still alive?
 // It's i) because the conditional logic that starts b is included in a
 
-Rules.s2q2bi = function () {
+Rules.s2q2bi = () =>  {
   var result = undefined;
   if (Values.any_authors_alive == 'yes') {
     result = 's2q2c'
@@ -362,7 +362,7 @@ Rules.s2q2bi = function () {
 
 // What is the year the last surviving author died?
 
-Rules.s2q2bi2 = function () {
+Rules.s2q2bi2 = () =>  {
   var result = undefined;
   // creation_year is always set, pub_year may not be, death will be here
   if (Values.creation_year > 1977) {
@@ -384,7 +384,7 @@ Rules.s2q2bi2 = function () {
 
 // Was the work created within the scope of the author’s employment?
 
-Rules.s2q2c = function () {
+Rules.s2q2c = () =>  {
   var result = undefined;
   if (Values.within_scope_of_employment == 'yes') {
     if (Values.creation_year > 1977) {
@@ -400,7 +400,7 @@ Rules.s2q2c = function () {
 
 // Was there an express agreement between you...
 
-Rules.s2q2ci = function () {
+Rules.s2q2ci = () =>  {
   var result = undefined;
    if (Values.express_agreement == 'yes') {
     result = 's2q2d';
@@ -412,7 +412,7 @@ Rules.s2q2ci = function () {
 
 // Was the work created in response to a special order or commission?
 
-Rules.s2q2d = function () {
+Rules.s2q2d = () =>  {
   var result = undefined;
   if (Values.special_order == 'yes') {
     if (Values.creation_year < 1978) {
@@ -429,7 +429,7 @@ Rules.s2q2d = function () {
 
 // Was there a signed written agreement regarding the special order...
 
-Rules.s2q2di = function () {
+Rules.s2q2di = () =>  {
   var result = undefined;
   if (Values.signed_written_agreement == 'yes') {
     if (Values.creation_year < 1978) {
@@ -445,7 +445,7 @@ Rules.s2q2di = function () {
 
 // Was the work created for use as one of the following? ...
 
-Rules.s2q2dia = function () {
+Rules.s2q2dia = () =>  {
   var result = undefined;
   if (Values.created_as_part_of_motion_picture == 'yes') {
     result = Rules.conclusion('C.ii');
@@ -460,7 +460,7 @@ Rules.s2q2dia = function () {
 
 // Has the original transfer since been renegotiated or altered?
 
-Rules.s2q2e = function () {
+Rules.s2q2e = () =>  {
   var result = 's2q2f';
   if (Values.renego == 'yes') {
     Rules.addFlag('C.i');
@@ -474,7 +474,7 @@ Rules.s2q2e = function () {
 
 // Did one or more of the authors or artists enter into the agreement...
 
-Rules.s2q2f = function () {
+Rules.s2q2f = () =>  {
   var result = undefined;
   if (Values.authors_entered_agreement == 'yes') {
     if (Values.k_year < 1978) {
@@ -494,7 +494,7 @@ Rules.s2q2f = function () {
 
 // Was the agreement or transfer made by a member of...
 
-Rules.s2q2fii = function () {
+Rules.s2q2fii = () =>  {
   var result = undefined;
   if (Values.agreement_by_family_or_executor) {
     result = Rules.conclusionPDF('A.i-ii');

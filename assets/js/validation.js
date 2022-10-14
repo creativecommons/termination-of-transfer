@@ -24,13 +24,13 @@ var Validation = {};
 
 // Naughty. If we're going to monkeypatch we should have a file for these
 
-String.prototype.capitalizeFirstLetter = function() {
+String.prototype.capitalizeFirstLetter = () => {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-Validation.allowOnlyNumbers = function (element) {
+Validation.allowOnlyNumbers = (element) => {
   // http://stackoverflow.com/a/995193
-  element.keydown(function (e) {
+  element.keydown( (e) => {
     // Allow: backspace, delete, tab, escape, enter and .
     if (jQuery.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
         // Allow: Ctrl+A, Command+A
@@ -50,7 +50,7 @@ Validation.allowOnlyNumbers = function (element) {
 
 // false here means no errors, a string means errors
 
-Validation.validDate = function () {
+Validation.validDate = () => {
   var text_field = jQuery('.text-question');
   var date = text_field.val();
   var result = false;
