@@ -25,24 +25,28 @@ const TotValidation = {};
 // Naughty. If we're going to monkeypatch we should have a file for these
 
 String.prototype.capitalizeFirstLetter = () => {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
 
 TotValidation.allowOnlyNumbers = (element) => {
   // http://stackoverflow.com/a/995193
-  element.keydown( (e) => {
+  element.keydown((e) => {
     // Allow: backspace, delete, tab, escape, enter and .
-    if (jQuery.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-        // Allow: Ctrl+A, Command+A
-        (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) ||
-        // Allow: home, end, left, right, down, up
-        (e.keyCode >= 35 && e.keyCode <= 40)) {
+    if (
+      jQuery.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+      // Allow: Ctrl+A, Command+A
+      (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+      // Allow: home, end, left, right, down, up
+      (e.keyCode >= 35 && e.keyCode <= 40)
+    ) {
       // let it happen, don't do anything
       return;
     }
     // Ensure that it is a number and stop the keypress
-    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57))
-        && (e.keyCode < 96 || e.keyCode > 105)) {
+    if (
+      (e.shiftKey || e.keyCode < 48 || e.keyCode > 57) &&
+      (e.keyCode < 96 || e.keyCode > 105)
+    ) {
       e.preventDefault();
     }
   });
@@ -51,18 +55,18 @@ TotValidation.allowOnlyNumbers = (element) => {
 // false here means no errors, a string means errors
 
 TotValidation.validDate = () => {
-  var text_field = jQuery('.text-question');
+  var text_field = jQuery(".text-question");
   var date = text_field.val();
   var result = false;
   var errors = [];
-  if (! date.match(/[0-9]{4}/)) {
+  if (!date.match(/[0-9]{4}/)) {
     errors.push("date must be four digits");
   }
   if (parseInt(date) > TotValues.current_year) {
     errors.push("date must be in the past");
   }
   if (errors.length != 0) {
-    result =  `${errors.join().capitalizeFirstLetter()}.`;
+    result = `${errors.join().capitalizeFirstLetter()}.`;
   }
   return result;
 };
