@@ -101,11 +101,11 @@ TotNotifications.setResultAreaMessage = (obj, panelClass) => {
 
 const TotNavigation = {};
 
-let.progressStack = [];
+let progressStack = [];
 
 // These return true so we can use them as "handlers" in simpleNextQuestion
 
-let.disableNext = () => {
+let disableNext = () => {
   jQuery("#button-question-next").prop("disabled", true);
   return true;
 };
