@@ -27,10 +27,10 @@ let Rendering = {};
 ////////////////////////////////////////////////////////////////////////////////
 
 Rendering.sections = [
-  '',
-  'First tell us a few things about the work',
-  'Now, let’s find out whether the work is eligible for termination',
-  'Information about the work'
+  "",
+  "First tell us a few things about the work",
+  "Now, let’s find out whether the work is eligible for termination",
+  "Information about the work",
 ];
 
 Rendering.currentSection = 0;
@@ -39,7 +39,8 @@ Rendering.currentSection = 0;
 // Template basics
 ////////////////////////////////////////////////////////////////////////////////
 
-Rendering.questionTemplate = '\
+Rendering.questionTemplate =
+  '\
 <form class="question-form">\
   <div class="form-group">\
     <label class="question-label"></label><br>\
@@ -47,7 +48,7 @@ Rendering.questionTemplate = '\
   </div>\
 </form>';
 
-Rendering.createQuestion = () =>  {
+Rendering.createQuestion = () => {
   return jQuery(Rendering.questionTemplate);
 };
 
@@ -55,20 +56,18 @@ Rendering.common = (config) => {
   let question = Rendering.createQuestion();
   // If this is a question in a different section, change the section header
   // Section is 1-based, so we can use a simple logical and here.
-  if (config.section
-      && (config.section != Rendering.currentSection)) {
-    jQuery('#section-title').html(Rendering.sections[config.section]).fadeIn();
+  if (config.section && config.section != Rendering.currentSection) {
+    jQuery("#section-title").html(Rendering.sections[config.section]).fadeIn();
   }
-  question.find('.question-label').html(config.question);
+  question.find(".question-label").html(config.question);
   if (config.explanation) {
-    question.find('.help-block').html(config.explanation);
+    question.find(".help-block").html(config.explanation);
   }
   question.css("display", "none");
   // If we're entering this value for the first time (not via the back button)
   // and this isn't an optional value
   // don't let the user continue until they enter a value here.
-  if((TotValues[config.variable] === undefined)
-     && (! config.optional)) {
+  if (TotValues[config.variable] === undefined && !config.optional) {
     Navigation.disableNext();
   } else {
     Navigation.enableNext();
@@ -82,23 +81,28 @@ Rendering.common = (config) => {
 
 Rendering.radio = (config) => {
   let question = Rendering.common(config);
-  let form_group = question.find('.form-group');
-  let name = 'input-' + config.variable;
+  let form_group = question.find(".form-group");
+  let name = "input-" + config.variable;
   // If we are returning to this via the back button, get the previous value
   let existing_value = TotValues[config.variable];
-  let radio_button_values = config.values || ['yes', 'no'];
-  radio_button_values.forEach( (value) => {
-    let radio_button = '<label class="radio-inline"><input type="radio" name=' + name + '" value="' + value  +'"';
+  let radio_button_values = config.values || ["yes", "no"];
+  radio_button_values.forEach((value) => {
+    let radio_button =
+      '<label class="radio-inline"><input type="radio" name=' +
+      name +
+      '" value="' +
+      value +
+      '"';
     if (value == existing_value) {
       radio_button += ' checked="checked"';
     }
-    radio_button += '>' + value +'</label>';
+    radio_button += ">" + value + "</label>";
     form_group.append(jQuery(radio_button));
   });
   // When the user makes a choice, go straight to the next question
-  form_group.find(':input[type="radio"]').click(() =>  {
+  form_group.find(':input[type="radio"]').click(() => {
     Navigation.enableNext();
-    jQuery('#button-question-next').click();
+    jQuery("#button-question-next").click();
   });
   return question;
 };
@@ -108,10 +112,9 @@ Rendering.radio = (config) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 Rendering.makeTextLengthHandler = (element, min_length, optional) => {
-  return () =>  {
+  return () => {
     let length = element.val().length;
-    if ((optional && (length == 0))
-        || (length >= min_length)) {
+    if ((optional && length == 0) || length >= min_length) {
       Navigation.enableNext();
     } else {
       Navigation.disableNext();
@@ -121,28 +124,32 @@ Rendering.makeTextLengthHandler = (element, min_length, optional) => {
 
 Rendering.text = (config) => {
   let question = Rendering.common(config);
-  let form_group = question.find('.form-group');
-  let name = 'input-' + config.variable;
-  let text_field = jQuery('<input type="text" class="form-control text-question" id="'
-                     + config.variable +
-                     '" placeholder="'
-                     + (config.placeholder || '')
-                     + '">');
+  let form_group = question.find(".form-group");
+  let name = "input-" + config.variable;
+  let text_field = jQuery(
+    '<input type="text" class="form-control text-question" id="' +
+      config.variable +
+      '" placeholder="' +
+      (config.placeholder || "") +
+      '">'
+  );
   form_group.append(text_field);
   // Set the label
-  let label = question.find('.question-label').prop('for', name);
+  let label = question.find(".question-label").prop("for", name);
   if (TotValues[config.variable]) {
-    form_group.find('text-question').val(TotValues[config.variable]);
+    form_group.find("text-question").val(TotValues[config.variable]);
   }
   let existing_value = TotValues[config.variable];
   // Ensure next isn't enabled until enough characters are entered
   let min_length = config.min_length || 4;
-  let text_field_element = question.find('.text-question');
-  let validator = Rendering.makeTextLengthHandler(text_field_element,
-                                                  min_length,
-                                                  config.optional);
-  text_field_element.on('keyup', validator);
-  text_field_element.on('change', validator);
+  let text_field_element = question.find(".text-question");
+  let validator = Rendering.makeTextLengthHandler(
+    text_field_element,
+    min_length,
+    config.optional
+  );
+  text_field_element.on("keyup", validator);
+  text_field_element.on("change", validator);
   // If we are returning to the field and the value has already been set, use it
   if (existing_value !== undefined) {
     text_field.val(TotValues[config.variable]);
@@ -156,10 +163,10 @@ Rendering.text = (config) => {
 
 Rendering.year = (config) => {
   let question = Rendering.text(config);
-  let text_field = question.find('.text-question');
+  let text_field = question.find(".text-question");
   TotValidation.allowOnlyNumbers(text_field);
-  text_field.prop('maxlength', 4);
-  text_field.prop('placeholder', '1977');
+  text_field.prop("maxlength", 4);
+  text_field.prop("placeholder", "1977");
   return question;
 };
 
@@ -169,28 +176,27 @@ Rendering.year = (config) => {
 
 Rendering.render = (config) => {
   let result = undefined;
-  switch (config.input)  {
-  case 'radio':
-    result = Rendering.radio(config);
-    break;
-  case 'year':
-    result = Rendering.year(config);
-    break;
-  case 'text':
+  switch (config.input) {
+    case "radio":
+      result = Rendering.radio(config);
+      break;
+    case "year":
+      result = Rendering.year(config);
+      break;
+    case "text":
     // Fall through to default
-  default:
-    result = Rendering.text(config);
-    break;
+    default:
+      result = Rendering.text(config);
+      break;
   }
   return result;
 };
 
 Rendering.transitionTo = (config) => {
   let question = Rendering.render(config);
-  jQuery('.question-form').slideUp("fast",
-                              () =>  {
-                                jQuery(this).remove();
-                              });
-  jQuery('#question-rendering-area').append(question);
+  jQuery(".question-form").slideUp("fast", () => {
+    jQuery(this).remove();
+  });
+  jQuery("#question-rendering-area").append(question);
   question.slideDown("fast");
 };
