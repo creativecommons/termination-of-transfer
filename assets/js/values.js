@@ -25,7 +25,7 @@
 const TotValues = {};
 
 TotValues.reset = () => {
-  var now = new Date();
+  let now = new Date();
   TotValues = {
     current_date: now,
     current_year: now.getFullYear(),
@@ -52,7 +52,7 @@ const totVarsToTitles = {
   //'': 'Grantor',
 };
 
-var ValuesStack = {};
+let ValuesStack = {};
 
 ValuesStack._stack = [];
 
@@ -62,7 +62,7 @@ ValuesStack.height = () => {
 
 ValuesStack.push = () => {
   // Handle the date not liking being serialized.
-  var now = TotValues.current_date;
+  let now = TotValues.current_date;
   this._stack.push(TotValues);
   // Deep clone
   TotValues = JSON.parse(JSON.stringify(TotValues));
