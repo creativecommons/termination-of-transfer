@@ -489,7 +489,7 @@ TotQuestions.finish = () => {
   TotNotifications.setResultAreaMessage(obj, "panel-success");
   Navigation.finishQuestions();
   if (TotValues.conclusion_generate_pdf) {
-    PDF.request();
+    TotPdf.request();
   }
 };
 

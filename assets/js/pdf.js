@@ -21,19 +21,19 @@
 // (browser-side data preparation and call to server)
 ////////////////////////////////////////////////////////////////////////////////
 
-var PDF = {};
+const TotPdf = {};
 
-PDF.url = jQuery("script[src*='/termination-of-transfer/assets/js/pdf.js']")
+TotPdf.url = jQuery("script[src*='/termination-of-transfer/assets/js/pdf.js']")
 	       .attr('src').replace(/assets\/js\/pdf\.js.*$/, '')
 	       + 'src/ResultPdf.php';
 
-PDF.appendProperty = (details, key, value) => {
+TotPdf.appendProperty = (details, key, value) => {
   var mapping = {key: key,
                  value: value};
   details.push(mapping);
 };
 
-PDF.append203Windows = (details)=> {
+TotPdf.append203Windows = (details)=> {
   var notice = '';
   var termination = '';
 
@@ -51,59 +51,59 @@ PDF.append203Windows = (details)=> {
     termination += TotValues.p_term_begin + '-' + TotValues.p_term_end;
   }
 
-  PDF.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a>', notice);
-  PDF.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a>', termination);
+  TotPdf.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a>', notice);
+  TotPdf.appendProperty(details, '&sect; 203 <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a>', termination);
 };
 
-PDF.append304Windows = (details) => {
-  PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
+TotPdf.append304Windows = (details) => {
+  TotPdf.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
                      TotValues.notice_begin);
-  PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
+  TotPdf.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
                      TotValues.notice_end);
-  PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
+  TotPdf.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
                      TotValues.term_begin);
-  PDF.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
+  TotPdf.appendProperty(details, '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
                      TotValues.term_end);
   if (TotValues.d_notice_begin != undefined) {
-    PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
+    TotPdf.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
                        TotValues.d_notice_begin);
-    PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
+    TotPdf.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
                        TotValues.d_notice_end);
-    PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
+    TotPdf.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
                        TotValues.d_term_begin);
-    PDF.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
+    TotPdf.appendProperty(details, '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
                        TotValues.d_term_end);
   }
 };
 
-PDF.appendWindows = (details) => {
+TotPdf.appendWindows = (details) => {
   if (TotRules.is203()) {
-    PDF.append203Windows(details);
+    TotPdf.append203Windows(details);
   } else if (TotRules.is304()) {
-    PDF.append304Windows(details);
+    TotPdf.append304Windows(details);
   }
 };
 
-PDF.details = () =>  {
+TotPdf.details = () =>  {
   var details = [];
   Object.getOwnPropertyNames(totVarsToTitles).forEach( (key) => {
     if ((TotValues[key] != undefined)
         && (TotValues[key] != '')) {
-      PDF.appendProperty(details, totVarsToTitles[key], TotValues[key]);
+      TotPdf.appendProperty(details, totVarsToTitles[key], TotValues[key]);
     }
   });
-  PDF.appendWindows(details);
+  TotPdf.appendWindows(details);
   return details;
 };
 
-PDF.request = () =>  {
+TotPdf.request = () =>  {
   var data = {report_timestamp: TotValues.current_date.getTime()/1000,
               flags: TotValues.flags.sort(), // Sorts inline & returns, so OK here
               conclusion: TotValues.conclusion,
-              details: PDF.details(),
+              details: TotPdf.details(),
              };
   var totform = document.createElement("FORM");
-  totform.setAttribute("action", PDF.url);
+  totform.setAttribute("action", TotPdf.url);
   totform.setAttribute("method", "post");
   totform.setAttribute("enctype", "multipart/form-data");
   totform.setAttribute("target", "_blank");
