@@ -41,6 +41,9 @@ class ResultPdf
 
     protected $conclusion_description;
 
+    /**@var String path where the plugin is installed */
+    protected $plugin_path;
+
     public function __construct()
     {
         ////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +53,7 @@ class ResultPdf
         if (! isset($_POST['data'])) {
             exit('No data provided.');
         }
+        $this->plugin_path = plugin_dir_path(__DIR__);
     }
 
     public function init()
@@ -90,7 +94,7 @@ class ResultPdf
 
     public function flagTitleAndDescription ($spec)
     {
-        $results_json = file_get_contents(\dirname(__DIR__ ). '/js/results.json');
+        $results_json = file_get_contents($this->plugin_path. 'js/results.json');
         $this->results_strings = json_decode($results_json, true);
         $path = explode('.', $spec);
         // A, B, C, D
@@ -133,14 +137,14 @@ class ResultPdf
         $now_timestamp = intval($this->data['report_timestamp']);
 
         $smarty = new Smarty;
-        $smarty->setCompileDir(\dirname(__DIR__) . '/../templates_c');
+        $smarty->setCompileDir($this->plugin_path . 'templates_c');
         $smarty->assign('date', date('jS F Y', $now_timestamp));
         $smarty->assign('flags', $this->flags);
         $smarty->assign('details', $this->data['details']);
         $smarty->assign('conclusion_title', $this->conclusion_title);
         $smarty->assign('conclusion_subtitle', $this->conclusion_subtitle);
         $smarty->assign('conclusion_description', $this->conclusion_description);
-        $html = $smarty->fetch(\dirname(__DIR__) . '/../template/result.tpl');
+        $html = $smarty->fetch($this->plugin_path . 'template/result.tpl');
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generate and return the PDF
