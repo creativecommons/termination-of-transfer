@@ -382,13 +382,13 @@ jQuery
     resultMap = result;
   })
   .fail((jqxhr, textStatus, error) => {
-    var err = textStatus + ", " + error;
+    const err = textStatus + ", " + error;
     console.log("Request Failed: " + err);
   });
 
 TotQuestions.getConclusionDetails = (specifier) => {
-  var path = specifier.split(".");
-  var result = resultMap["Conclusion"][path[0]][path[1]];
+  const path = specifier.split(".");
+  const result = resultMap["Conclusion"][path[0]][path[1]];
   return result;
 };
 
@@ -409,7 +409,7 @@ TotQuestions.start = () => {
 };
 
 TotQuestions.transitionQuestion = (next_question) => {
-  var previous_question = TotQuestions[TotQuestions.current_question];
+  const previous_question = TotQuestions[TotQuestions.current_question];
   if (previous_question) {
     if (previous_question.post) {
       previous_question.post();
@@ -419,7 +419,7 @@ TotQuestions.transitionQuestion = (next_question) => {
     TotQuestions.finish();
   } else {
     TotQuestions.current_question = next_question;
-    var question = TotQuestions[TotQuestions.current_question];
+    const question = TotQuestions[TotQuestions.current_question];
     if (question["pre"]) {
       question.pre();
     }
@@ -428,8 +428,8 @@ TotQuestions.transitionQuestion = (next_question) => {
 };
 
 TotQuestions.nextQuestionID = () => {
-  var next_question = TotQuestions.current_question;
-  var rule = TotRules[TotQuestions.current_question];
+  let next_question = TotQuestions.current_question;
+  const rule = TotRules[TotQuestions.current_question];
   if (typeof rule == "function") {
     next_question = rule();
   } else {
@@ -442,7 +442,7 @@ TotQuestions.nextQuestion = () => {
   // If the answer was OK, move on
   if (TotQuestions.processAnswer()) {
     ValuesStack.push();
-    var id = TotQuestions.nextQuestionID();
+    const id = TotQuestions.nextQuestionID();
     TotValues.question_id = id;
     if (id == "finish") {
       TotQuestions.finish();
@@ -471,7 +471,7 @@ TotQuestions.previousQuestion = () => {
     TotQuestions.transitionQuestion(TotValues.question_id);
     TotNotifications.clearAlerts();
     // Clear previous answer
-    var previous_question = TotQuestions[TotValues.question_id];
+    const previous_question = TotQuestions[TotValues.question_id];
     TotAnswers.removeAnswer(previous_question.variable);
     // Scroll down to make sure the input UI is visible
     jQuery("html,body").animate(
@@ -484,7 +484,7 @@ TotQuestions.previousQuestion = () => {
 };
 
 TotQuestions.finish = () => {
-  var obj = TotQuestions.getConclusionDetails(TotValues.conclusion);
+  const obj = TotQuestions.getConclusionDetails(TotValues.conclusion);
   TotValues.termination_type = obj.title;
   TotNotifications.setResultAreaMessage(obj, "panel-success");
   TotNavigation.finishQuestions();
