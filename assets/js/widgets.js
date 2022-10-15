@@ -105,7 +105,7 @@ let progressStack = [];
 
 // These return true so we can use them as "handlers" in simpleNextQuestion
 
-let disableNext = () => {
+TotNavigation.disableNext = () => {
   jQuery("#button-question-next").prop("disabled", true);
   return true;
 };
