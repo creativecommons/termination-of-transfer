@@ -25,7 +25,7 @@
 let TotValues = {};
 
 TotValues.reset = () => {
-  let now = new Date();
+  const now = new Date();
   TotValues = {
     current_date: now,
     current_year: now.getFullYear(),
@@ -62,7 +62,7 @@ ValuesStack.height = () => {
 
 ValuesStack.push = () => {
   // Handle the date not liking being serialized.
-  let now = TotValues.current_date;
+  const now = TotValues.current_date;
   ValuesStack._stack.push(TotValues);
   // Deep clone
   TotValues = JSON.parse(JSON.stringify(TotValues));

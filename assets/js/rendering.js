@@ -53,7 +53,7 @@ TotRendering.createQuestion = () => {
 };
 
 TotRendering.common = (config) => {
-  let question = TotRendering.createQuestion();
+  const question = TotRendering.createQuestion();
   // If this is a question in a different section, change the section header
   // Section is 1-based, so we can use a simple logical and here.
   if (config.section && config.section != TotRendering.currentSection) {
@@ -80,11 +80,11 @@ TotRendering.common = (config) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 TotRendering.radio = (config) => {
-  let question = TotRendering.common(config);
-  let form_group = question.find(".form-group");
-  let name = `input ${config.variable}`;
+  const question = TotRendering.common(config);
+  const form_group = question.find(".form-group");
+  const name = `input ${config.variable}`;
   // If we are returning to this via the back button, get the previous value
-  let existing_value = TotValues[config.variable];
+  const existing_value = TotValues[config.variable];
   let radio_button_values = config.values || ["yes", "no"];
   radio_button_values.forEach((value) => {
     let radio_button = `<label class="radio-inline"><input type="radio" name=${name} value="${value}">${value}</label>`
@@ -108,7 +108,7 @@ TotRendering.radio = (config) => {
 
 TotRendering.makeTextLengthHandler = (element, min_length, optional) => {
   return () => {
-    let length = element.val().length;
+    const length = element.val().length;
     if ((optional && length == 0) || length >= min_length) {
       TotNavigation.enableNext();
     } else {
@@ -118,22 +118,22 @@ TotRendering.makeTextLengthHandler = (element, min_length, optional) => {
 };
 
 TotRendering.text = (config) => {
-  let question = TotRendering.common(config);
-  let form_group = question.find(".form-group");
-  let name = "input-" + config.variable;
-  let text_field = jQuery(`<input type="text" class="form-control text-question" id="${config.variable}" placeholder="${config.placeholder || ""}" >`
+  const question = TotRendering.common(config);
+  const form_group = question.find(".form-group");
+  // const name = "input-" + config.variable;
+  const text_field = jQuery(`<input type="text" class="form-control text-question" id="${config.variable}" placeholder="${config.placeholder || ""}" >`
   );
   form_group.append(text_field);
   // Set the label
-  let label = question.find(".question-label").prop("for", name);
+  // const label = question.find(".question-label").prop("for", name);
   if (TotValues[config.variable]) {
     form_group.find("text-question").val(TotValues[config.variable]);
   }
-  let existing_value = TotValues[config.variable];
+  const existing_value = TotValues[config.variable];
   // Ensure next isn't enabled until enough characters are entered
-  let min_length = config.min_length || 4;
-  let text_field_element = question.find(".text-question");
-  let validator = TotRendering.makeTextLengthHandler(
+  const min_length = config.min_length || 4;
+  const text_field_element = question.find(".text-question");
+  const validator = TotRendering.makeTextLengthHandler(
     text_field_element,
     min_length,
     config.optional
@@ -152,8 +152,8 @@ TotRendering.text = (config) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 TotRendering.year = (config) => {
-  let question = TotRendering.text(config);
-  let text_field = question.find(".text-question");
+  const question = TotRendering.text(config);
+  const text_field = question.find(".text-question");
   TotValidation.allowOnlyNumbers(text_field);
   text_field.prop("maxlength", 4);
   text_field.prop("placeholder", "1977");
@@ -183,7 +183,7 @@ TotRendering.render = (config) => {
 };
 
 TotRendering.transitionTo = (config) => {
-  let question = TotRendering.render(config);
+  const question = TotRendering.render(config);
   jQuery(".question-form").slideUp("fast", () => {
     jQuery(this).remove();
   });

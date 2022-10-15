@@ -30,7 +30,7 @@ TotPdf.url = `${jQuery(
   .replace(/assets\/js\/pdf\.js.*$/, "")}pdf-result.php`;
 
 TotPdf.appendProperty = (details, key, value) => {
-  let mapping = { key: key, value: value };
+  const mapping = { key: key, value: value };
   details.push(mapping);
 };
 
@@ -129,18 +129,18 @@ TotPdf.details = () => {
 };
 
 TotPdf.request = () => {
-  let data = {
+  const data = {
     report_timestamp: TotValues.current_date.getTime() / 1000,
     flags: TotValues.flags.sort(), // Sorts inline & returns, so OK here
     conclusion: TotValues.conclusion,
     details: TotPdf.details(),
   };
-  let totform = document.createElement("FORM");
+  const totform = document.createElement("FORM");
   totform.setAttribute("action", TotPdf.url);
   totform.setAttribute("method", "post");
   totform.setAttribute("enctype", "multipart/form-data");
   totform.setAttribute("target", "_blank");
-  let data_field = document.createElement("INPUT");
+  const data_field = document.createElement("INPUT");
   data_field.setAttribute("type", "hidden");
   data_field.setAttribute("name", "data");
   data_field.setAttribute("value", JSON.stringify(data));
