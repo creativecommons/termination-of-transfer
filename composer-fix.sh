@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -d /var/www/html/wp-content/plugins/termination-of-transfer ]; then
   
    # change directory
