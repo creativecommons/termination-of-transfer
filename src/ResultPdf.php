@@ -94,7 +94,7 @@ class ResultPdf
 
     public function flagTitleAndDescription ($spec)
     {
-        $results_json = file_get_contents($this->plugin_path. '/assets/js/results.json');
+        $results_json = file_get_contents($this->plugin_path. 'assets/js/results.json');
         $this->results_strings = json_decode($results_json, true);
         $path = explode('.', $spec);
         // A, B, C, D
