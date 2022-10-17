@@ -26,7 +26,7 @@ use CreativeCommons_TOT\TerminationOfTransfer;
 /*
 Plugin Name: Termination of Tranfer Tool
 Plugin URI: https://github.com/creativecommons/termination-of-transfer
-Version: 1.0.0
+Version: 2.0.0
 Author: Creative Commons Corporation
 Author URI: https://github.com/creativecommons/
 Requires PHP: 7.4.0
