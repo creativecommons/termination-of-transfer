@@ -38,9 +38,9 @@ function termination_of_transfer_tool_init()
 {
     $tot_plugin = new Plugin();
     // the instaled directory path
-    $tot_plugin['path'] = realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR;
+    // $tot_plugin['path'] = realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR;
     // the instaled directory url
-    $tot_plugin['url'] = plugin_dir_url( __FILE__ );
+    // $tot_plugin['url'] = plugin_dir_url( __FILE__ );
     // the current plugin version
     $tot_plugin['version'] = '2.0.0';
     // the plugin name
