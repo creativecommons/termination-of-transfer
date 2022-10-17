@@ -44,7 +44,7 @@ function termination_of_transfer_tool_init()
     // the current plugin version
     $tot_plugin['version'] = '2.0.0';
     // the plugin name
-    $tot_plugin['name'] = 'Termination of Tranfer Tool';
+    $tot_plugin['name'] = 'Termination of Transfer Tool';
     // the scripts to load, if prefixed with js/ then it's located in the plugin scripts folder
     $tot_plugin['scripts'] = [
         'jquery',
