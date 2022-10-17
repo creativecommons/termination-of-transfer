@@ -53,9 +53,9 @@ class TerminationOfTransfer
     public function run()
     {
         if ( ! version_compare( PHP_VERSION, '7.4', '>=' ) ) {
-            add_action( 'admin_notices', 'fail_php_version' );
+            add_action( 'admin_notices', 'failPhpVersion' );
         } elseif ( ! version_compare( get_bloginfo( 'version' ), '5.0', '>=' ) ) {
-            add_action( 'admin_notices', 'fail_wp_version' );
+            add_action( 'admin_notices', 'failWpVersion' );
         } else {
             add_shortcode( 'termination-of-transfer-tool', [$this, 'handleShortcode'] );
         }
@@ -81,7 +81,7 @@ class TerminationOfTransfer
      *
      * @return void
      */
-    public function fail_php_version() {
+    public function failPhpVersion() {
         /* translators: %s: PHP version */
         $v = $this->data['version'];
         $n = $this->data['name'];
@@ -97,7 +97,7 @@ class TerminationOfTransfer
      *
      * @return void
      */
-    public function fail_wp_version() {
+    public function failWpVersion() {
         /* translators: %s: WordPress version */
         $v = $this->data['version'];
         $n = $this->data['name'];
