@@ -53,9 +53,9 @@ class TerminationOfTransfer
     public function run()
     {
         if ( ! version_compare( PHP_VERSION, '7.4', '>=' ) ) {
-            add_action( 'admin_notices', 'failPhpVersion' );
+            add_action( 'admin_notices', [$this, 'failPhpVersion'] );
         } elseif ( ! version_compare( get_bloginfo( 'version' ), '5.0', '>=' ) ) {
-            add_action( 'admin_notices', 'failWpVersion' );
+            add_action( 'admin_notices', [$this, 'failWpVersion'] );
         } else {
             add_shortcode( 'termination-of-transfer-tool', [$this, 'handleShortcode'] );
         }
