@@ -86,9 +86,9 @@ TotQuestions.s1q1bii = {
   variable: "grant_pub_year",
   input: "year",
   validate: () => {
-    var errors = TotValidation.validDate();
+    let errors = TotValidation.validDate();
     if (errors == false) {
-      var year = parseInt(jQuery(".text-question").val());
+      const year = parseInt(jQuery(".text-question").val());
       if (year < TotValues.creation_year) {
         errors =
           "Year of publication under grant cannot be earlier than year of creation.";
@@ -147,7 +147,7 @@ TotQuestions.s1q1d = {
   variable: "k_year",
   input: "year",
   validate: () => {
-    var errors = TotValidation.validDate();
+    const errors = TotValidation.validDate();
     if (errors == false) {
       // Stash the user-entered agreement year
       TotValues.user_inputted_k_year = parseInt(jQuery(".text-question").val());
@@ -295,8 +295,8 @@ TotQuestions.s2q2fii = {
 ////////////////////////////////////////////////////////////////////////////////
 
 TotQuestions.validateAnswer = () => {
-  var result = false;
-  var question = TotQuestions[TotQuestions.current_question];
+  let result = false;
+  const question = TotQuestions[TotQuestions.current_question];
   if (question["validate"]) {
     result = question.validate();
   } else if (question.type == "year") {
@@ -312,8 +312,8 @@ TotQuestions.validateAnswer = () => {
 };
 
 TotQuestions.getAnswer = () => {
-  var question = TotQuestions[TotQuestions.current_question];
-  var answer = undefined;
+  const question = TotQuestions[TotQuestions.current_question];
+  let answer = undefined;
   switch (question.input) {
     case "radio":
       answer = jQuery(':input[type="radio"]:checked').val();
@@ -341,11 +341,11 @@ TotQuestions.getAnswer = () => {
 };
 
 TotQuestions.processAnswer = () => {
-  var result = false;
-  var warnings = TotQuestions.validateAnswer();
+  let result = false;
+  const warnings = TotQuestions.validateAnswer();
   if (warnings === false) {
-    var question = TotQuestions[TotQuestions.current_question];
-    var answer = TotQuestions.getAnswer();
+    const question = TotQuestions[TotQuestions.current_question];
+    let answer = TotQuestions.getAnswer();
     TotValues[question.variable] = answer;
     // FIXME: handle converting radio buttons to correct store values
     //        while recording their label in the answers table

@@ -55,10 +55,10 @@ TotValidation.allowOnlyNumbers = (element) => {
 // false here means no errors, a string means errors
 
 TotValidation.validDate = () => {
-  var text_field = jQuery(".text-question");
-  var date = text_field.val();
-  var result = false;
-  var errors = [];
+  const text_field = jQuery(".text-question");
+  const date = text_field.val();
+  let result = false;
+  const errors = [];
   if (!date.match(/[0-9]{4}/)) {
     errors.push("date must be four digits");
   }
