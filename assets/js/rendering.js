@@ -67,7 +67,7 @@ const TotRendering = {
     // Multiple choice questions (radio buttons)
     const question = TotRendering.common(config);
     const form_group = question.find(".form-group");
-    const name = `input ${config.variable}`;
+    const name = `input_${config.variable}`;
     // If we are returning to this via the back button, get the previous value
     const existing_value = TotValues[config.variable];
     let radio_button_values = config.values || ["yes", "no"];
