@@ -24,7 +24,7 @@
 const TotPdf = {};
 
 TotPdf.url = `${jQuery(
-  "script[src*='/termination-of-transfer/assets/js/pdf.js']"
+  "script[src*='/termination-of-transfer/assets/js/pdf.js']",
 )
   .attr("src")
   .replace(/assets\/js\/pdf\.js.*$/, "")}pdf-result.php`;
@@ -55,12 +55,12 @@ TotPdf.append203Windows = (details) => {
   TotPdf.appendProperty(
     details,
     '&sect; 203 <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a>',
-    notice
+    notice,
   );
   TotPdf.appendProperty(
     details,
     '&sect; 203 <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a>',
-    termination
+    termination,
   );
 };
 
@@ -68,43 +68,43 @@ TotPdf.append304Windows = (details) => {
   TotPdf.appendProperty(
     details,
     '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
-    TotValues.notice_begin
+    TotValues.notice_begin,
   );
   TotPdf.appendProperty(
     details,
     '&sect; 304(c) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
-    TotValues.notice_end
+    TotValues.notice_end,
   );
   TotPdf.appendProperty(
     details,
     '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
-    TotValues.term_begin
+    TotValues.term_begin,
   );
   TotPdf.appendProperty(
     details,
     '&sect; 304(c) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
-    TotValues.term_end
+    TotValues.term_end,
   );
   if (TotValues.d_notice_begin != undefined) {
     TotPdf.appendProperty(
       details,
       '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> begins',
-      TotValues.d_notice_begin
+      TotValues.d_notice_begin,
     );
     TotPdf.appendProperty(
       details,
       '&sect; 304(d) <a href="https://rightsback.org/glossary/#notice_window" target="_blank">notice window</a> ends',
-      TotValues.d_notice_end
+      TotValues.d_notice_end,
     );
     TotPdf.appendProperty(
       details,
       '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> begins',
-      TotValues.d_term_begin
+      TotValues.d_term_begin,
     );
     TotPdf.appendProperty(
       details,
       '&sect; 304(d) <a href="https://rightsback.org/glossary/#termination_window" target="_blank">termination window</a> ends',
-      TotValues.d_term_end
+      TotValues.d_term_end,
     );
   }
 };

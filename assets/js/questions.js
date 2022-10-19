@@ -350,7 +350,7 @@ TotQuestions.processAnswer = () => {
     // FIXME: handle converting radio buttons to correct store values
     //        while recording their label in the answers table
     if (answer) {
-      if (typeof question.answerDisplayValue === 'function') {
+      if (typeof question.answerDisplayValue === "function") {
         answer = question.answerDisplayValue();
       }
       TotAnswers.appendAnswer(question.variable, question.question, answer);
@@ -376,7 +376,7 @@ jQuery
   .getJSON(
     jQuery("script[src*='/termination-of-transfer/assets/js/questions.js']")
       .attr("src")
-      .replace(/questions\.js.*$/, "") + "results.json"
+      .replace(/questions\.js.*$/, "") + "results.json",
   )
   .done((result) => {
     resultMap = result;
@@ -401,7 +401,7 @@ TotQuestions.last_question = "s2q2fii";
 
 TotQuestions.start = () => {
   jQuery(".questionnaire-section, .question-progress-buttons").removeClass(
-    "hidden"
+    "hidden",
   );
   jQuery(".no-javascript-alert").addClass("hidden");
   //TotNavigation.disablePrevious();
@@ -453,7 +453,7 @@ TotQuestions.nextQuestion = () => {
         {
           scrollTop: jQuery("#button-question-next").offset().top,
         },
-        "slow"
+        "slow",
       );
     }
   }
@@ -478,7 +478,7 @@ TotQuestions.previousQuestion = () => {
       {
         scrollTop: jQuery("#button-question-next").offset().top,
       },
-      "slow"
+      "slow",
     );
   }
 };
@@ -498,8 +498,8 @@ TotQuestions.start = () => {
   TotNavigation.showQuestions();
   TotNavigation.showAnswersTable();
   TotNavigation.showNextPrevious();
-  jQuery("#button-question-next").on('click',TotQuestions.nextQuestion);
-  jQuery("#button-question-back").on('click', TotQuestions.previousQuestion);
+  jQuery("#button-question-next").on("click", TotQuestions.nextQuestion);
+  jQuery("#button-question-back").on("click", TotQuestions.previousQuestion);
   // When the user presses "return" in a text area, move to next question
   jQuery("#question-rendering-area").on("submit", () => {
     if (jQuery("#button-question-next").is(":enabled")) {

@@ -34,12 +34,12 @@ TotAnswers.resetAnswers = () => {
 
 TotAnswers.appendAnswer = (myId, label, value) => {
   if (!label) {
-    label = jQuery(`#${myId}`).parent().find('label').first().text();
+    label = jQuery(`#${myId}`).parent().find("label").first().text();
   }
   // If the user has gone back and is changing the answer, first remove it
   TotAnswers.removeAnswer(myId);
   jQuery("#answers-table-rows").append(
-    `<tr id="answer-row-${myId}"><td>${label}</td><td align="right">${value}</td></tr>`
+    `<tr id="answer-row-${myId}"><td>${label}</td><td align="right">${value}</td></tr>`,
   );
 };
 
@@ -60,20 +60,20 @@ TotNotifications.clearAlerts = () => {
 TotNotifications.setAlert = (message) => {
   TotNotifications.clearAlerts();
   jQuery("#alert-area").append(
-    `<div class="alert alert-warning" role="alert">${message}</div>`
+    `<div class="alert alert-warning" role="alert">${message}</div>`,
   );
 };
 
 TotNotifications.setEncouragement = (message) => {
   TotNotifications.clearAlerts();
   jQuery("#alert-area").append(
-    `<div class="alert alert-success" role="alert">${message}</div>`
+    `<div class="alert alert-success" role="alert">${message}</div>`,
   );
 };
 
 TotNotifications.displayAnswersHint = () => {
   jQuery("#answers-table-rows").append(
-    '<tr id="answers-table-row-placeholder"><td>As you respond to the questions we\'ll save the answers here.</td></tr>'
+    '<tr id="answers-table-row-placeholder"><td>As you respond to the questions we\'ll save the answers here.</td></tr>',
   );
 };
 

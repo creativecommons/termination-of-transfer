@@ -99,7 +99,7 @@ TotRules.section304Analysis = () => {
       if (TotValues.reg_year != undefined && TotValues.pub_year != undefined) {
         TotValues.cright_year = Math.min(
           TotValues.pub_year,
-          TotValues.reg_year
+          TotValues.reg_year,
         );
       }
       // Otherwise use whichever value is set. One *will* be set here, see top.
@@ -166,7 +166,7 @@ TotRules.section203Analysis = () => {
       if (TotValues.triggering_pub_year != undefined) {
         TotValues.term_begin = Math.min(
           TotValues.triggering_pub_year + 35,
-          TotValues.k_year + 40
+          TotValues.k_year + 40,
         );
       } else {
         TotValues.term_begin = TotValues.k_year + 40;
@@ -192,7 +192,7 @@ TotRules.section203Analysis = () => {
       if (TotValues.triggering_pub_year != undefined) {
         TotValues.p_term_begin = Math.min(
           TotValues.triggering_pub_year + 35,
-          TotValues.p_term_begin
+          TotValues.p_term_begin,
         );
       }
       TotValues.p_term_end = TotValues.p_term_begin + 5;
@@ -317,7 +317,7 @@ TotRules.s1q1d = () => {
       !TotRules.hasPublicDomainFlags()
     ) {
       TotNotifications.setEncouragement(
-        "Both notice window and copyright status look good, let's get some more details!"
+        "Both notice window and copyright status look good, let's get some more details!",
       );
     }
   }
@@ -335,7 +335,7 @@ TotRules.s1q1f = () => {
     !TotRules.hasPublicDomainFlags()
   ) {
     TotNotifications.setEncouragement(
-      "Both notice window and copyright status look good, let's get some more details!"
+      "Both notice window and copyright status look good, let's get some more details!",
     );
   }
   return result;

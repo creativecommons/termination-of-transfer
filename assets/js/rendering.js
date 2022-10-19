@@ -76,11 +76,11 @@ const TotRendering = {
       if (value == existing_value) {
         radio_button = `<label class="radio-inline"><input type="radio" name="${name}" checked="checked" value="${value}">${value}</label>`;
       }
-  
+
       form_group.append(jQuery(radio_button));
     });
     // When the user makes a choice, go straight to the next question
-    form_group.find(':input[type="radio"]').on('click', () => {
+    form_group.find(':input[type="radio"]').on("click", () => {
       TotNavigation.enableNext();
       jQuery("#button-question-next").click();
     });
@@ -98,14 +98,14 @@ const TotRendering = {
     };
   },
   text: (config) => {
-     // Text input
+    // Text input
     const question = TotRendering.common(config);
     const form_group = question.find(".form-group");
     // const name = "input-" + config.variable;
     const text_field = jQuery(
       `<input type="text" class="form-control text-question" id="${
         config.variable
-      }" placeholder="${config.placeholder || ""}" >`
+      }" placeholder="${config.placeholder || ""}" >`,
     );
     form_group.append(text_field);
     // Set the label
@@ -120,7 +120,7 @@ const TotRendering = {
     const validator = TotRendering.makeTextLengthHandler(
       text_field_element,
       min_length,
-      config.optional
+      config.optional,
     );
     text_field_element.on("keyup", validator);
     text_field_element.on("change", validator);
@@ -164,5 +164,5 @@ const TotRendering = {
     });
     jQuery("#question-rendering-area").append(question);
     question.slideDown("fast");
-  }
+  },
 };
