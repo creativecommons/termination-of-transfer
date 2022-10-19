@@ -498,8 +498,8 @@ TotQuestions.start = () => {
   TotNavigation.showQuestions();
   TotNavigation.showAnswersTable();
   TotNavigation.showNextPrevious();
-  jQuery("#button-question-next").click(TotQuestions.nextQuestion);
-  jQuery("#button-question-back").click(TotQuestions.previousQuestion);
+  jQuery("#button-question-next").on('click',TotQuestions.nextQuestion);
+  jQuery("#button-question-back").on('click', TotQuestions.previousQuestion);
   // When the user presses "return" in a text area, move to next question
   jQuery("#question-rendering-area").on("submit", () => {
     if (jQuery("#button-question-next").is(":enabled")) {
