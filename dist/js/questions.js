@@ -340,14 +340,14 @@ TotQuestions.resultMap = undefined;
 // This data won't be used until after several questions, so this is tolerable.
 
 jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/dist/js/questions.js']").attr("src").replace(/dist\/js\/questions\.js.*$/, "") + "assets/js/results.json").done(function (result) {
-  resultMap = result;
+  TotQuestions.resultMap = result;
 }).fail(function (jqxhr, textStatus, error) {
   var err = textStatus + ", " + error;
   console.log("Request Failed: " + err);
 });
 TotQuestions.getConclusionDetails = function (specifier) {
   var path = specifier.split(".");
-  var result = resultMap["Conclusion"][path[0]][path[1]];
+  var result = TotQuestions.resultMap["Conclusion"][path[0]][path[1]];
   return result;
 };
 
