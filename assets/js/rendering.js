@@ -57,7 +57,9 @@ TotRendering.common = (config) => {
   // If this is a question in a different section, change the section header
   // Section is 1-based, so we can use a simple logical and here.
   if (config.section && config.section != TotRendering.currentSection) {
-    jQuery("#section-title").html(TotRendering.sections[config.section]).fadeIn();
+    jQuery("#section-title")
+      .html(TotRendering.sections[config.section])
+      .fadeIn();
   }
   question.find(".question-label").html(config.question);
   if (config.explanation) {
@@ -87,9 +89,9 @@ TotRendering.radio = (config) => {
   const existing_value = TotValues[config.variable];
   let radio_button_values = config.values || ["yes", "no"];
   radio_button_values.forEach((value) => {
-    let radio_button = `<label class="radio-inline"><input type="radio" name=${name} value="${value}">${value}</label>`
+    let radio_button = `<label class="radio-inline"><input type="radio" name=${name} value="${value}">${value}</label>`;
     if (value == existing_value) {
-      radio_button = `<label class="radio-inline"><input type="radio" name=${name} checked="checked" value="${value}">${value}</label>`
+      radio_button = `<label class="radio-inline"><input type="radio" name=${name} checked="checked" value="${value}">${value}</label>`;
     }
 
     form_group.append(jQuery(radio_button));
@@ -121,7 +123,10 @@ TotRendering.text = (config) => {
   const question = TotRendering.common(config);
   const form_group = question.find(".form-group");
   // const name = "input-" + config.variable;
-  const text_field = jQuery(`<input type="text" class="form-control text-question" id="${config.variable}" placeholder="${config.placeholder || ""}" >`
+  const text_field = jQuery(
+    `<input type="text" class="form-control text-question" id="${
+      config.variable
+    }" placeholder="${config.placeholder || ""}" >`
   );
   form_group.append(text_field);
   // Set the label
