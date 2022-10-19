@@ -39,7 +39,7 @@ TotAnswers.appendAnswer = (myId, label, value) => {
   // If the user has gone back and is changing the answer, first remove it
   TotAnswers.removeAnswer(myId);
   jQuery("#answers-table-rows").append(
-    `<tr id="answer-row-${myId}><td>${label}</td><td align="right">${value}</td></tr>`
+    `<tr id="answer-row-${myId}"><td>${label}</td><td align="right">${value}</td></tr>`
   );
 };
 
