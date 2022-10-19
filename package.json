@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "npx babel assets --out-dir dist",
+    "build": "npx babel assets --out-file dist/tot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
