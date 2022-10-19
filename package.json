@@ -32,5 +32,8 @@
     "eslint": "^8.25.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "jquery": "^3.6.1"
   }
 }
