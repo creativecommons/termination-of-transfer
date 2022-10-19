@@ -34,7 +34,7 @@ TotAnswers.resetAnswers = () => {
 
 TotAnswers.appendAnswer = (myId, label, value) => {
   if (!label) {
-    label = jQuery(`#${myId} > label`).first().text();
+    label = jQuery(`#${myId}`).parent().find('label').first().text();
   }
   // If the user has gone back and is changing the answer, first remove it
   TotAnswers.removeAnswer(myId);
