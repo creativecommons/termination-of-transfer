@@ -80,7 +80,7 @@ const TotRendering = {
       form_group.append(jQuery(radio_button));
     });
     // When the user makes a choice, go straight to the next question
-    form_group.find(':input[type="radio"]').click(() => {
+    form_group.find(':input[type="radio"]').on('click', () => {
       TotNavigation.enableNext();
       jQuery("#button-question-next").click();
     });
