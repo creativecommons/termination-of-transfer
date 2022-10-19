@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "build": "npx babel assets --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -36,7 +37,5 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1"
   },
-  "dependencies": {
-    "jquery": "^3.6.1"
-  }
+  "dependencies": {}
 }
