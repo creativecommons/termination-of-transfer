@@ -339,7 +339,7 @@ TotQuestions.resultMap = undefined;
 // Asynchronous fetch of data that is accessed synchronously.
 // This data won't be used until after several questions, so this is tolerable.
 
-jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/assets/js/questions.js']").attr("src").replace(/questions\.js.*$/, "") + "results.json").done(function (result) {
+jQuery.getJSON(jQuery("script[src*='/termination-of-transfer/dist/js/questions.js']").attr("src").replace(/dist\/js\/questions\.js.*$/, "") + "assets/js/results.json").done(function (result) {
   resultMap = result;
 }).fail(function (jqxhr, textStatus, error) {
   var err = textStatus + ", " + error;
