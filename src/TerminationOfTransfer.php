@@ -30,7 +30,7 @@ class TerminationOfTransfer
             $script = \explode('/', $value);
             if (isset($script[1])) {
                 $n = $script[1];
-                wp_enqueue_script( "tot-$n", plugins_url( "assets/$value.js", __DIR__ ) );
+                wp_enqueue_script( "tot-$n", plugins_url( "dist/$value.js", __DIR__ ) );
             } else {
                 wp_enqueue_script($value);
             }
@@ -43,7 +43,7 @@ class TerminationOfTransfer
             $style = \explode('/', $value);
             if (isset($style[1])) {
                 $n = $style[1];
-                wp_enqueue_style( "tot-style-$n", plugins_url( "assets/$value.css", __DIR__ ) );
+                wp_enqueue_style( "tot-style-$n", plugins_url( "dist/$value.css", __DIR__ ) );
             } else {
                 wp_enqueue_style($value);
             }
