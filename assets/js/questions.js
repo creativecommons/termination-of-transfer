@@ -374,9 +374,9 @@ TotQuestions.resultMap = undefined;
 
 jQuery
   .getJSON(
-    jQuery("script[src*='/termination-of-transfer/assets/js/questions.js']")
+    jQuery("script[src*='/termination-of-transfer/dist/js/questions.js']")
       .attr("src")
-      .replace(/questions\.js.*$/, "") + "results.json",
+      .replace(/dist\/js\/questions\.js.*$/, "") + "assets/js/results.json",
   )
   .done((result) => {
     resultMap = result;
