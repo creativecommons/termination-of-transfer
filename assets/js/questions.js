@@ -314,7 +314,7 @@ TotQuestions.validateAnswer = () => {
 TotQuestions.getAnswer = () => {
   const question = TotQuestions[TotQuestions.current_question];
   let answer = undefined;
-  switch (question.input) {
+  switch (question?.input) {
     case "radio":
       answer = jQuery(':input[type="radio"]:checked').val();
       break;
