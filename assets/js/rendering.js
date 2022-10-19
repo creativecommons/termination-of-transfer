@@ -160,7 +160,7 @@ const TotRendering = {
   transitionTo: (config) => {
     const question = TotRendering.render(config);
     jQuery(".question-form").slideUp("fast", () => {
-      jQuery(".question-form").remove();
+      jQuery(this).remove();
     });
     jQuery("#question-rendering-area").append(question);
     question.slideDown("fast");
