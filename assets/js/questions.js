@@ -379,7 +379,7 @@ jQuery
       .replace(/dist\/js\/questions\.js.*$/, "") + "assets/js/results.json",
   )
   .done((result) => {
-    resultMap = result;
+    TotQuestions.resultMap = result;
   })
   .fail((jqxhr, textStatus, error) => {
     const err = textStatus + ", " + error;
@@ -388,7 +388,7 @@ jQuery
 
 TotQuestions.getConclusionDetails = (specifier) => {
   const path = specifier.split(".");
-  const result = resultMap["Conclusion"][path[0]][path[1]];
+  const result = TotQuestions.resultMap["Conclusion"][path[0]][path[1]];
   return result;
 };
 
