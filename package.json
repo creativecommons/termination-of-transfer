@@ -25,5 +25,12 @@
   "bugs": {
     "url": "https://github.com/onyijne/termination-of-transfer/issues"
   },
-  "homepage": "https://github.com/creativecommons/termination-of-transfer#readme"
+  "homepage": "https://github.com/creativecommons/termination-of-transfer#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "eslint": "^8.25.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
+  }
 }
