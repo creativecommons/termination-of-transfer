@@ -350,9 +350,9 @@ TotQuestions.processAnswer = () => {
     // FIXME: handle converting radio buttons to correct store values
     //        while recording their label in the answers table
     if (answer) {
-      answer =
-        (question.answerDisplayValue && question.answerDisplayValue()) ||
-        answer;
+      if (typeof question.answerDisplayValue === 'function') {
+        answer = question.answerDisplayValue();
+      }
       TotAnswers.appendAnswer(question.variable, question.question, answer);
     }
     TotNotifications.clearAlerts();
