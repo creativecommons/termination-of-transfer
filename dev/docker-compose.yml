@@ -17,7 +17,7 @@ services:
     - db:mysql
   volumes:
    - composer-fix.sh:/var/www/html/composer-fix.sh
-   - ./:/var/www/html/wp-content/plugins/termination-of-transfer
+   - .././:/var/www/html/wp-content/plugins/termination-of-transfer
   depends_on:
     - db
   entrypoint: chmod +x composer-fix.sh && ./composer-fix.sh
