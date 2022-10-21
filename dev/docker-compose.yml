@@ -7,22 +7,22 @@ services:
   restart: always
   environment:
     WORDPRESS_DEBUG: 1
-    WORDPRESS_DB_HOST: mariadb
+    WORDPRESS_DB_HOST: db
     WORDPRESS_DB_NAME: wordpress
     WORDPRESS_DB_PASSWORD: dbPassword
     WORDPRESS_DB_USER: dbUsername
   ports:
    - 8701:80
   links:
-    - mariadb:mysql
+    - db:mysql
   volumes:
    - composer-fix.sh:/var/www/html/composer-fix.sh
    - ./:/var/www/html/wp-content/plugins/termination-of-transfer
   depends_on:
-    - mariadb
+    - db
   entrypoint: chmod +x composer-fix.sh && ./composer-fix.sh
 
- mariadb:
+ db:
   container_name: 'tot-mariadb'
   image: mariadb
   restart: always
@@ -40,13 +40,13 @@ services:
    ports:
     - 3010:80
    links:
-    - mariadb:mysql
+    - db:mysql
    environment:
     - PMA_ARBITRARY=0
     #- PMA_PORT=3006
     #- PMA_HOST=192.168.128.2
    depends_on:
-    - mariadb
+    - db
 
 volumes:
  sql:
