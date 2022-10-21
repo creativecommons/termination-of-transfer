@@ -12,5 +12,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # copy all the files in this folder to plugins directory
 COPY . /var/www/html/wp-content/plugins/termination-of-transfer
 
+# allow root user so composer can install dependencies without having root user error
+RUN export COMPOSER_ALLOW_SUPERUSER=1;
+
 # cd to plugin directory AND install plugin dependencies
 RUN cd /var/www/html/wp-content/plugins/termination-of-transfer && composer install
