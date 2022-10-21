@@ -3,7 +3,7 @@ version: '3.2'
 services:
  wp:
   build:
-   context: .
+   context: ../
   restart: always
   environment:
     WORDPRESS_DEBUG: 1
