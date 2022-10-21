@@ -7,30 +7,31 @@ services:
   restart: always
   environment:
     WORDPRESS_DEBUG: 1
-    WORDPRESS_DB_HOST: 192.168.128.2
+    WORDPRESS_DB_HOST: mariadb
     WORDPRESS_DB_NAME: wordpress
-    WORDPRESS_DB_PASSWORD: SqlNotTooMuch
-    WORDPRESS_DB_USER: codex
+    WORDPRESS_DB_PASSWORD: dbPassword
+    WORDPRESS_DB_USER: dbUsername
   ports:
    - 8701:80
-  networks:
-    server:
+  links:
+    - mariadb:mysql
   volumes:
    - composer-fix.sh:/var/www/html/composer-fix.sh
    - ./:/var/www/html/wp-content/plugins/termination-of-transfer
+  depends_on:
+    - mariadb
   entrypoint: chmod +x composer-fix.sh && ./composer-fix.sh
 
  mariadb:
+  container_name: 'tot-mariadb'
   image: mariadb
   restart: always
-  networks:
-    server:
   environment:
-    MARIADB_ROOT_PASSWORD: NotTooMuch
-    MARIADB_USER: codex
-    MARIADB_PASSWORD: SqlNotTooMuch
+    MARIADB_ROOT_PASSWORD: rootPassword
+    MARIADB_USER: dbUsername
+    MARIADB_PASSWORD: dbPassword
   volumes:
-   - sql:/var/lib/mysql
+    - sql:/var/lib/mysql
   #entrypoint: mysqld_safe --skip-grant-tables --user=mysql
 
  phpmyadmin:
@@ -38,14 +39,14 @@ services:
    restart: always
    ports:
     - 3010:80
+   links:
+    - mariadb:mysql
    environment:
     - PMA_ARBITRARY=0
     #- PMA_PORT=3006
-    - PMA_HOST=192.168.128.2
-   networks:
-    server:
+    #- PMA_HOST=192.168.128.2
+   depends_on:
+    - mariadb
 
 volumes:
  sql:
-networks:
-  server:
