@@ -42,19 +42,5 @@ services:
     - db:mysql
   entrypoint: [ "bash", "-c", "sleep 10 && mysql -h \"db\" -p=rootPassword -u \"root\" -Be \"CREATE DATABASE IF NOT EXISTS 'wordpress'; GRANT ALL PRIVILEGES ON 'wordpress'.* TO 'dbUsername'@'%'' WITH GRANT OPTION;\""]
 
- phpmyadmin:
-   image: phpmyadmin
-   restart: always
-   ports:
-    - 3010:80
-   links:
-    - db:mysql
-   environment:
-    - PMA_ARBITRARY=0
-    #- PMA_PORT=3006
-    #- PMA_HOST=192.168.128.2
-   depends_on:
-    - db
-
 volumes:
  sql:
