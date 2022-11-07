@@ -44,7 +44,7 @@ services:
   volumes:
     - sql:/var/lib/mysql
     - ./my.cnf:/etc/mysql/my.cnf
-  entrypoint: [ "bash", "-c", "sleep 10 && mysql -h \"db\" -Be \"CREATE DATABASE IF NOT EXISTS wordpress; GRANT ALL PRIVILEGES ON `wordpress`.* TO `dbUsername`@`%`' WITH GRANT OPTION;\""]
+  entrypoint: [ "bash", "-c", "sleep 10 && mysql -h \"db\" -Be \"CREATE DATABASE IF NOT EXISTS wordpress; GRANT ALL PRIVILEGES ON `wordpress`.`*` TO `dbUsername`@`localhost`' WITH GRANT OPTION;\""]
 
 volumes:
  sql:
