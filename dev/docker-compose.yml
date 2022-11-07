@@ -31,6 +31,13 @@ services:
   volumes:
     - sql:/var/lib/mysql
   #entrypoint: mysqld_safe --skip-grant-tables --user=mysql
+ 
+ dbsetup:
+  image: mariadb
+  depends_on:
+    - db
+  restart: "no"
+  entrypoint: [ "bash", "-c", "sleep 10 && mysql -p=rootPassword -u \"root\" -Be \"CREATE DATABASE IF NOT EXISTS 'wordpress'; GRANT ALL PRIVILEGES ON 'wordpress'.* TO 'dbUsername'@'%'' WITH GRANT OPTION;\""]
 
  phpmyadmin:
    image: phpmyadmin
