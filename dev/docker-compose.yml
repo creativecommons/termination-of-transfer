@@ -41,7 +41,7 @@ services:
     - db:mysql
   depends_on:
     - db
-  entrypoint: [ "bash", "-c", "sleep 10 && mysql -h \"db\" -u \"root\" -p=rootPassword -Be \"CREATE DATABASE IF NOT EXISTS 'wordpress'; GRANT ALL PRIVILEGES ON 'wordpress'.* TO 'dbUsername'@'%'' WITH GRANT OPTION;\""]
+  entrypoint: [ "bash", "-c", "sleep 10 && mysql -h \"db\" -Be \"CREATE DATABASE IF NOT EXISTS 'wordpress'; GRANT ALL PRIVILEGES ON 'wordpress'.* TO 'dbUsername'@'%'' WITH GRANT OPTION;\""]
 
 volumes:
  sql:
