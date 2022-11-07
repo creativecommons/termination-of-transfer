@@ -1,0 +1,2 @@
+# exclude dev directory from container
+dev
