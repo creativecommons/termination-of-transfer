@@ -1,0 +1,41 @@
+{
+  "name": "termination-of-transfer",
+  "version": "2.0.0",
+  "description": "Termination of transfer tool",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "npx babel assets --out-dir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/creativecommons/termination-of-transfer.git"
+  },
+  "keywords": [
+    "termination",
+    "transfer",
+    "creative",
+    "commons",
+    "tool"
+  ],
+  "author": "Creative Commons",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/onyijne/termination-of-transfer/issues"
+  },
+  "homepage": "https://github.com/creativecommons/termination-of-transfer#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-env": "^7.19.4",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {}
+}

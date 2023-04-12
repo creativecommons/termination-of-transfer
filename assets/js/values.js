@@ -22,53 +22,53 @@
 // Rules consult these values and add their own.
 ////////////////////////////////////////////////////////////////////////////////
 
-var Values = {};
+let TotValues = {};
 
-Values.reset = function () {
-  var now = new Date();
-  Values = {
+TotValues.reset = () => {
+  const now = new Date();
+  TotValues = {
     current_date: now,
     current_year: now.getFullYear(),
-    flags: []
+    flags: [],
   };
 };
 
 //FIXME: Hello namespace pollution
 
-var varsToTitles = {
-  work_authors: 'Author',
-  work_title: 'Title of Work',
-  creation_year: 'Creation Year',
-  pub_year: 'Publication Year',
-  grant_pub_year: 'Publication Year Under Grant',
-  triggering_pub_year: 'Triggering Publication Date',
-  k_year: 'Effective Grant Year',
-  user_inputted_k_year: 'User Entered Grant Year',
-  reg_year: 'Copyright Registration Year',
-  work_copyright_reg_num: 'Registration Number',
-  termination_type: 'Termination Type',
-  work_agreement_type: 'Agreement or Transfer Type',
-  work_agreement_desc: 'Agreement or Transfer Description',
+const totVarsToTitles = {
+  work_authors: "Author",
+  work_title: "Title of Work",
+  creation_year: "Creation Year",
+  pub_year: "Publication Year",
+  grant_pub_year: "Publication Year Under Grant",
+  triggering_pub_year: "Triggering Publication Date",
+  k_year: "Effective Grant Year",
+  user_inputted_k_year: "User Entered Grant Year",
+  reg_year: "Copyright Registration Year",
+  work_copyright_reg_num: "Registration Number",
+  termination_type: "Termination Type",
+  work_agreement_type: "Agreement or Transfer Type",
+  work_agreement_desc: "Agreement or Transfer Description",
   //'': 'Grantor',
 };
 
-var ValuesStack = {};
+let ValuesStack = {};
 
 ValuesStack._stack = [];
 
-ValuesStack.height = function () {
-  return this._stack.length;
+ValuesStack.height = () => {
+  return ValuesStack._stack.length;
 };
 
-ValuesStack.push = function () {
+ValuesStack.push = () => {
   // Handle the date not liking being serialized.
-  var now = Values.current_date;
-  this._stack.push(Values);
+  const now = TotValues.current_date;
+  ValuesStack._stack.push(TotValues);
   // Deep clone
-  Values = JSON.parse(JSON.stringify(Values));
-  Values.current_date = now;
+  TotValues = JSON.parse(JSON.stringify(TotValues));
+  TotValues.current_date = now;
 };
 
-ValuesStack.pop = function () {
-  Values = this._stack.pop();
+ValuesStack.pop = () => {
+  TotValues = ValuesStack._stack.pop();
 };
