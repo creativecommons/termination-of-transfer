@@ -1,5 +1,5 @@
 *~
 .\#*
-vendor
-templates_c
 node_modules
+templates_c
+vendor
