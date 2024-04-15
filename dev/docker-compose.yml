@@ -33,7 +33,7 @@ services:
     - sql:/var/lib/mysql
     - ./my.cnf:/etc/mysql/my.cnf
   #entrypoint: mysqld_safe --skip-grant-tables --user=mysql
- 
+
  dbsetup:
   image: mariadb
   restart: "no"
